@@ -59,6 +59,7 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
 * [mongoDB](http://mongodb.com)
 * [express](http://expressjs.com)
 * [mongoose](http://mongoosejs.com)
+* [socket.io](https://socket.io/)
 
 * [webpack](https://webpack.js.org/)
 * [vue](https://vuejs.org/)
