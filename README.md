@@ -43,7 +43,7 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
 ### Frontend y Mobil
 
 * Permitir interactuar completamente con la API.
-* Usaremos VueJS y Bulma (frameworck css) para la pagina web
+* Usaremos VueJS y Vuetifyjs (frameworck css) para la pagina web
 * Para mobil usaremos Cordova, VueJS y OnsenUI (Frameworck CSS)
 
 ## Reuniones de avance
@@ -65,7 +65,7 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
   * [vue-router](https://github.com/vuejs/vue-router)
   * [vuex](https://github.com/vuejs/vuex)
   * [axios](https://github.com/mzabriskie/axios)
-* [bulma](https://bulma.io)
+* [vuetifyjs](https://vuetifyjs.com)
 * [onsen](https://onsen.io)
 
 * [eslint](https://eslint.org) [reglas](https://eslint.org/docs/rules/)
