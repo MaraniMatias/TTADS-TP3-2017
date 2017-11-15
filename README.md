@@ -59,14 +59,14 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
 * [mongoDB](http://mongodb.com)
 * [express](http://expressjs.com)
 * [mongoose](http://mongoosejs.com)
-* [socket.io](https://socket.io/)
+* [socket.io](https://socket.io)
 
-* [webpack](https://webpack.js.org/)
-* [vue](https://vuejs.org/)
+* [webpack](https://webpack.js.org)
+* [vue](https://vuejs.org)
   * [vue-router](https://github.com/vuejs/vue-router)
   * [vuex](https://github.com/vuejs/vuex)
   * [axios](https://github.com/mzabriskie/axios)
-* [semantic-ui](https://semantic-ui.com/)
+* [vuetifyjs](https://vuetifyjs.com)
 * [onsen](https://onsen.io)
 
 * [eslint](https://eslint.org) [reglas](https://eslint.org/docs/rules/)
