@@ -12,7 +12,7 @@ export default {
     return {
       miniVariant: false,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'HandBall-Tracker'
     }
   },
   methods: {
