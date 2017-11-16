@@ -1,46 +1,21 @@
 import Vue from 'vue';
 
-import {
-  Vuetify,
-  VApp,
-  VNavigationDrawer,
-  VFooter,
-  VList,
-  VBtn,
-  VIcon,
-  VGrid,
-  VToolbar,
-  transitions
-} from 'vuetify';
-import '../node_modules/vuetify/src/stylus/app.styl'
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.css';
 
 import App from './App';
 import router from './router';
 import store from './store';
 
-Vue.use(Vuetify, {
-  components: {
-    VApp,
-    VNavigationDrawer,
-    VFooter,
-    VList,
-    VBtn,
-    VIcon,
-    VGrid,
-    VToolbar,
-    transitions
-  }
-});
+Vue.use(Vuetify);
 
-Vue.config.productionTip = process.env.NODE_ENV !== 'production';
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-var vm = new Vue({
+new Vue({
   el: '#app',
   router,
-  strict: true,
   store,
   template: '<App/>',
-  components: { App },
+  components: { App }
 });
-export default vm;
