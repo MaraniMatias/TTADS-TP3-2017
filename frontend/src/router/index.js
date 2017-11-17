@@ -1,15 +1,16 @@
 "use strict";
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/Home';
+
+import Home from '@/components/home/Home';
 import Login from '@/components/Login';
 
-import Equipo from '@/components/Equipo';
-import EquipoList from '@/components/EquipoList';
-import Partido from '@/components/Partido';
-import PartidoList from '@/components/PartidoList';
-import Jugador from '@/components/Jugador';
-import JugadorList from '@/components/JugadorList';
+import Equipo from '@/components/equipo/Equipo';
+import EquipoList from '@/components/equipo/EquipoList';
+import Partido from '@/components/partido/Partido';
+import PartidoList from '@/components/partido/PartidoList';
+import Jugador from '@/components/jugador/Jugador';
+import JugadorList from '@/components/jugador/JugadorList';
 
 Vue.use(Router);
 
