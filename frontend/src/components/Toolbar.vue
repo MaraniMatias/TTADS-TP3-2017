@@ -12,7 +12,7 @@ export default {
     return {
       miniVariant: false,
       rightDrawer: false,
-      title: 'HandBall-Tracker'
+      title: 'HandBall - Tracker'
     }
   },
   methods: {
