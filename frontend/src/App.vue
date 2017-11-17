@@ -5,8 +5,7 @@
     v-content
       v-container(fluid)
         v-slide-y-transition(mode='out-in')
-          v-layout(column align-center)
-            router-view
+          router-view
     customer-footer
 </template>
 
