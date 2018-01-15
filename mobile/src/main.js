@@ -4,26 +4,44 @@ import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
 
 import Vue from 'vue';
+import ons from 'onsenui';
 import VueOnsen from 'vue-onsenui';
 import VueRouter from 'vue-router';
 import store from './store';
 import App from './App';
 
-Vue.config.productionTip = false;
+import Home from './components/HomePage';
+import Dialogs from './components/dialogs';
+import PullHook from './components/PullHook';
+import Form from './components/Form';
+
+Vue.config.productionTip = true;
 
 Vue.use(VueRouter);
 Vue.use(VueOnsen);
 
 const routes = [
-  { path: '*', redirect: '/' },
-  { path: '/foo', component: null, name: "" },
-  { path: '/bar', component: null, name: "" }
+  { path: '*', redirect: '/home' },
+  { path: '/home', component: Home, name: 'home' },
+  { path: '/dialogs', component: Dialogs, name: 'dialogs' },
+  { path: '/pullhook', component: PullHook, name: 'pullhook' },
+  { path: '/form', component: Form, name: 'form' }
 ];
 
 const router = new VueRouter({
-  //mode: 'history', //navega sin recargar pag y sin #, requiere config. el backend
+  // mode: 'history', //navega sin recargar pag y sin #, requiere config. el backend
   linkActiveClass: 'active',
-  routes // short for `routes: routes`
+  routes,
+});
+
+ons.ready(() => {
+  function onDeviceReady() {
+    console.log(navigator.vibrate);
+    navigator.vibrate([1000, 1000, 1000]);
+  }
+  navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
+
+  document.addEventListener("deviceready", onDeviceReady, false);
 });
 
 /* eslint-disable no-new */
@@ -31,7 +49,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  strict: true, // In strict mode any mutations to Vuex state outside of mutation handlers will throw an Error.
+  strict: true,
   template: '<App/>',
-  components: { App },
+  components: { App }
 });

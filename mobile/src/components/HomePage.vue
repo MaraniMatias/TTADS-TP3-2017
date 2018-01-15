@@ -1,46 +1,81 @@
 <template>
-  <v-ons-page>
-    <v-ons-toolbar class="home-toolbar">
-      <div class="left">
-        <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
-          <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
-        </v-ons-toolbar-button>
-      </div>
-      <div class="center">{{ msg }}</div>
-    </v-ons-toolbar>
-
-    <div class="header">
-      <img src="../assets/logo.png">
+<v-ons-page>
+  <v-ons-toolbar class="home-toolbar">
+    <div class="left">
+      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
+        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+      </v-ons-toolbar-button>
     </div>
+    <div class="center">{{ msg }}</div>
+  </v-ons-toolbar>
 
-    <v-ons-list-title>Vue.js Essential Links</v-ons-list-title>
-    <v-ons-list>
-      <v-ons-list-item v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
-        <div class="left"><v-ons-icon fixed-width :icon="item.icon"></v-ons-icon></div>
-        <div class="center">{{ item.label }}</div>
-        <div class="right"><v-ons-icon icon="fa-external-link"></v-ons-icon></div>
-      </v-ons-list-item>
-    </v-ons-list>
+  <p>
+    <v-ons-button @click="goTo('pullhook')">PullHook</v-ons-button>
+    <v-ons-input v-model="msg"></v-ons-input>
+  </p>
 
-    <v-ons-list-title>Vue.js Ecosystem</v-ons-list-title>
-    <v-ons-row>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://router.vuejs.org/')">vue-router</v-ons-card>
-      </v-ons-col>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://vuex.vuejs.org/')">vuex</v-ons-card>
-      </v-ons-col>
-    </v-ons-row>
-    <v-ons-row>
-      <v-ons-col>
-        <v-ons-card @click="goTo('http://vue-loader.vuejs.org/')">vue-loader</v-ons-card>
-      </v-ons-col>
-      <v-ons-col>
-        <v-ons-card @click="goTo('https://github.com/vuejs/awesome-vue')">awesome-vue</v-ons-card>
-      </v-ons-col>
-    </v-ons-row>
+  <div class="header">
+    <img src="../assets/logo.png">
+  </div>
 
-  </v-ons-page>
+
+  <v-ons-button @click="$ons.openActionSheet({buttons:['label1', 'label2', 'label3'], title: 'Lorem ipsum', cancelable: true, destructive: 1})">
+    Dynamic action sheet
+  </v-ons-button>
+
+  <v-ons-button @click="actionSheetVisible = true">
+    Static action sheet
+  </v-ons-button>
+  <div>Static sheet visible? {{actionSheetVisible}}</div>
+
+  <v-ons-action-sheet :visible.sync="actionSheetVisible" cancelable title="Description">
+    <v-ons-action-sheet-button icon="md-square-o">Label 1</v-ons-action-sheet-button>
+    <v-ons-action-sheet-button icon="md-square-o" modifier="destructive">Label 2</v-ons-action-sheet-button>
+    <v-ons-action-sheet-button icon="md-square-o">Label 3</v-ons-action-sheet-button>
+  </v-ons-action-sheet>
+
+  <v-ons-list-title>Vue.js Ecosystem</v-ons-list-title>
+  <v-ons-row>
+    <v-ons-col>
+      <v-ons-card @click="goTo('http://router.vuejs.org/')">vue-router</v-ons-card>
+    </v-ons-col>
+    <v-ons-col>
+      <v-ons-card @click="goTo('http://vuex.vuejs.org/')">vuex</v-ons-card>
+    </v-ons-col>
+  </v-ons-row>
+  <v-ons-row>
+    <v-ons-col>
+      <v-ons-card @click="goTo('http://vue-loader.vuejs.org/')">vue-loader</v-ons-card>
+    </v-ons-col>
+    <v-ons-col>
+      <v-ons-card @click="goTo('https://github.com/vuejs/awesome-vue')">awesome-vue</v-ons-card>
+    </v-ons-col>
+  </v-ons-row>
+
+  <v-ons-speed-dial position="bottom right" direction="up" :visible="spdVisible" :open.sync="spdOpen">
+    <v-ons-fab>
+      <v-ons-icon icon="md-face"></v-ons-icon>
+    </v-ons-fab>
+
+    <v-ons-speed-dial-item v-for="(icon, name) in shareItems" @click="$ons.notification.confirm(`Share on ${name}?`)">
+      <v-ons-icon :icon="icon"></v-ons-icon>
+    </v-ons-speed-dial-item>
+
+  </v-ons-speed-dial>
+
+  <ons-select>
+    <option>Opt 1</option>
+    <option>Opt 2</option>
+  </ons-select>
+
+  <ons-select class="select">
+    <select class="select-input">
+    <option>Opt 1</option>
+    <option>Opt 2</option>
+  </select>
+  </ons-select>
+
+</v-ons-page>
 </template>
 
 <script>
@@ -48,27 +83,20 @@ export default {
   name: 'home',
   data() {
     return {
-      msg: 'Welcome',
+      msg: 'TTADS-3',
+      spdVisible: false,
+      spdOpen: true,
+      actionSheetVisible: false,
+      shareItems: {
+        Twitter: 'md-twitter',
+        Facebook: 'md-facebook',
+        Google: 'md-google-plus'
+      },
       essentialLinks: [
         {
           label: 'Core Docs',
           link: 'https://vuejs.org',
           icon: 'fa-book',
-        },
-        {
-          label: 'Community Chat',
-          link: 'https://chat.vuejs.org',
-          icon: 'fa-commenting',
-        },
-        {
-          label: 'Forum',
-          link: 'https://forum.vuejs.org',
-          icon: 'ion-chatboxes',
-        },
-        {
-          label: 'Twitter',
-          link: 'https://twitter.com/vuejs',
-          icon: 'fa-twitter',
         },
         {
           label: 'Docs for this template',
@@ -79,14 +107,13 @@ export default {
     };
   },
   methods: {
-    goTo(url) {
-      window.open(url, '_blank');
-    },
-  },
+    goTo(name) {
+      this.$router.push({ name });
+    }
+  }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {
   text-align: center;
@@ -108,7 +135,8 @@ ons-card {
   text-align: center;
 }
 
-ons-list-item, ons-card {
+ons-list-item,
+ons-card {
   cursor: pointer;
 }
 </style>
