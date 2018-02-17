@@ -69,11 +69,11 @@
     "webpack-merge": "^4.1.1"
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": "4.0.0",
+    "npm": "3.0.0"
   },
   "browserslist": [
-    "> 1%",
+    "1%",
     "last 2 versions",
     "not ie <= 8"
   ],

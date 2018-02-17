@@ -10,10 +10,7 @@ var tp = {
     nombre : "Andrés de la Grana",
     legajo : 41034
   }, {
-    nombre : "Arian Valles",
-    legajo : 41556
-  }, {
-    nombre : "Marani Matias Ezequiel",
+      nombre : "Marani Matias Ezequiel",
     legajo : 39710
   }]
 }
