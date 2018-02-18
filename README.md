@@ -67,3 +67,8 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
 * [onsen](https://onsen.io)
 
 * [eslint](https://eslint.org) [reglas](https://eslint.org/docs/rules/)
+
+## Notas
+
+En caso de error `Error: spawn EACCES`, darle permiso de ejecucion a `gradle`.
+
