@@ -35,13 +35,7 @@ const router = new VueRouter({
 });
 
 ons.ready(() => {
-  function onDeviceReady() {
-    console.log(navigator.vibrate);
-    navigator.vibrate([1000, 1000, 1000]);
-  }
-  navigator.vibrate([1000, 1000, 3000, 1000, 5000]);
-
-  document.addEventListener("deviceready", onDeviceReady, false);
+  console.log("Ready");
 });
 
 /* eslint-disable no-new */
