@@ -10,10 +10,10 @@ import VueRouter from 'vue-router';
 import store from './store';
 import App from './App';
 
-import Home from './components/HomePage';
+import Home from './components/homePage';
 import Dialogs from './components/dialogs';
-import PullHook from './components/PullHook';
-import Form from './components/Form';
+import PullHook from './components/pullHook';
+import Form from './components/form';
 
 Vue.config.productionTip = true;
 

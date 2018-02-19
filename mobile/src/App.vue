@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import MenuPage from './components/MenuPage';
+import MenuPage from './components/menuPage';
 
 export default {
   name: 'app',
