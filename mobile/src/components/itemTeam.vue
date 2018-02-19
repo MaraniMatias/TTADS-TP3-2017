@@ -1,6 +1,18 @@
 <template>
 <v-ons-list-item v-if="jugando">
   Juganddo
+  <v-ons-list-item>
+    <div class="left">
+      <img class="list-item__thumbnail" :src="equipoA.escudoURL">
+    </div>
+    <div class="center">
+      {{equipoA.nombre}}
+    </div>
+    <div class="right">
+      <img class="list-item__thumbnail" :src="equipoB.escudoURL">
+    </div>
+  </v-ons-list-item>
+
 </v-ons-list-item>
 <v-ons-list-item v-else>
   Pasado
