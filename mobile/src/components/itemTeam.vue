@@ -1,15 +1,25 @@
 <template>
 <v-ons-list-item v-if="jugando">
   <v-ons-list-item>
-    <div class="left">
-      <img class="list-item__thumbnail" :src="equipoA.escudoURL"> {{equipoA.nombre}}
+    <div class="left equipo">
+      <img class="list-item__thumbnail" :src="equipoA.escudoURL">
+      <p>
+        {{equipoA.nombre}}
+      </p>
     </div>
     <div class="center">
-      <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
-      <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
+      <div class="item-center">
+        <p class="marcador">
+          {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
+        </p>
+        <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
+      </div>
     </div>
-    <div class="right">
-      <img class="list-item__thumbnail" :src="equipoB.escudoURL"> {{equipoB.nombre}}
+    <div class="right equipo">
+      <img class="list-item__thumbnail" :src="equipoB.escudoURL">
+      <p>
+        {{equipoB.nombre}}
+      </p>
     </div>
   </v-ons-list-item>
 </v-ons-list-item>
@@ -69,5 +79,33 @@ export default {
 </script>
 
 <style scoped>
+.center {
+  align-items: center;
+  margin: auto;
+}
 
+.item-center {
+  display: block;
+  margin: auto;
+}
+
+.marcador {
+  font-size: 26px;
+  margin: auto;
+  margin-bottom: 12px;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.tiempo {
+  font-size: 18px;
+  margin: auto;
+  margin-bottom: 12px;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.equipo {
+  display: block;
+}
 </style>
