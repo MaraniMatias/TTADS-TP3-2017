@@ -1,21 +1,30 @@
 <template>
 <v-ons-list-item v-if="jugando">
-  Juganddo
   <v-ons-list-item>
     <div class="left">
-      <img class="list-item__thumbnail" :src="equipoA.escudoURL">
+      <img class="list-item__thumbnail" :src="equipoA.escudoURL"> {{equipoA.nombre}}
     </div>
     <div class="center">
-      {{equipoA.nombre}}
+      <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
+      <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
     </div>
     <div class="right">
-      <img class="list-item__thumbnail" :src="equipoB.escudoURL">
+      <img class="list-item__thumbnail" :src="equipoB.escudoURL"> {{equipoB.nombre}}
     </div>
   </v-ons-list-item>
-
 </v-ons-list-item>
 <v-ons-list-item v-else>
-  Pasado
+  <v-ons-list-item>
+    <div class="left">
+      {{equipoA.nombre}}
+    </div>
+    <div class="center">
+      <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
+    </div>
+    <div class="right">
+      {{equipoB.nombre}}
+    </div>
+  </v-ons-list-item>
 </v-ons-list-item>
 </template>
 

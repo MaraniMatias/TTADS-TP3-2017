@@ -7,6 +7,8 @@ import Vue from 'vue';
 import ons from 'onsenui';
 import VueOnsen from 'vue-onsenui';
 import VueRouter from 'vue-router';
+import Morphling from 'morphling'; // Filtros, para fechas usa moment
+
 import store from './store';
 import App from './App';
 
@@ -19,6 +21,7 @@ Vue.config.productionTip = true;
 
 Vue.use(VueRouter);
 Vue.use(VueOnsen);
+Vue.use(Morphling);
 
 const routes = [
   { path: '*', redirect: '/home' },
