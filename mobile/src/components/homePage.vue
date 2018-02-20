@@ -28,12 +28,12 @@
 <script>
 import ItemTeam from "./itemTeam";
 
-const homePage = {
+const partidosActivosTab = {
   template: '#home',
   props: ['myProp']
 };
 
-const settingsPage = {
+const partidosPasadosTab = {
   template: '#settings'
 };
 
@@ -64,17 +64,17 @@ export default {
       activeIndex: 0,
       tabs: [
         {
-          label: 'Fixture',
-          page: homePage,
+          label: 'Activos',
+          page: partidosActivosTab,
           props: {
             myProp: 'This is a page prop!'
           },
-          key: "homePage"
+          key: "partidosActivosTab"
         },
         {
-          label: 'Jugados',
-          page: settingsPage,
-          key: "settingsPage"
+          label: 'Pasados',
+          page: partidosPasadosTab,
+          key: "partidosPasdosTab"
         }
       ]
     };
