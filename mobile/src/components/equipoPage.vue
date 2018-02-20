@@ -13,27 +13,24 @@
       <img src="http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png" alt="Escudo del equipo" class="shield">
     </div>
   </v-ons-toolbar>
-  <v-ons-tabbar swipeable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
 
+  <v-ons-tabbar
+    position="top"
+    :tabs="tabs"
+    :visible="true"
+    :index.sync="activeIndex">
+  </v-ons-tabbar>
 
 </v-ons-page>
 </template>
 
 <script>
-const jugadoresTab = {
-  template: '#jugadoresTab'
-};
-
-const cuerpoTecnicoTab = {
-  template: '#cuerpoTecnicoTab'
-};
-
-const partidosTab = {
-  template: '#partidosTab'
-};
+import ListJugadores from './listJugadores';
 
 export default {
   name: 'EquipoPage',
+  components: {
+  },
   // Usar parametro, pasa id y que este controlador pida los datos
   /*
   nombre: {
@@ -48,17 +45,17 @@ export default {
       tabs: [
         {
           label: 'Jugadores',
-          page: jugadoresTab,
+          page: ListJugadores,
           key: "jugadoresTab"
         },
         {
           label: 'Partidos',
-          page: partidosTab,
+          page: ListJugadores,
           key: "partidosTab"
         },
         {
           label: 'Cuerpo Tecnico',
-          page: cuerpoTecnicoTab,
+          page: ListJugadores,
           key: "cuerpoTecnicoTab"
         }
       ]
