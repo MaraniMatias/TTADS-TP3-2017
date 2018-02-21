@@ -17,6 +17,7 @@
     <allow-intent href="geo:*" />
     <preference name="SplashShowOnlyFirstTime" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="HeaderColor" value="#becb29" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
@@ -50,4 +51,5 @@
     <splash height="2208" src="res/screen/ios/Default-736h.png" width="1242" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
+    <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
 </widget>
