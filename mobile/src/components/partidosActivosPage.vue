@@ -22,7 +22,6 @@
             <div class="title">Hoy</div>
             <div class="content">
               <v-ons-list>
-                <v-ons-list-item>Item</v-ons-list-item>
                 <ItemTeam jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
                 <ItemTeam :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
               </v-ons-list>
@@ -82,4 +81,9 @@ export default {
 .text-center {
   text-align: "center";
 }
+
+.list-item--material {
+  padding: 0 0 0 6px;
+}
+
 </style>

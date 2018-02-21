@@ -1,5 +1,5 @@
 <template>
-  <v-ons-list-item>
+  <v-ons-list-item ripple modifier="longdivider">
     <template v-if="jugando">
       <div class="left equipo" @click="goToEquipoPage(equipoA)">
         <img class="list-item__thumbnail" :src="equipoA.escudoURL">
@@ -10,7 +10,7 @@
           <p class="marcador">
             {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
           </p>
-          <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
+          <p class="tiempo">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
         </div>
       </div>
       <div class="right equipo" @click="goToEquipoPage(equipoB)">
@@ -21,7 +21,7 @@
     <template v-else>
       <div class="left">{{equipoA.nombre}}</div>
       <div class="center">
-        <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
+        <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
       </div>
       <div class="right">{{equipoB.nombre}}</div>
     </template>
@@ -86,21 +86,24 @@ export default {
 .marcador {
   font-size: 26px;
   margin: auto;
-  margin-bottom: 12px;
-  margin-top: 0px;
   text-align: center;
+  line-height: 28px;
 }
 
 .tiempo {
   font-size: 18px;
   margin: auto;
-  margin-bottom: 12px;
-  margin-top: 0px;
+  margin-bottom: 6px;
+  margin-top: 12px;
   text-align: center;
 }
 
 .equipo {
   cursor: pointer;
   display: block;
+}
+
+.equipo img {
+  margin: auto;
 }
 </style>

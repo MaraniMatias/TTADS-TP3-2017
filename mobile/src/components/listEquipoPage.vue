@@ -59,7 +59,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 p.search {
   text-align: center;
   margin-top: 10px;
