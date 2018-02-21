@@ -14,10 +14,10 @@ import App from './App';
 
 import Home from './components/homePage';
 import Dialogs from './components/dialogs';
-import PullHook from './components/pullHook';
 import Form from './components/form';
 
 import Equipo from './components/equipoPage';
+import ListEquipoPage from './components/listEquipoPage';
 
 Vue.config.productionTip = true;
 
@@ -29,8 +29,9 @@ const routes = [
   { path: '*', redirect: '/home' },
   { path: '/home', component: Home, name: 'home' },
   { path: '/equipo', component: Equipo, name: 'equipo' },
+  { path: '/equipos', component: ListEquipoPage, name: 'listEquipoPage' },
+
   { path: '/dialogs', component: Dialogs, name: 'dialogs' },
-  { path: '/pullhook', component: PullHook, name: 'pullhook' },
   { path: '/form', component: Form, name: 'form' }
 ];
 

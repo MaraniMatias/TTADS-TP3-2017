@@ -1,11 +1,11 @@
 <template>
 <v-ons-page>
-  <v-ons-toolbar modifier="transparent"></v-ons-toolbar>
+  <v-ons-toolbar modifier="transparent">
+    <h1 class="center">Handball</h1>
+  </v-ons-toolbar>
   <div class="header">
     <img src="../assets/logo.png">
   </div>
-
-  <v-ons-list-title>Onsen UI Essential Links</v-ons-list-title>
   <v-ons-list>
     <v-ons-list-item modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
       <div class="left">
@@ -39,8 +39,8 @@ export default {
           icon: 'ion-chatboxes',
         },
         {
-          label: 'PullHook',
-          link: 'pullhook',
+          label: 'Equipos',
+          link: 'listEquipoPage',
           icon: 'fa-twitter',
         },
       ],
@@ -71,5 +71,9 @@ ons-list-title {
 
 ons-list-item {
   cursor: pointer;
+}
+
+h1 {
+  margin: 0px;
 }
 </style>
