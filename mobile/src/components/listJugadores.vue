@@ -3,18 +3,20 @@
   {{myProp}}
   <v-ons-list>
     <v-ons-list>
-      <v-ons-lazy-repeat :render-item="renderItem" :length="1000"></v-ons-lazy-repeat>
+      <item-jugador></item-jugador>
     </v-ons-list>
   </v-ons-list>
 </v-ons-page>
 </template>
 
 <script>
+import itemJugador from './itemJugador';
+
 export default {
   name: 'ListJugadores',
   props: ['myProp'],
   components: {
-
+    itemJugador
   },
   data() {
     return {};

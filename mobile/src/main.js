@@ -18,6 +18,7 @@ import Form from './components/form';
 
 import Equipo from './components/equipoPage';
 import ListEquipoPage from './components/listEquipoPage';
+import Jugador from './components/jugadorPage';
 
 Vue.config.productionTip = true;
 
@@ -28,8 +29,10 @@ Vue.use(Morphling);
 const routes = [
   { path: '*', redirect: '/home' },
   { path: '/home', component: Home, name: 'home' },
-  { path: '/equipo', component: Equipo, name: 'equipo' },
   { path: '/equipos', component: ListEquipoPage, name: 'listEquipoPage' },
+  // Usan parametros id para pedir la entidad
+  { path: '/equipo', component: Equipo, name: 'equipo' },
+  { path: '/jugador', component: Jugador, name: 'jugador' },
 
   { path: '/dialogs', component: Dialogs, name: 'dialogs' },
   { path: '/form', component: Form, name: 'form' }

@@ -1,5 +1,5 @@
 <template>
-<v-ons-list-item :key="index">
+<v-ons-list-item :key="index" ripple @click="goToProfile()">
   #{{ index }}
 </v-ons-list-item>
 </template>
@@ -16,9 +16,14 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    goToProfile() {
+      this.$router.push({ name: 'jugador', params: { id: '12345' } });
+    }
+  }
 };
 </script>
 
 <style scoped>
+
 </style>
