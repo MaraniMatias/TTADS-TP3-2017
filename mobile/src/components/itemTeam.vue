@@ -1,7 +1,7 @@
 <template>
 <v-ons-list-item v-if="jugando">
   <v-ons-list-item>
-    <div class="left equipo">
+    <div class="left equipo" @click="goToEquipoPage(equipoA)">
       <img class="list-item__thumbnail" :src="equipoA.escudoURL">
       <p>
         {{equipoA.nombre}}
@@ -15,7 +15,7 @@
         <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
       </div>
     </div>
-    <div class="right equipo">
+    <div class="right equipo" @click="goToEquipoPage(equipoB)">
       <img class="list-item__thumbnail" :src="equipoB.escudoURL">
       <p>
         {{equipoB.nombre}}
@@ -74,7 +74,11 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    goToEquipoPage(equipo) {
+      this.$router.push({ name: 'equipo', params: { id: equipo.id } });
+    }
+  }
 };
 </script>
 
@@ -106,6 +110,7 @@ export default {
 }
 
 .equipo {
+  cursor: pointer;
   display: block;
 }
 </style>

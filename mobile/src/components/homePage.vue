@@ -8,8 +8,8 @@
       </v-ons-toolbar-button>
     </div>
   </v-ons-toolbar>
-  <v-ons-tabbar swipeable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex">
-  </v-ons-tabbar>
+  <!--<v-ons-tabbar swipeable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex">
+  </v-ons-tabbar>-->
 
   <v-ons-card style="margin-top: 55px">
     <div class="title">Hoy</div>

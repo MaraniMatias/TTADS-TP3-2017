@@ -7,18 +7,14 @@
       </v-ons-toolbar-button>
     </div>
     <div class="center">
-      {{equipo.nombre}
+      {{nombre}}
     </div>
     <div class="right">
       <img src="http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png" alt="Escudo del equipo" class="shield">
     </div>
   </v-ons-toolbar>
 
-  <v-ons-tabbar
-    position="top"
-    :tabs="tabs"
-    :visible="true"
-    :index.sync="activeIndex">
+  <v-ons-tabbar swipeable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex">
   </v-ons-tabbar>
 
 </v-ons-page>
@@ -29,11 +25,9 @@ import ListJugadores from './listJugadores';
 
 export default {
   name: 'EquipoPage',
-  components: {
-  },
+  components: {},
   // Usar parametro, pasa id y que este controlador pida los datos
   /*
-  nombre: {
   escudoURL: {
   jugadores: {
   cuerpoTecnico: {
@@ -41,6 +35,7 @@ export default {
   */
   data() {
     return {
+      nombre: 'Equipo',
       activeIndex: 0,
       tabs: [
         {

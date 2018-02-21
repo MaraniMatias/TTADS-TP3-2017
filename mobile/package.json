@@ -9,7 +9,9 @@
     "start": "npm run dev",
     "build": "node build/build.js",
     "build:watch": "cross-env WEBPACK_WATCH=true node build/build.js",
-    "lint": "eslint --ext .js,.vue src"
+    "lint": "eslint --ext .js,.vue src",
+    "android": "npm run build && cordova run android --device",
+    "android-emulate": "npm run build && cordova run android --device"
   },
   "dependencies": {
     "cordova-android": "^7.0.0",

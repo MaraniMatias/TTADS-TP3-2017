@@ -16,6 +16,7 @@ import Home from './components/homePage';
 import Dialogs from './components/dialogs';
 import PullHook from './components/pullHook';
 import Form from './components/form';
+
 import Equipo from './components/equipoPage';
 
 Vue.config.productionTip = true;
