@@ -1,5 +1,5 @@
 <template>
-<v-ons-list-item :key="index" ripple @click="goToProfile()">
+<v-ons-list-item :key="index" tappable @click="goToProfile()">
   #{{ index }}
 </v-ons-list-item>
 </template>

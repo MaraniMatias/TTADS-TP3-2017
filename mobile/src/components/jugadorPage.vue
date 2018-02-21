@@ -1,93 +1,47 @@
 <template>
 <v-ons-page>
   <v-ons-toolbar>
-    <div class="center">Lists</div>
+    <div class="center">Perfil del jugador</div>
   </v-ons-toolbar>
 
   <v-ons-list>
-    <v-ons-list-header>Default</v-ons-list-header>
-    <v-ons-list-item>Item A</v-ons-list-item>
-    <v-ons-list-item>Item B</v-ons-list-item>
-
-    <v-ons-list-header>Tappable / Ripple</v-ons-list-header>
-    <v-ons-list-item tappable>Tap me</v-ons-list-item>
-
-    <v-ons-list-header>Chevron</v-ons-list-header>
-    <v-ons-list-item modifier="chevron" tappable>Chevron</v-ons-list-item>
-
-    <v-ons-list-header>Thumbnails and titles</v-ons-list-header>
-    <v-ons-list-item>
-      <div class="left">
-        <img class="list-item__thumbnail" src="http://placekitten.com/g/40/40">
-      </div>
-      <div class="center">
-        <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
-      </div>
-    </v-ons-list-item>
-
-    <v-ons-list-header>Icons</v-ons-list-header>
-    <v-ons-list-item>
-      <div class="left">
-        <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
-      </div>
-      <div class="center">
-        Icon
-      </div>
-    </v-ons-list-item>
-
-    <v-ons-list-header>Switch</v-ons-list-header>
-    <v-ons-list-item>
-      <div class="center">
-        Turn it on
-      </div>
-      <div class="right">
-        <v-ons-switch></v-ons-switch>
-      </div>
-    </v-ons-list-item>
-
-    <v-ons-list-header>Switch and icon</v-ons-list-header>
-    <v-ons-list-item>
-      <div class="left">
-        <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
-      </div>
-      <div class="center">
-        Icon and switch
-      </div>
-      <div class="right">
-        <v-ons-switch></v-ons-switch>
-      </div>
-    </v-ons-list-item>
-
-    <v-ons-list-header>No divider</v-ons-list-header>
-    <v-ons-list-item modifier="nodivider">Item A</v-ons-list-item>
-    <v-ons-list-item modifier="nodivider">Item B</v-ons-list-item>
-
-    <v-ons-list-header>Long divider</v-ons-list-header>
-    <v-ons-list-item modifier="longdivider">Item A</v-ons-list-item>
-    <v-ons-list-item modifier="longdivider">Item B</v-ons-list-item>
+    <v-ons-list-header>Nombre</v-ons-list-header>
+    <v-ons-list-item>{{jugador.nombre + ' ' + jugador.apellido}}</v-ons-list-item>
+    <v-ons-list-header>Edad</v-ons-list-header>
+    <v-ons-list-item>{{jugador.edad}}</v-ons-list-item>
+    <v-ons-list-header>Altura</v-ons-list-header>
+    <v-ons-list-item>{{jugador.altura}}</v-ons-list-item>
+    <v-ons-list-header>Cantidad de goles</v-ons-list-header>
+    <v-ons-list-item>{{jugador.cantGoles}}</v-ons-list-item>
+    <v-ons-list-header>Cantidad de tarjetas amarillas</v-ons-list-header>
+    <v-ons-list-item>{{jugador.cantAmarillas}}</v-ons-list-item>
+    <v-ons-list-header>Cantidad de tarjetas rojas</v-ons-list-header>
+    <v-ons-list-item>{{jugador.cantRojas}}</v-ons-list-item>
+    <v-ons-list-header>Cantidad de minutos</v-ons-list-header>
+    <v-ons-list-item>{{jugador.cant2min}}</v-ons-list-item>
   </v-ons-list>
-
-  <br />
-
-  <v-ons-list modifier="inset">
-    <v-ons-list-header>Inset list</v-ons-list-header>
-    <v-ons-list-item modifier="longdivider">Item A</v-ons-list-item>
-    <v-ons-list-item modifier="longdivider">Item B</v-ons-list-item>
-  </v-ons-list>
-
-  <br />
 
 </v-ons-page>
 </template>
 
 <script>
-
 export default {
   name: 'JugadorPerfil',
   components: {},
   // Usar parametro, pasa id y que este controlador pida los datos
   data() {
     return {
+      jugador: {
+        nombre: 'Vue',
+        apellido: 'js',
+        peso: 60,
+        altura: 123,
+        edad: 25,
+        cantGoles: 12,
+        cantAmarillas: 12,
+        cant2min: 12,
+        cantRojas: 123
+      }
     };
   },
   methods: {}
@@ -95,4 +49,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

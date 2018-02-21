@@ -27,6 +27,8 @@ export default {
       },
     },
   },
+  methods: {
+  },
   components: {
     MenuPage
   }
