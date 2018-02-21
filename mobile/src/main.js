@@ -13,12 +13,12 @@ import store from './store';
 import App from './App';
 
 import Home from './components/homePage';
-import Dialogs from './components/dialogs';
-import Form from './components/form';
-
 import Equipo from './components/equipoPage';
 import ListEquipoPage from './components/listEquipoPage';
 import Jugador from './components/jugadorPage';
+import Partido from './components/partidoPage.vue';
+
+import Dialogs from './components/dialogs';
 
 Vue.config.productionTip = true;
 
