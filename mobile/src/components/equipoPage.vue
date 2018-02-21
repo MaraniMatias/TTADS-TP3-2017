@@ -41,6 +41,9 @@ export default {
         {
           label: 'Jugadores',
           page: ListJugadores,
+          props: {
+            myProp: 'This is a page prop!'
+          },
           key: "jugadoresTab"
         },
         {

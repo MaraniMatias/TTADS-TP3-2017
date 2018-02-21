@@ -18,6 +18,9 @@
     },
     "cordova-plugin-headercolor": {
       "PACKAGE_NAME": "ttads.tp3.handball"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "ttads.tp3.handball"
     }
   },
   "dependent_plugins": {}

@@ -1,41 +1,31 @@
 <template>
-<v-ons-list-item v-if="jugando">
   <v-ons-list-item>
-    <div class="left equipo" @click="goToEquipoPage(equipoA)">
-      <img class="list-item__thumbnail" :src="equipoA.escudoURL">
-      <p>
-        {{equipoA.nombre}}
-      </p>
-    </div>
-    <div class="center">
-      <div class="item-center">
-        <p class="marcador">
-          {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
-        </p>
-        <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
+    <template v-if="jugando">
+      <div class="left equipo" @click="goToEquipoPage(equipoA)">
+        <img class="list-item__thumbnail" :src="equipoA.escudoURL">
+        <p>{{equipoA.nombre}}</p>
       </div>
-    </div>
-    <div class="right equipo" @click="goToEquipoPage(equipoB)">
-      <img class="list-item__thumbnail" :src="equipoB.escudoURL">
-      <p>
-        {{equipoB.nombre}}
-      </p>
-    </div>
+      <div class="center">
+        <div class="item-center">
+          <p class="marcador">
+            {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
+          </p>
+          <p class="tiempo">{{partido.fechaInicio | morph-date('MMM DD, YYYY')}}</p>
+        </div>
+      </div>
+      <div class="right equipo" @click="goToEquipoPage(equipoB)">
+        <img class="list-item__thumbnail" :src="equipoB.escudoURL">
+        <p>{{equipoB.nombre}}</p>
+      </div>
+    </template>
+    <template v-else>
+      <div class="left">{{equipoA.nombre}}</div>
+      <div class="center">
+        <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
+      </div>
+      <div class="right">{{equipoB.nombre}}</div>
+    </template>
   </v-ons-list-item>
-</v-ons-list-item>
-<v-ons-list-item v-else>
-  <v-ons-list-item>
-    <div class="left">
-      {{equipoA.nombre}}
-    </div>
-    <div class="center">
-      <p class="marcador"> {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}} </p>
-    </div>
-    <div class="right">
-      {{equipoB.nombre}}
-    </div>
-  </v-ons-list-item>
-</v-ons-list-item>
 </template>
 
 <script>

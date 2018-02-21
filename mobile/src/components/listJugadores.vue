@@ -1,37 +1,26 @@
 <template>
-  <v-ons-page>
-    <v-ons-pull-hook
-      :action="loadItem"
-      @changestate="state = $event.state">
-      <span v-show="state === 'initial'"> Pull to refresh </span>
-      <span v-show="state === 'preaction'"> Release </span>
-      <span v-show="state === 'action'"> Loading... </span>
-    </v-ons-pull-hook>
-
+<v-ons-page>
+  {{myProp}}
+  <v-ons-list>
     <v-ons-list>
-      <v-ons-list-item v-for="item in items">
-        {{item}}
-      </v-ons-list-item>
+      <v-ons-lazy-repeat :render-item="renderItem" :length="1000"></v-ons-lazy-repeat>
     </v-ons-list>
-  </v-ons-page>
+  </v-ons-list>
+</v-ons-page>
 </template>
 
 <script>
 export default {
   name: 'ListJugadores',
+  props: ['myProp'],
+  components: {
+
+  },
   data() {
-    return {
-      state: 'initial',
-      items: [1, 2, 3]
-    };
+    return {};
   },
   methods: {
-    loadItem(done) {
-      setTimeout(() => {
-        this.items = [...this.items, this.items.length + 1];
-        done();
-      }, 400);
-    }
+    renderItem: i => i,
   }
 };
 </script>

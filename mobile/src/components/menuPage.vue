@@ -24,7 +24,7 @@ export default {
     return {
       essentialLinks: [
         {
-          label: 'Home',
+          label: 'Fixture',
           link: 'home',
           icon: 'fa-book',
         },
