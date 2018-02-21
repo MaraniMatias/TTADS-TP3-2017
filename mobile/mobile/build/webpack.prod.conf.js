@@ -65,7 +65,8 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      cordova: '<script src="cordova.js"></script>'
+      cordova: '<script src="cordova.js"></script>',
+      css: ''
     }),
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),

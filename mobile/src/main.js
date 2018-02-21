@@ -46,6 +46,10 @@ const router = new VueRouter({
 
 ons.ready(() => {
   console.log("Ready");
+  if (window.StatusBar) {
+    StatusBar.styleLightContent();
+    StatusBar.styleBlackOpaque();
+  }
 });
 
 /* eslint-disable no-new */

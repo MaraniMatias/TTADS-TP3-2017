@@ -14,6 +14,9 @@ module.exports = {
   plugins: [
     'html'
   ],
+  globals: {
+    StatusBar: true
+  },
   // check if imports actually resolve
   'settings': {
     'import/resolver': {
