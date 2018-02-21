@@ -86,4 +86,7 @@ export default {
   padding: 0 0 0 6px;
 }
 
+ons-list {
+  background-color: transparent;
+}
 </style>

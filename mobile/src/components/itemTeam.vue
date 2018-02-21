@@ -21,7 +21,7 @@
     <template v-else>
       <div class="left">{{equipoA.nombre}}</div>
       <div class="center">
-        <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
+        <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}} <span>hs</span></p>
       </div>
       <div class="right">{{equipoB.nombre}}</div>
     </template>
@@ -85,9 +85,14 @@ export default {
 
 .marcador {
   font-size: 26px;
+  line-height: 28px;
   margin: auto;
   text-align: center;
-  line-height: 28px;
+}
+
+.marcador span {
+  font-size: 18px;
+  line-height: 16px;
 }
 
 .tiempo {
