@@ -1,7 +1,6 @@
 <template>
 <v-ons-page>
   <v-ons-toolbar>
-        <v-ons-back-button></v-ons-back-button>
     <div class="center">
       Detalles del partido
     </div>
