@@ -20,8 +20,7 @@ import partidosPasadosTab from './partidosPasadosPage';
 
 export default {
   name: 'home-fixture',
-  components: {
-  },
+  components: {},
   data() {
     return {
       activeIndex: 0,
