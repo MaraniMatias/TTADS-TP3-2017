@@ -16,7 +16,7 @@ import Home from './components/homePage';
 import Equipo from './components/equipoPage';
 import ListEquipoPage from './components/listEquipoPage';
 import Jugador from './components/jugadorPage';
-import Partido from './components/partidoPage.vue';
+import Partido from './components/partidoPage';
 
 import Dialogs from './components/dialogs';
 
@@ -33,9 +33,9 @@ const routes = [
   // Usan parametros id para pedir la entidad
   { path: '/equipo', component: Equipo, name: 'equipo' },
   { path: '/jugador', component: Jugador, name: 'jugador' },
+  { path: '/partido', component: Partido, name: 'partido' },
 
   { path: '/dialogs', component: Dialogs, name: 'dialogs' },
-  { path: '/form', component: Form, name: 'form' }
 ];
 
 const router = new VueRouter({

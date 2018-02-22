@@ -34,15 +34,15 @@ export default {
           icon: 'fa-commenting',
         },
         {
-          label: 'Forum',
-          link: 'form',
-          icon: 'ion-chatboxes',
-        },
-        {
           label: 'Equipos',
           link: 'listEquipoPage',
           icon: 'fa-twitter',
         },
+        {
+          label: 'Jugadores',
+          link: 'ListJugadoresPage',
+          icon: 'fa-twitter',
+        }
       ],
     };
   },

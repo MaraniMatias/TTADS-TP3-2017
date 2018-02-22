@@ -1,5 +1,5 @@
 <template>
-  <v-ons-list-item ripple modifier="longdivider">
+  <v-ons-list-item ripple modifier="longdivider" @click="goToPartidoPage()">
     <template v-if="jugando">
       <div class="left equipo" @click="goToEquipoPage(equipoA)">
         <img class="list-item__thumbnail" :src="equipoA.escudoURL">
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'ItemTeam',
+  name: 'ItemPartido',
   props: {
     // Predeterminado false, cambia la forma en que se muestra la informacion.
     jugando: {
@@ -67,6 +67,9 @@ export default {
   methods: {
     goToEquipoPage(equipo) {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
+    },
+    goToPartidoPage() {
+      this.$router.push({ name: 'partido', params: { id: this.partido.id } });
     }
   }
 };

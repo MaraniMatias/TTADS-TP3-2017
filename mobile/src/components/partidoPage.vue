@@ -1,77 +1,105 @@
 <template>
 <v-ons-page>
   <v-ons-toolbar>
-    <div class="left">
-      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
-        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
-      </v-ons-toolbar-button>
-    </div>
+        <v-ons-back-button></v-ons-back-button>
     <div class="center">
-      {{nombre}}
-    </div>
-    <div class="right">
-      <img src="http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png" alt="Escudo del equipo" class="shield">
+      Detalles del partido
     </div>
   </v-ons-toolbar>
 
-  <v-ons-tabbar swipeable ripple position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex">
-  </v-ons-tabbar>
+  <v-ons-list>
+    <v-ons-list-item modifier="longdivider">
+      <div class="left equipo" @click="goToEquipoPage(equipoA)">
+        <img class="list-item__thumbnail" :src="equipoA.escudoURL">
+        <p>{{equipoA.nombre}}</p>
+      </div>
+      <div class="center">
+        <div class="item-center">
+          <p class="marcador">
+            {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
+          </p>
+          <p class="tiempo">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
+        </div>
+      </div>
+      <div class="right equipo" @click="goToEquipoPage(equipoB)">
+        <img class="list-item__thumbnail" :src="equipoB.escudoURL">
+        <p>{{equipoB.nombre}}</p>
+      </div>
+    </v-ons-list-item>
+    <v-ons-list-header>Eventos</v-ons-list-header>
+    <v-ons-list-item>Lecionado</v-ons-list-item>
+  </v-ons-list>
 
 </v-ons-page>
 </template>
 
 <script>
-import ListJugadores from './listJugadores';
-
 export default {
-  name: 'EquipoPage',
+  name: 'PartidoPage',
   components: {},
-  // Usar parametro, pasa id y que este controlador pida los datos
-  /*
-  escudoURL: {
-  jugadores: {
-  cuerpoTecnico: {
-  partidos: {
-  */
   data() {
     return {
-      nombre: 'Equipo',
-      activeIndex: 0,
-      tabs: [
-        {
-          label: 'Jugadores',
-          page: ListJugadores,
-          props: {
-            myProp: 'This is a page prop!'
-          },
-          key: "jugadoresTab"
-        },
-        {
-          label: 'Partidos',
-          page: ListJugadores,
-          key: "partidosTab"
-        },
-        {
-          label: 'Cuerpo Tecnico',
-          page: ListJugadores,
-          key: "cuerpoTecnicoTab"
+      jugando: {},
+      tiempo: '00:00',
+      estado: 'estado',
+      partido: {
+        fechaInicio: new Date(),
+        marcador: {
+          golesEquipoA: 0,
+          golesEquipoB: 2
         }
-      ]
+      },
+      equipoA: {
+        nombre: "Equipo A",
+        escudoURL: "http://www.clker.com/cliparts/o/B/N/P/d/B/escudo-medieval-vermelho.svg.med.png"
+      },
+      equipoB: {
+        nombre: "Equipo B",
+        escudoURL: "http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png"
+      },
     };
   },
   methods: {}
 };
 </script>
 
-<style>
-.shield {
-  /* height: inherit; */
-  height: auto;
-  padding-top: 8px;
-  width: 36px;
+<style scoped>
+.center {
+  align-items: center;
+  margin: auto;
 }
 
-.right {
+.item-center {
+  display: block;
+  margin: auto;
+}
+
+.marcador {
+  font-size: 26px;
+  line-height: 28px;
+  margin: auto;
   text-align: center;
+}
+
+.marcador span {
+  font-size: 18px;
+  line-height: 16px;
+}
+
+.tiempo {
+  font-size: 18px;
+  margin: auto;
+  margin-bottom: 6px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.equipo {
+  cursor: pointer;
+  display: block;
+}
+
+.equipo img {
+  margin: auto;
 }
 </style>
