@@ -1,6 +1,9 @@
-/* eslint no-param-reassign: ["error", { "props": false }] */
-import Vue from 'vue';
 import Vuex from 'vuex';
+import Vue from 'vue';
+
+import actions from './actions';
+import mutations from './mutations';
+import getters from './getters';
 
 Vue.use(Vuex);
 
@@ -11,15 +14,9 @@ export default new Vuex.Store({
       state: {
         open: false,
       },
-      mutations: {
-        toggle(state, shouldOpen) {
-          if (typeof shouldOpen === 'boolean') {
-            state.open = shouldOpen;
-          } else {
-            state.open = !state.open;
-          }
-        },
-      },
+      actions,
+      getters,
+      mutations
     },
   },
 });
