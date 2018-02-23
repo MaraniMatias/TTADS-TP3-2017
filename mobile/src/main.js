@@ -50,7 +50,16 @@ ons.ready(() => {
     StatusBar.styleLightContent();
     StatusBar.styleBlackOpaque();
   }
+  document.addEventListener('backbutton', () => {
+    const routeName = router.currentRoute.nmae;
+    if (routeName === 'home') {
+      navigator.app.exit();
+    } else {
+      navigator.app.backHistory();
+    }
+  }, false);
 });
+
 
 /* eslint-disable no-new */
 new Vue({
