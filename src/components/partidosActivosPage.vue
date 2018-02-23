@@ -22,8 +22,8 @@
             <div class="title">Hoy</div>
             <div class="content">
               <v-ons-list>
-                <ItemTeam jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
-                <ItemTeam :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
+                <item-partido jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
+                <item-partido :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
               </v-ons-list>
             </div>
           </v-ons-card>
@@ -37,12 +37,12 @@
 </template>
 
 <script>
-import ItemTeam from "./itemTeam";
+import ItemPartido from "./itemPartido";
 
 export default {
   name: 'PaginaActivosPasados',
   components: {
-    ItemTeam
+    ItemPartido
   },
   data() {
     return {

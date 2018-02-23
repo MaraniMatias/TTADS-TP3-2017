@@ -35,12 +35,12 @@ export default {
         },
         {
           label: 'Equipos',
-          link: 'listEquipoPage',
+          link: 'equiposPage',
           icon: 'fa-twitter',
         },
         {
           label: 'Jugadores',
-          link: 'ListJugadoresPage',
+          link: 'jugadoresPage',
           icon: 'fa-twitter',
         }
       ],

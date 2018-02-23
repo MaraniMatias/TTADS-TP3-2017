@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'ItemJugadores',
+  name: 'ItemJugador',
   props: {
     index: {
       type: Number,

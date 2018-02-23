@@ -5,8 +5,8 @@
     <div class="content">
       <v-ons-list>
         <v-ons-list-item>Item</v-ons-list-item>
-        <ItemTeam jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
-        <ItemTeam :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></ItemTeam>
+        <itme-partido jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></itme-partido>
+        <item-partido :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
       </v-ons-list>
     </div>
   </v-ons-card>
@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import ItemTeam from "./itemTeam";
+import ItemPartido from "./itemPartido";
 
 export default {
   name: 'PaginaPartidosPasados',
   components: {
-    ItemTeam
+    ItemPartido
   },
   data() {
     return {

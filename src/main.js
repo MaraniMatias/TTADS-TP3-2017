@@ -9,14 +9,15 @@ import VueOnsen from 'vue-onsenui';
 import VueRouter from 'vue-router';
 import Morphling from 'morphling'; // Filtros, para fechas usa moment
 
-import store from './store';
+import store from './store/index';
 import App from './App';
 
 import Home from './components/homePage';
-import Equipo from './components/equipoPage';
-import ListEquipoPage from './components/listEquipoPage';
-import Jugador from './components/jugadorPage';
 import Partido from './components/partidoPage';
+import Equipo from './components/equipoPage';
+import EquiposPage from './components/equiposPage';
+import Jugador from './components/perfilJugadorPage';
+import JugadoresPage from './components/jugadoresPage';
 
 import Dialogs from './components/dialogs';
 
@@ -29,7 +30,8 @@ Vue.use(Morphling);
 const routes = [
   { path: '*', redirect: '/home' },
   { path: '/home', component: Home, name: 'home' },
-  { path: '/equipos', component: ListEquipoPage, name: 'listEquipoPage' },
+  { path: '/equipos', component: EquiposPage, name: 'equiposPage' },
+  { path: '/jugadores', component: JugadoresPage, name: 'jugadoresPage' },
   // Usan parametros id para pedir la entidad
   { path: '/equipo', component: Equipo, name: 'equipo' },
   { path: '/jugador', component: Jugador, name: 'jugador' },

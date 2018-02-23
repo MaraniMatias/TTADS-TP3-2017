@@ -33,17 +33,12 @@
 
 <script>
 export default {
-  name: 'ListPage',
-  props: {
-    titulo: {
-      type: String,
-      required: true
-    }
-  },
+  name: 'JugadoresPage',
+  props: {},
   components: {},
   data() {
     return {
-      quety: "",
+      query: "",
       state: 'initial',
       items: [1, 2, 3]
     };
