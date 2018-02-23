@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Handball",
+  "short_name": "Handball",
+  "version": "ttads.tp3.handball",
+  "description": "Trabajo practico final, armado con vue y cordova.",
+  "author": "Trabajo practico final, armado con vue y cordova.",
+  "icons": [],
+  "start_url": "index.html",
+  "theme_color": "#becb29"
+}

@@ -1,0 +1,27 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:1-23:12
+	package
+		ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:21:7-35
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:21:36-61
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:20:11-69
+	android:versionCode
+		ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:21:62-85
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+		INJECTED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml
+uses-sdk
+ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:22:5-44
+	android:minSdkVersion
+		ADDED from /home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/CordovaLib/AndroidManifest.xml:22:15-41
