@@ -1,4 +1,0 @@
-#Wed Feb 21 23:53:55 ART 2018
-base.0=/home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
-renamed.0=classes.dex
-file.0=/home/matias/Desktop/BO6MFU31X1/ttads/TTADS-TP3-2017/mobile/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
