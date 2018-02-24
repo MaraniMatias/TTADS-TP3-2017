@@ -1,14 +1,26 @@
 import axios from 'axios';
+import config from '../config';
 
-const baseURL = "https://api.themoviedb.org/3";
+const BaseURL = config.baseURL;
 
 export default {
+  // query, apellido o nombre
+  getJugadores({ query, page }) {
+    return axios.get(`${BaseURL}/jugadores`, {
+      params: {
+        jugador: query,
+        skip: page * 10
+      }
+    });
+  },
+  /*
   authenticationGuest({ commit }) {
-    return axios.get(`${baseURL}/authentication/guest_session/new`)
+    return axios.get(`${BaseURL}/jugadores`)
       .then((response) => {
         commit('set_guest_session', response.data);
       }, (err) => {
         console.error(err);
       });
   }
+  */
 };

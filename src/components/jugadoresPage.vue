@@ -1,5 +1,5 @@
 <template>
-<v-ons-page>
+<v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
     <div class="center">Listado de Equipos</div>
     <div class="left">
@@ -9,46 +9,98 @@
     </div>
   </v-ons-toolbar>
 
-  <v-ons-pull-hook :action="loadItem" @changestate="state = $event.state">
-    <span v-show="state === 'initial'"> Pull to refresh </span>
-    <span v-show="state === 'preaction'"> Actualizar </span>
-    <span v-show="state === 'action'">
-      <v-ons-progress-circular indeterminate></v-ons-progress-circular>
-    </span>
-  </v-ons-pull-hook>
-
   <p class="center search">
-    <v-ons-search-input class="center" placeholder="Search something" v-model="query">
+    <v-ons-search-input class="center" placeholder="Search something" v-model="query" @keyup.enter="getList()">
     </v-ons-search-input>
   </p>
 
   <v-ons-list>
-    <v-ons-list-item ripple v-for="item in items">
-      {{item}}
+    <v-ons-list-item ripple v-for="item in items" :key="item">
+      {{item.apellido +' '+ item.nombre}}
     </v-ons-list-item>
+    <div class="after-list" v-show="loading">
+      <v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>
+      <!--<v-ons-progress-circular indeterminate></v-ons-progress-circular>-->
+    </div>
   </v-ons-list>
 
 </v-ons-page>
 </template>
 
 <script>
+import axios from 'axios';
+import _ from 'lodash';
+// import { mapActions } from 'vuex';
+import config from '../config';
+
+const BaseURL = config.baseURL;
+
 export default {
   name: 'JugadoresPage',
   props: {},
   components: {},
   data() {
     return {
+      page: 0,
       query: "",
-      state: 'initial',
-      items: [1, 2, 3]
+      loading: false,
+      items: []
     };
   },
   methods: {
-    loadItem(done) {
-      setTimeout(() => {
-        this.items = [...this.items, this.items.length + 1];
-        done();
-      }, 400);
+    // ...mapActions(['getJugadores']),
+    getJugadores() {
+      this.loading = true;
+      return axios
+        .get(`${BaseURL}/jugadores`, {
+          params: {
+            jugador: this.query,
+            skip: 5 * this.page
+          }
+        });
+    },
+    getList() {
+      const self = this;
+      this.page = 0;
+      if (this.query) {
+        this.getJugadores()
+          .then((resp) => {
+            // console.log(resp);
+            const message = _.get(resp, 'data.message', '') || '';
+            const jugadores = _.get(resp, 'data.data', []) || [];
+            if (message === 'Success') {
+              self.items = jugadores;
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+          .finally(() => {
+            self.loading = false;
+          });
+      }
+    },
+    loadMore(done) {
+      const self = this;
+      if (this.query) {
+        this.getJugadores()
+          .then((resp) => {
+            // console.log(resp);
+            const message = _.get(resp, 'data.message', '') || '';
+            const jugadores = _.get(resp, 'data.data', []) || [];
+            if (message === 'Success') {
+              self.items = self.items.concat(jugadores);
+              self.page += 1;
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          })
+          .finally(() => {
+            self.loading = false;
+            done();
+          });
+      }
     }
   }
 };
@@ -59,5 +111,11 @@ p.search {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.after-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 </style>

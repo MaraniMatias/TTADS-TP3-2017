@@ -7,7 +7,7 @@
     <img src="../assets/logo.png">
   </div>
   <v-ons-list>
-    <v-ons-list-item modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
+    <v-ons-list-item ripple modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
       <div class="left">
         <v-ons-icon fixed-width :icon="item.icon"></v-ons-icon>
       </div>
@@ -50,6 +50,7 @@ export default {
     goTo(name) {
       this.$router.push({ name });
       // window.open(url, '_blank');
+      this.$store.commit('splitter/toggle', false);
     },
   },
 };

@@ -8,6 +8,7 @@ module.exports = {
   },
   env: {
     browser: true,
+    es6: true,
   },
   extends: 'airbnb-base',
   // required to lint *.vue files
@@ -30,6 +31,7 @@ module.exports = {
     'comma-dangle': 0,
     'quotes': 0,
     'no-console': 0,
+    'func-names': 0,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',
