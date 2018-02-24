@@ -43,6 +43,33 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
 * Usaremos VueJS y Semantic-ui (frameworck css) para la pagina web
 * Para mobil usaremos Cordova, VueJS y OnsenUI (Frameworck CSS)
 
+## Run App
+
+### Solo en el navegador
+
+```bash
+npm install
+
+npm start
+```
+
+### Com aplicacon mobil
+
+- Para cualquier plataforma soportada por apache cordova.
+- Instalar los requisitos para complicar segun cada plataforma, por ejemplo SDK y dedemas `npm install cordova -g`
+- Compilar la app
+```bash
+npm run build
+```
+- Crear el paquete de la aplicacion
+```bash
+cordova platform add android
+
+cordova run android
+```
+
+
+
 ## Reuniones de avance
 
 |Fecha|Tareas completadas desde la última reunión| Blockers |Tareas a realizar hasta la próxima reunión|
@@ -63,7 +90,6 @@ Desarrollar un sistema que permitan llevar estadísticas de handball con las sig
   * [vue-router](https://github.com/vuejs/vue-router)
   * [vuex](https://github.com/vuejs/vuex)
   * [axios](https://github.com/mzabriskie/axios)
-* [vuetifyjs](https://vuetifyjs.com)
 * [onsen](https://onsen.io)
 
 * [eslint](https://eslint.org) [reglas](https://eslint.org/docs/rules/)
