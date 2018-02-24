@@ -1,12 +1,12 @@
 <template>
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
-    <div class="center">Listado de Equipos</div>
     <div class="left">
       <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
+    <div class="center">Listado de Equipos</div>
   </v-ons-toolbar>
 
   <p class="center search">
@@ -15,9 +15,7 @@
   </p>
 
   <v-ons-list>
-    <v-ons-list-item ripple v-for="item in items" :key="item">
-      {{item.apellido +' '+ item.nombre}}
-    </v-ons-list-item>
+    <item-jugador v-for="item in items" :key="item" :jugador="item"></item-jugador>
     <div class="after-list" v-show="loading">
       <v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>
       <!--<v-ons-progress-circular indeterminate></v-ons-progress-circular>-->
@@ -31,6 +29,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 // import { mapActions } from 'vuex';
+import ItemJugador from './itemJugador';
 import config from '../config';
 
 const BaseURL = config.baseURL;
@@ -38,7 +37,9 @@ const BaseURL = config.baseURL;
 export default {
   name: 'JugadoresPage',
   props: {},
-  components: {},
+  components: {
+    ItemJugador
+  },
   data() {
     return {
       page: 0,

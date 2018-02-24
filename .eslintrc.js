@@ -32,6 +32,8 @@ module.exports = {
     'quotes': 0,
     'no-console': 0,
     'func-names': 0,
+    // No acepta _ delante de las propiedaes pero si para _id
+    'no-underscore-dangle': ["error", { "allow": ["_id"] }],
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never',

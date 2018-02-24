@@ -1,6 +1,7 @@
 <template>
 <v-ons-page>
   <v-ons-toolbar>
+    <v-ons-back-button @click="goToBack()" ripple></v-ons-back-button>
     <div class="center">Perfil del jugador</div>
   </v-ons-toolbar>
 
@@ -28,23 +29,18 @@
 export default {
   name: 'JugadorPerfil',
   components: {},
+  props: {},
   // Usar parametro, pasa id y que este controlador pida los datos
   data() {
     return {
-      jugador: {
-        nombre: 'Vue',
-        apellido: 'js',
-        peso: 60,
-        altura: 123,
-        edad: 25,
-        cantGoles: 12,
-        cantAmarillas: 12,
-        cant2min: 12,
-        cantRojas: 123
-      }
+      jugador: {}
     };
   },
-  methods: {}
+  methods: {
+    goToBack() {
+      this.$router.back();
+    }
+  }
 };
 </script>
 

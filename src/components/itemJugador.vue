@@ -1,6 +1,6 @@
 <template>
-<v-ons-list-item :key="index" tappable @click="goToProfile()">
-  #{{ index }}
+<v-ons-list-item @click="goToProfile()">
+  {{jugador.apellido +' '+ jugador.nombre}}
 </v-ons-list-item>
 </template>
 
@@ -8,8 +8,8 @@
 export default {
   name: 'ItemJugador',
   props: {
-    index: {
-      type: Number,
+    jugador: {
+      type: Object,
       required: true
     }
   },
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     goToProfile() {
-      this.$router.push({ name: 'jugador', params: { id: '12345' } });
+      this.$router.push({ name: 'jugador', params: { id: this.jugador._id } });
     }
   }
 };
