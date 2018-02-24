@@ -36,10 +36,15 @@ const routes = [
   { path: '/jugadores', component: JugadoresPage, name: 'jugadoresPage' },
   // Usan parametros id para pedir la entidad
   { path: '/equipo', component: Equipo, name: 'equipo' },
-  { path: '/jugador', component: Jugador, name: 'jugador' },
+  {
+    path: '/jugador/:id',
+    component: Jugador,
+    name: 'jugador',
+    props: true
+  },
   { path: '/partido', component: Partido, name: 'partido' },
 
-  { path: '/dialogs', component: Dialogs, name: 'dialogs' },
+  { path: '/dialogs', component: Dialogs, name: 'dialogs' }
 ];
 
 const router = new VueRouter({

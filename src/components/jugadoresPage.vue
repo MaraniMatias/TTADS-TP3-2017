@@ -15,10 +15,10 @@
   </p>
 
   <v-ons-list>
-    <item-jugador v-for="item in items" :key="item" :jugador="item"></item-jugador>
+    <item-jugador v-for="(item, index) in items" :jugador="item" :key="index"></item-jugador>
     <div class="after-list" v-show="loading">
-      <v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>
-      <!--<v-ons-progress-circular indeterminate></v-ons-progress-circular>-->
+      <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
+      <v-ons-progress-circular indeterminate></v-ons-progress-circular>
     </div>
   </v-ons-list>
 
