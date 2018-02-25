@@ -18,6 +18,11 @@ const getters = {
 };
 
 const mutations = {
+  clean_list(state) {
+    const estado = state;
+    estado.list = [];
+    estado.page = 0;
+  },
   set_list_jugadores(state, listJugadores = [], page = 0) {
     const estado = state;
     estado.list = listJugadores;
@@ -35,6 +40,9 @@ const mutations = {
 };
 
 const actions = {
+  cleanList({ commit }) {
+    commit('clean_list');
+  },
   // query, String que reprecenta apellido o nombre
   loadingJugadores({ commit }, { query, page }) {
     commit('loading', true);
