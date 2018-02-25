@@ -1,7 +1,9 @@
 <template>
 <v-ons-page>
   <v-ons-toolbar>
-    <!--<v-ons-back-button @click="goToBack()" ripple></v-ons-back-button>-->
+    <div class="left">
+      <v-ons-back-button @click="goToBack()" ripple></v-ons-back-button>
+    </div>
     <div class="center">Perfil del jugador</div>
   </v-ons-toolbar>
 
