@@ -12,16 +12,21 @@ const state = {
 };
 
 const getters = {
-  getJugadores: state => state.list,
+  list: state => state.list,
   isLoading: state => state.loading,
-  getPage: state => state.page
+  page: state => state.page
 };
 
 const mutations = {
-  set_list_jugadores(state, listJugadores, page) {
+  set_list_jugadores(state, listJugadores = [], page = 1) {
     const estado = state;
-    estado.item = listJugadores;
-    estado.page = page;
+    estado.list = listJugadores;
+    estado.page += page;
+  },
+  add_list_jugadores(state, listJugadores = []) {
+    const estado = state;
+    estado.list = estado.list.concat(listJugadores);
+    estado.page += 1;
   },
   loading(state, loading) {
     const estado = state;
@@ -31,7 +36,7 @@ const mutations = {
 
 const actions = {
   // query, String que reprecenta apellido o nombre
-  getJugadores({ commit }, query, page) {
+  loadingJugadores({ commit }, { query, page }) {
     commit('loading', true);
     return axios
       .get(`${BaseURL}/jugadores`, {
@@ -45,7 +50,11 @@ const actions = {
         const message = _.get(resp, 'data.message', '') || '';
         const jugadores = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
-          commit('set_list_jugadores', jugadores, page);
+          if (page === 0) {
+            commit('set_list_jugadores', jugadores, page);
+          } else {
+            commit('add_list_jugadores', jugadores);
+          }
         }
       })
       .catch((error) => {
@@ -58,6 +67,7 @@ const actions = {
 };
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

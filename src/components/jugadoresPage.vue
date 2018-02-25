@@ -15,8 +15,8 @@
   </p>
 
   <v-ons-list>
-    <item-jugador v-for="(item, index) in listJugadores" :jugador="item" :key="index"></item-jugador>
-    <div class="after-list" v-show="loading">
+    <item-jugador v-for="(item, index) in list" :jugador="item" :key="index"></item-jugador>
+    <div class="after-list" v-show="isLoading">
       <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
       <v-ons-progress-circular indeterminate></v-ons-progress-circular>
     </div>
@@ -26,8 +26,10 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
 import ItemJugador from './itemJugador';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
 
 export default {
   name: 'JugadoresPage',
@@ -37,29 +39,29 @@ export default {
   },
   data() {
     return {
-      page: 0,
       query: ""
     };
   },
   computed: {
-    ...mapState([
-      'listJugadores',
-      'loading'
+    ...mapGetters([
+      'isLoading',
+      'list',
+      'page'
     ])
   },
   methods: {
     ...mapActions([
-      'getJugadores'
+      'loadingJugadores'
     ]),
     getList() {
-      this.page = 0;
       if (this.query) {
-        this.getJugadores(this.query, this.page);
+        this.loadingJugadores({ query: this.query, page: 0 });
       }
     },
     loadMore(done) {
+      const page = this.page === 0 ? 1 : this.page;
       if (this.query) {
-        this.getJugadores()
+        this.loadingJugadores({ query: this.query, page })
           .finally(() => {
             done();
           });
