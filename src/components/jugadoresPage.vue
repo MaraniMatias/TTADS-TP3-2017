@@ -15,7 +15,7 @@
   </p>
 
   <v-ons-list>
-    <item-jugador v-for="(item, index) in items" :jugador="item" :key="index"></item-jugador>
+    <item-jugador v-for="(item, index) in listJugadores" :jugador="item" :key="index"></item-jugador>
     <div class="after-list" v-show="loading">
       <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
       <v-ons-progress-circular indeterminate></v-ons-progress-circular>
@@ -26,13 +26,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import _ from 'lodash';
-// import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import ItemJugador from './itemJugador';
-import config from '../config';
-
-const BaseURL = config.baseURL;
 
 export default {
   name: 'JugadoresPage',
@@ -43,62 +38,29 @@ export default {
   data() {
     return {
       page: 0,
-      query: "",
-      loading: false,
-      items: []
+      query: ""
     };
   },
+  computed: {
+    ...mapState([
+      'listJugadores',
+      'loading'
+    ])
+  },
   methods: {
-    // ...mapActions(['getJugadores']),
-    getJugadores() {
-      this.loading = true;
-      return axios
-        .get(`${BaseURL}/jugadores`, {
-          params: {
-            jugador: this.query,
-            skip: 5 * this.page
-          }
-        });
-    },
+    ...mapActions([
+      'getJugadores'
+    ]),
     getList() {
-      const self = this;
       this.page = 0;
       if (this.query) {
-        this.getJugadores()
-          .then((resp) => {
-            // console.log(resp);
-            const message = _.get(resp, 'data.message', '') || '';
-            const jugadores = _.get(resp, 'data.data', []) || [];
-            if (message === 'Success') {
-              self.items = jugadores;
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          })
-          .finally(() => {
-            self.loading = false;
-          });
+        this.getJugadores(this.query, this.page);
       }
     },
     loadMore(done) {
-      const self = this;
       if (this.query) {
         this.getJugadores()
-          .then((resp) => {
-            // console.log(resp);
-            const message = _.get(resp, 'data.message', '') || '';
-            const jugadores = _.get(resp, 'data.data', []) || [];
-            if (message === 'Success') {
-              self.items = self.items.concat(jugadores);
-              self.page += 1;
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          })
           .finally(() => {
-            self.loading = false;
             done();
           });
       }
