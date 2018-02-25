@@ -1,6 +1,8 @@
 <template>
-<v-ons-list-item @click="goToProfile()">
-  {{jugador.apellido +' '+ jugador.nombre}}
+<v-ons-list-item tappable modifier="longdivider" @click="goToProfile()">
+  <div class="center">
+    {{jugador.apellido +' '+ jugador.nombre}}
+  </div>
 </v-ons-list-item>
 </template>
 
