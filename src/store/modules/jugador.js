@@ -18,10 +18,10 @@ const getters = {
 };
 
 const mutations = {
-  set_list_jugadores(state, listJugadores = [], page = 1) {
+  set_list_jugadores(state, listJugadores = [], page = 0) {
     const estado = state;
     estado.list = listJugadores;
-    estado.page += page;
+    estado.page = page;
   },
   add_list_jugadores(state, listJugadores = []) {
     const estado = state;
