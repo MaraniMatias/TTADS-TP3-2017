@@ -1,59 +1,80 @@
 <template>
-<v-ons-page>
+<v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
-    <div class="center">Listado de Equipos</div>
     <div class="left">
       <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
+    <div class="center">Listado de Equipos</div>
   </v-ons-toolbar>
 
-  <v-ons-pull-hook :action="loadItem" @changestate="state = $event.state">
-    <span v-show="state === 'initial'"> Pull to refresh </span>
-    <span v-show="state === 'preaction'"> Actualizar </span>
-    <span v-show="state === 'action'">
-      <v-ons-progress-circular indeterminate></v-ons-progress-circular>
-    </span>
-  </v-ons-pull-hook>
-
-  <p class="center search">
-    <v-ons-search-input class="center" placeholder="Search something" v-model="query">
+  <p class="center search" v-show="list.length == 0">
+    <v-ons-search-input class="center" placeholder="Search something" v-model="query" @keyup.enter="getList()">
     </v-ons-search-input>
   </p>
 
   <v-ons-list>
-    <v-ons-list-item ripple v-for="item in items">
-      {{item}}
-    </v-ons-list-item>
+    <item v-for="(item, index) in list" :equipo="item" :key="index"></item>
+    <div class="after-list" v-show="isLoading">
+      <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
+      <v-ons-progress-circular indeterminate></v-ons-progress-circular>
+    </div>
   </v-ons-list>
+
+  <v-ons-fab position="bottom right" :visible="list.length > 0" @click="clean()">
+    <v-ons-icon icon="search"></v-ons-icon>
+  </v-ons-fab>
 
 </v-ons-page>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+import Item from './itemEquipo';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('equipo');
+
 export default {
   name: 'EquiposPage',
-  props: {
-    titulo: {
-      type: String,
-      required: true
-    }
+  props: {},
+  components: {
+    Item
   },
-  components: {},
   data() {
     return {
-      quety: "",
-      state: 'initial',
-      items: [1, 2, 3]
+      query: ""
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+      'list',
+      'page'
+    ])
+  },
   methods: {
-    loadItem(done) {
-      setTimeout(() => {
-        this.items = [...this.items, this.items.length + 1];
-        done();
-      }, 400);
+    ...mapActions([
+      'loadItemList',
+      'cleanList'
+    ]),
+    clean() {
+      this.cleanList();
+      this.query = "";
+    },
+    getList() {
+      if (this.query) {
+        this.loadItemList({ query: this.query, page: 0 });
+      }
+    },
+    loadMore(done) {
+      const page = this.page === 0 ? 1 : this.page;
+      if (this.query) {
+        this.loadItemList({ query: this.query, page })
+          .finally(() => {
+            done();
+          });
+      }
     }
   }
 };
@@ -64,5 +85,11 @@ p.search {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.after-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 </style>

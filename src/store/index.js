@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 
 import jugador from './modules/jugador';
+import equipo from './modules/equipo';
 
 Vue.use(Vuex);
 
@@ -24,5 +25,6 @@ export default new Vuex.Store({
       }
     },
     jugador,
+    equipo,
   }
 });

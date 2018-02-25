@@ -6,7 +6,7 @@
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
-    <div class="center">Listado de Equipos</div>
+    <div class="center">Listado de Jugadores</div>
   </v-ons-toolbar>
 
   <p class="center search" v-show="list.length == 0">
@@ -15,7 +15,7 @@
   </p>
 
   <v-ons-list>
-    <item-jugador v-for="(item, index) in list" :jugador="item" :key="index"></item-jugador>
+    <item v-for="(item, index) in list" :jugador="item" :key="index"></item>
     <div class="after-list" v-show="isLoading">
       <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
       <v-ons-progress-circular indeterminate></v-ons-progress-circular>
@@ -31,7 +31,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import ItemJugador from './itemJugador';
+import Item from './itemJugador';
 
 const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
 
@@ -39,7 +39,7 @@ export default {
   name: 'JugadoresPage',
   props: {},
   components: {
-    ItemJugador
+    Item
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'loadingJugadores',
+      'loadItemList',
       'cleanList'
     ]),
     clean() {
@@ -64,13 +64,13 @@ export default {
     },
     getList() {
       if (this.query) {
-        this.loadingJugadores({ query: this.query, page: 0 });
+        this.loadItemList({ query: this.query, page: 0 });
       }
     },
     loadMore(done) {
       const page = this.page === 0 ? 1 : this.page;
       if (this.query) {
-        this.loadingJugadores({ query: this.query, page })
+        this.loadItemList({ query: this.query, page })
           .finally(() => {
             done();
           });

@@ -47,9 +47,9 @@ const actions = {
   loadItemList({ commit }, { query, page }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/jugadores`, {
+      .get(`${BaseURL}/equipos`, {
         params: {
-          jugador: query,
+          nombre: query,
           skip: page * 10
         }
       })
