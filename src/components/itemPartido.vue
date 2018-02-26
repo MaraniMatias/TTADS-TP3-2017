@@ -69,7 +69,8 @@ export default {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
     },
     goToPartidoPage() {
-      this.$router.push({ name: 'partido', params: { id: this.partido.id } });
+      // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
+      this.$router.push({ name: 'partido', params: { partidoId: '5a937538946c0f669662d818' } });
     }
   }
 };

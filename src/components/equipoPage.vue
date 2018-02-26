@@ -55,11 +55,23 @@ export default {
           label: 'Cuerpo Tecnico',
           page: ListJugadores,
           key: "cuerpoTecnicoTab"
+        },
+        {
+          label: 'Torneos',
+          page: ListJugadores,
+          key: "torneosTab"
         }
       ]
     };
   },
-  methods: {}
+  methods: {
+    goToEquipoPage(equipo) {
+      this.$router.push({ name: 'equipo', params: { id: equipo.id } });
+    },
+    goToPartidoPage() {
+      this.$router.push({ name: 'partido', params: { id: this.partido.id } });
+    }
+  }
 };
 </script>
 

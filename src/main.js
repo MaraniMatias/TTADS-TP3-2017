@@ -45,7 +45,12 @@ const routes = [
     name: 'jugador',
     props: true
   },
-  { path: '/partido', component: Partido, name: 'partido' },
+  {
+    path: '/partido/:partidoId',
+    component: Partido,
+    name: 'partido',
+    props: true
+  },
 ];
 
 const router = new VueRouter({
@@ -65,10 +70,12 @@ ons.ready(() => {
   ons.setDefaultDeviceBackButtonListener(() => {
     const routeName = router.currentRoute.nmae;
     console.log("Button Back", routeName);
-    if (routeName === 'home') {
-      navigator.app.exit();
-    } else {
-      navigator.app.backHistory();
+    if (window.cordova) {
+      if (routeName === 'home') {
+        navigator.app.exit();
+      } else {
+        navigator.app.backHistory();
+      }
     }
   });
 });
@@ -81,5 +88,11 @@ new Vue({
   store,
   strict: true,
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  },
+  beforeCreate() {
+    // Shortcut for Material Design
+    Vue.prototype.md = this.$ons.platform.isAndroid();
+  }
 });
