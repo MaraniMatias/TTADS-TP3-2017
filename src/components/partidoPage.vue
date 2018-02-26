@@ -33,8 +33,8 @@
   <v-ons-list v-show="!isLoading">
     <v-ons-list-item modifier="longdivider">
       <div class="left equipo" @click="goToEquipoPage(equipoA)">
-        <img class="list-item__thumbnail" :src="equipoA.escudoURL">
-        <p>{{equipoA.nombre}}</p>
+        <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL">
+        <p>{{partido.equipoA.nombre}}</p>
       </div>
       <div class="center">
         <div class="item-center">
@@ -45,16 +45,16 @@
         </div>
       </div>
       <div class="right equipo" @click="goToEquipoPage(equipoB)">
-        <img class="list-item__thumbnail" :src="equipoB.escudoURL">
-        <p>{{equipoB.nombre}}</p>
+        <img class="list-item__thumbnail" :src="partido.equipoB.escudoURL">
+        <p>{{partido.equipoB.nombre}}</p>
       </div>
     </v-ons-list-item>
   </v-ons-list>
 
   <v-ons-list-title>Notifications</v-ons-list-title>
   <v-ons-list modifier="inset">
-    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(i, index) in [0,1,2,3,4,5,6,7,8,9,10]" @click="$ons.notification.alert('Hello, world!')">
-      <div class="center">Lecionadoo</div>
+    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fechaYhora)">
+      <div class="center">{{item.evento.nombre}}</div>
     </v-ons-list-item>
   </v-ons-list>
 
@@ -78,26 +78,10 @@ export default {
   data() {
     return {
       state: '',
+      ratio: 0,
 
-
-      jugando: {},
       tiempo: '00:00',
       estado: 'estado',
-      partido: {
-        fechaInicio: new Date(),
-        marcador: {
-          golesEquipoA: 0,
-          golesEquipoB: 2
-        }
-      },
-      equipoA: {
-        nombre: "Equipo A",
-        escudoURL: "http://www.clker.com/cliparts/o/B/N/P/d/B/escudo-medieval-vermelho.svg.med.png"
-      },
-      equipoB: {
-        nombre: "Equipo B",
-        escudoURL: "http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png"
-      },
     };
   },
   computed: {
@@ -118,11 +102,11 @@ export default {
       this.cleanList();
     },
     getList() {
-      this.loadItemList({ page: 0 });
+      this.loadItemList({ partidoId: this.partidoId, page: 0 });
     },
     loadMore(done) {
       const page = this.page === 0 ? 1 : this.page;
-      this.loadItemList({ page })
+      this.loadItemList({ partidoId: this.partidoId, page })
         .finally(() => {
           done();
         });
@@ -135,14 +119,18 @@ export default {
     },
     onAction(done) {
       setTimeout(() => {
-        done();
+        this.loadPartido({ partidoId: this.partidoId })
+          .finally(() => {
+            done();
+          });
       }, 1500);
     },
   },
   mounted() {
     // const self = this;
     this.$nextTick(function () {
-      this.loadPartido();
+      this.getList();
+      this.loadPartido({ partidoId: this.partidoId });
     });
   }
 };

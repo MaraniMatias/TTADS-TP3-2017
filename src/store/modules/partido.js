@@ -48,13 +48,9 @@ const actions = {
   loadPartido({ commit }, { partidoId }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/partidos`, {
-        params: {
-          id: partidoId
-        }
-      })
+      .get(`${BaseURL}/partidos/${partidoId}`)
       .then((resp) => {
-        // console.log(resp);
+        console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
         const partido = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
@@ -72,9 +68,9 @@ const actions = {
   loadItemList({ commit }, { partidoId, page }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/eventos-por-partido`, {
+      .get(`${BaseURL}/eventos-por-partido/${partidoId}`, {
         params: {
-          id: partidoId
+          skip: page * 10
         }
       })
       .then((resp) => {

@@ -70,7 +70,7 @@ export default {
     },
     goToPartidoPage() {
       // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
-      this.$router.push({ name: 'partido', params: { partidoId: '5a937538946c0f669662d818' } });
+      this.$router.push({ name: 'partido', params: { partidoId: '5a94435b5e1871775d68a0bf' } });
     }
   }
 };
