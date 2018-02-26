@@ -22,7 +22,7 @@
             <div class="title">Hoy</div>
             <div class="content">
               <v-ons-list>
-                <item-partido jugando="true" :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
+                <item-partido jugando :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
                 <item-partido :partido="partido" :equipoA="equipoA" :equipoB="equipoB"></item-partido>
               </v-ons-list>
             </div>

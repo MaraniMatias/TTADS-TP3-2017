@@ -30,8 +30,15 @@
         <p>{{equipoB.nombre}}</p>
       </div>
     </v-ons-list-item>
-    <v-ons-list-header>Eventos</v-ons-list-header>
-    <v-ons-list-item>Lecionado</v-ons-list-item>
+  </v-ons-list>
+
+  <v-ons-list-title>Notifications</v-ons-list-title>
+  <v-ons-list modifier="inset">
+    <v-ons-list-item modifier="longdivider" tappable :key="index"
+      v-for="(i, index) in [0,1,2,3,4,5,6,7,8,9,10]"
+      @click="$ons.notification.alert('Hello, world!')">
+      <div class="center">Lecionadoo</div>
+    </v-ons-list-item>
   </v-ons-list>
 
 </v-ons-page>

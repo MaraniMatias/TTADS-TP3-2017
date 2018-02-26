@@ -29,11 +29,6 @@ export default {
           icon: 'fa-book',
         },
         {
-          label: 'Dialogs',
-          link: 'dialogs',
-          icon: 'fa-commenting',
-        },
-        {
           label: 'Equipos',
           link: 'equiposPage',
           icon: 'fa-twitter',

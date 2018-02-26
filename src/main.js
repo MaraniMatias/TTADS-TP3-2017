@@ -21,8 +21,6 @@ import EquiposPage from './components/equiposPage';
 import Jugador from './components/perfilJugadorPage';
 import JugadoresPage from './components/jugadoresPage';
 
-import Dialogs from './components/dialogs';
-
 Vue.config.productionTip = true;
 
 Vue.use(VueRouter);
@@ -35,7 +33,12 @@ const routes = [
   { path: '/equipos', component: EquiposPage, name: 'equiposPage' },
   { path: '/jugadores', component: JugadoresPage, name: 'jugadoresPage' },
   // Usan parametros id para pedir la entidad
-  { path: '/equipo', component: Equipo, name: 'equipo' },
+  {
+    path: '/equipo/:id',
+    component: Equipo,
+    name: 'equipo',
+    props: true
+  },
   {
     path: '/jugador/:id',
     component: Jugador,
@@ -43,8 +46,6 @@ const routes = [
     props: true
   },
   { path: '/partido', component: Partido, name: 'partido' },
-
-  { path: '/dialogs', component: Dialogs, name: 'dialogs' }
 ];
 
 const router = new VueRouter({
