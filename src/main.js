@@ -56,18 +56,21 @@ const router = new VueRouter({
 
 ons.ready(() => {
   console.log("Ready");
+
   if (window.StatusBar) {
     StatusBar.styleLightContent();
     StatusBar.styleBlackOpaque();
   }
-  document.addEventListener('backbutton', () => {
+
+  ons.setDefaultDeviceBackButtonListener(() => {
     const routeName = router.currentRoute.nmae;
+    console.log("Button Back", routeName);
     if (routeName === 'home') {
       navigator.app.exit();
     } else {
       navigator.app.backHistory();
     }
-  }, false);
+  });
 });
 
 
