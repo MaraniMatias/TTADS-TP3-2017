@@ -53,7 +53,7 @@
 
   <v-ons-list-title>Notifications</v-ons-list-title>
   <v-ons-list modifier="inset">
-    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fechaYhora)">
+    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha)">
       <div class="center">{{item.evento.nombre}}</div>
     </v-ons-list-item>
   </v-ons-list>
@@ -66,6 +66,7 @@ import { createNamespacedHelpers } from 'vuex';
 
 const { mapGetters, mapActions } = createNamespacedHelpers('partido');
 
+// Listar demas detalles como estadio, categoria ...
 export default {
   name: 'PartidoPage',
   components: {},
