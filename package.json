@@ -11,7 +11,7 @@
     "build:watch": "cross-env WEBPACK_WATCH=true node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "android": "npm run build && cordova run android --device",
-    "android-emulate": "npm run build && cordova run android --device"
+    "android-emulate": "npm run build && cordova run android --emulate"
   },
   "dependencies": {
     "axios": "^0.18.0",
