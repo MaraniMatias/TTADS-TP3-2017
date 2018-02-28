@@ -145,10 +145,8 @@ h4, h5, h6 {
   height: 44px;
   padding-left: 0;
   padding-right: 0;
-  background: #ffffff;
-  background: rgba(255, 255, 255, 1);
-  color: #000000;
-  color: rgba(0, 0, 0, 1);
+  background: #fafafa;
+  color: #1f1f21;
   box-shadow: none;
   font-weight: 400;
   width: 100%;
@@ -166,8 +164,7 @@ h4, h5, h6 {
   }
 }
 .toolbar__bg {
-  background: #ffffff;
-  background: rgba(255, 255, 255, 1);
+  background: #fafafa;
 }
 .toolbar__item {
   box-sizing: border-box;
@@ -229,15 +226,13 @@ h4, h5, h6 {
   line-height: 44px;
   font-size: 17px;
   font-weight: 500;
-  color: #000000;
-  color: rgba(0, 0, 0, 1);
+  color: #1f1f21;
 }
 .toolbar__title {
   line-height: 44px;
   font-size: 17px;
   font-weight: 500;
-  color: #000000;
-  color: rgba(0, 0, 0, 1);
+  color: #1f1f21;
   margin: 0;
   padding: 0;
   overflow: visible;
@@ -324,10 +319,8 @@ h4, h5, h6 {
   height: 44px;
   padding-left: 0;
   padding-right: 0;
-  background: #ffffff;
-  background: rgba(255, 255, 255, 1);
-  color: #000000;
-  color: rgba(0, 0, 0, 1);
+  background: #fafafa;
+  color: #1f1f21;
   box-shadow: none;
   font-weight: 400;
   border-bottom: none;
@@ -411,7 +404,7 @@ h4, h5, h6 {
   border-bottom: 0;
   box-shadow: 0 1px 5px rgba(0, 0, 0, .3);
   padding: 0;
-  background-color: #BECB29;
+  background-color: #0F6461;
   background-size: 0;
 }
 /*~
@@ -477,6 +470,9 @@ h4, h5, h6 {
 }
 .toolbar--material__left:empty, .toolbar--material__right:empty {
   min-width: 16px;
+}
+.toolbar-button--material {
+  color: #FFF;
 }
 /*~
   name: Material Toolbar with Icons
@@ -608,7 +604,7 @@ h4, h5, h6 {
   margin: 0;
   padding: 0;
   height: 49px;
-  background-color: #fafafa;
+  background-color: #F4F4F4;
   border-top: 1px solid #ccc;
   width: 100%;
 }
@@ -936,7 +932,7 @@ h4, h5, h6 {
 }
 .tabbar--material {
   background: none;
-  background-color: #BECB29;
+  background-color: #0F6461;
   border-bottom-width: 0;
   box-shadow:
     0 4px 2px -2px rgba(0, 0, 0, .14),
@@ -945,8 +941,8 @@ h4, h5, h6 {
 }
 .tabbar--material__button {
   background-color: transparent;
-  color: #606060;
-  color: rgba(96, 96, 96, 1);
+  color: #dcdcdc;
+  color: rgba(220, 220, 220, 1);
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
@@ -1212,7 +1208,7 @@ h4, h5, h6 {
   html[onsflag-iphonex-landscape] .fab--bottom__right {
     bottom: 21px; /* Omit 20px space */
   }
-  
+
   /* For left safe area */
   html[onsflag-iphonex-landscape] .fab--top__left,
   html[onsflag-iphonex-landscape] .fab--bottom__left {
