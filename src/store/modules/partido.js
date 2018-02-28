@@ -20,12 +20,12 @@ const getters = {
 };
 
 const mutations = {
-  set_list(state, list = [], page = 0) {
+  set_list(state, { list, page } = { list: [], page: 0 }) {
     const estado = state;
     estado.listEventos = list;
     estado.page = page;
   },
-  add_list(state, list = []) {
+  add_list(state, { list } = { list: [] }) {
     const estado = state;
     estado.listEventos = estado.listEventos.concat(list);
     estado.page += 1;
@@ -79,9 +79,9 @@ const actions = {
         const list = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', list, page);
+            commit('set_list', { list, page });
           } else {
-            commit('add_list', list);
+            commit('add_list', { list });
           }
         }
       })

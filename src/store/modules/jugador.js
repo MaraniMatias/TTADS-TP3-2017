@@ -23,12 +23,12 @@ const mutations = {
     estado.list = [];
     estado.page = 0;
   },
-  set_list(state, list = [], page = 0) {
+  set_list(state, { list, page } = { list: [], page: 0 }) {
     const estado = state;
     estado.list = list;
     estado.page = page;
   },
-  add_list(state, list = []) {
+  add_list(state, { list } = { list: [] }) {
     const estado = state;
     estado.list = estado.list.concat(list);
     estado.page += 1;
@@ -59,9 +59,9 @@ const actions = {
         const jugadores = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', jugadores, page);
+            commit('set_list', { list: jugadores, page: 0 });
           } else {
-            commit('add_list', jugadores);
+            commit('add_list', { list: jugadores, page });
           }
         }
       })
