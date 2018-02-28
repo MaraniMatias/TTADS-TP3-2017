@@ -5,6 +5,7 @@ import Vue from 'vue';
 import jugador from './modules/jugador';
 import equipo from './modules/equipo';
 import partido from './modules/partido';
+import fixture from './modules/fixture';
 
 Vue.use(Vuex);
 
@@ -28,5 +29,6 @@ export default new Vuex.Store({
     jugador,
     equipo,
     partido,
+    fixture
   }
 });
