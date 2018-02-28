@@ -72,4 +72,8 @@ ons-list-item {
 h1 {
   margin: 0px;
 }
+
+.toolbar--material__center {
+  color: #000;
+}
 </style>

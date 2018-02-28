@@ -9,7 +9,8 @@ import VueOnsen from 'vue-onsenui';
 import VueRouter from 'vue-router';
 import Morphling from 'morphling'; // Filtros, para fechas usa moment
 // Theme color tabs y headbar
-// import './assets/css/theme/onsen-css-components.css';
+import './assets/css/theme/onsen-css-components.css';
+import './assets/css/theme/theme.css';
 
 import store from './store/index';
 import App from './App';
