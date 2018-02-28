@@ -1,10 +1,7 @@
 <template>
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-list>
-
-    <v-ons-pull-hook :action="onAction" :fixed-content="md" :height="md ? 84 : 64" :on-pull="md && onPull || null" @changestate="state = $event.state">
-      <pull-hook-icon :state="state"></pull-hook-icon>
-    </v-ons-pull-hook>
+    <pull-hook :on-action="onAction"></pull-hook>
 
     <div style="text-align: center; margin: 40px; color: #666" v-if="isLoading">
       <p>
@@ -37,7 +34,7 @@
 import { createNamespacedHelpers } from 'vuex';
 
 import ItemPartido from "./itemPartido";
-import PullHookIcon from "./pull-hook-icon";
+import PullHook from "./pull-hook";
 
 const { mapGetters, mapActions } = createNamespacedHelpers('fixture');
 
@@ -45,12 +42,10 @@ export default {
   name: 'TabPartidosActivos',
   components: {
     ItemPartido,
-    PullHookIcon
+    PullHook
   },
   data() {
-    return {
-      state: 'initial',
-    };
+    return {};
   },
   computed: {
     ...mapGetters([
@@ -74,16 +69,13 @@ export default {
           done();
         });
     },
-    onPull(ratio) {
-      this.ratio = ratio;
-    },
     onAction(done) {
-      setTimeout(() => {
-        this.loadPartidos({ page: 0 })
-          .finally(() => {
-            done();
-          });
-      }, 1500);
+      // setTimeout(() => {
+      this.loadPartidos({ page: 0 })
+        .finally(() => {
+          done();
+        });
+      // }, 1500);
     },
   },
   mounted() {

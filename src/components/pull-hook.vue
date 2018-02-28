@@ -1,32 +1,36 @@
 <template>
-<div>
+<v-ons-pull-hook :action="onAction" :fixed-content="md" :height="md ? 84 : 64" :on-pull="md && onPull || null" @changestate="state = $event.state">
   <!-- Show this on iOS -->
   <v-ons-icon v-if="!md" size="22px" class="pull-hook-spinner" :icon="state === 'action' ? 'fa-spinner' : 'fa-arrow-down'" :rotate="state === 'preaction' && 180" :spin="state === 'action'"> </v-ons-icon>
   <!-- Show this on Material Design -->
   <div v-else class="pull-hook-progress">
     <v-ons-progress-circular :value="ratio * 100" :indeterminate="state === 'action'" :style="{ transform: `rotate(${ratio}turn)` }"> </v-ons-progress-circular>
   </div>
-</div>
+</v-ons-pull-hook>
 </template>
 
 <script>
 export default {
-  name: 'PullHookIcon',
+  name: 'PullHook',
   props: {
-    state: {
-      type: String,
-      default: 'initial',
+    onAction: {
+      type: Function,
       required: true
     }
   },
   components: {},
   data() {
     return {
+      state: 'initial',
       ratio: 0
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    onPull(ratio) {
+      this.ratio = ratio;
+    }
+  },
   mounted() {}
 };
 </script>

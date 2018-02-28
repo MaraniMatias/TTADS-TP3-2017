@@ -15,9 +15,7 @@
     </div>
   </v-ons-toolbar>
 
-  <v-ons-pull-hook :action="onAction" :fixed-content="md" :height="md ? 84 : 64" :on-pull="md && onPull || null" @changestate="state = $event.state">
-      <pull-hook-icon :state="state"></pull-hook-icon>
-  </v-ons-pull-hook>
+  <pull-hook :on-action="onAction"></pull-hook>
 
   <div style="text-align: center; margin: 40px; color: #666" v-if="isLoading">
     <p>
@@ -73,8 +71,6 @@ export default {
   },
   data() {
     return {
-      state: '',
-
       tiempo: '00:00',
       estado: 'estado',
     };
@@ -109,16 +105,13 @@ export default {
     goToEquipoPage(equipo) {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
     },
-    onPull(ratio) {
-      this.ratio = ratio;
-    },
     onAction(done) {
-      setTimeout(() => {
-        this.loadPartido({ partidoId: this.partidoId })
-          .finally(() => {
-            done();
-          });
-      }, 1500);
+      // setTimeout(() => {
+      this.loadPartido({ partidoId: this.partidoId })
+        .finally(() => {
+          done();
+        });
+      // }, 1500);
     },
   },
   mounted() {
