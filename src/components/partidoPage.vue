@@ -2,18 +2,14 @@
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
     <div class="left">
-     <v-ons-back-button @click="$router.back()"></v-ons-back-button>
+      <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
     </div>
-    <div class="center">
-      Detalles del partido
-    </div>
+    <div class="center">Detalles del partido</div>
     <div class="right">
       <!-- Cuando activa la campana, enviar al backend para que registre en socket y con cordova o ons enviar notificaiones cuando ocurra un evento, tambien podemos buscar la manera de dejar un servicio para que muestre notificaiones cuando la app esta cerrada -->
       <v-ons-toolbar-button icon="ion-ios-bell-outline"></v-ons-toolbar-button>
     </div>
   </v-ons-toolbar>
-
-  <pull-hook :on-action="onAction"></pull-hook>
 
   <div style="text-align: center; margin: 40px; color: #666" v-if="isLoading">
     <p>
@@ -21,32 +17,18 @@
     </p>
   </div>
 
-  <v-ons-list v-show="!isLoading">
-    <v-ons-list-item modifier="longdivider">
-      <div class="left equipo" @click="goToEquipoPage(equipoA)">
-        <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL">
-        <p>{{partido.equipoA.nombre}}</p>
-      </div>
-      <div class="center">
-        <div class="item-center">
-          <p class="marcador">
-            {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
-          </p>
-          <p class="tiempo">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
-        </div>
-      </div>
-      <div class="right equipo" @click="goToEquipoPage(equipoB)">
-        <img class="list-item__thumbnail" :src="partido.equipoB.escudoURL">
-        <p>{{partido.equipoB.nombre}}</p>
-      </div>
-    </v-ons-list-item>
-  </v-ons-list>
+  <v-ons-list class="bg-trans">
+    <pull-hook :on-action="onAction"></pull-hook>
+    <v-ons-list v-show="!isLoading">
+      <item-partido :partido="partido"></item-partido>
+    </v-ons-list>
 
-  <v-ons-list-title>Notifications</v-ons-list-title>
-  <v-ons-list modifier="inset">
-    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha +'Detalles: ' + item.descripcion)">
-      <div class="center">{{item.evento.nombre}}</div>
-    </v-ons-list-item>
+    <v-ons-list-title>Notifications</v-ons-list-title>
+    <v-ons-list modifier="inset">
+      <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha +'Detalles: ' + item.descripcion)">
+        <div class="center">{{item.evento.nombre}}</div>
+      </v-ons-list-item>
+    </v-ons-list>
   </v-ons-list>
 
 </v-ons-page>
@@ -55,12 +37,16 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
+import ItemPartido from "./itemPartido";
+
 const { mapGetters, mapActions } = createNamespacedHelpers('partido');
 
 // Listar demas detalles como estadio, categoria ...
 export default {
   name: 'PartidoPage',
-  components: {},
+  components: {
+    ItemPartido
+  },
   props: {
     partidoId: {
       type: String,
@@ -123,42 +109,7 @@ export default {
 </script>
 
 <style scoped>
-.center {
-  align-items: center;
-  margin: auto;
-}
-
-.item-center {
-  display: block;
-  margin: auto;
-}
-
-.marcador {
-  font-size: 26px;
-  line-height: 28px;
-  margin: auto;
-  text-align: center;
-}
-
-.marcador span {
-  font-size: 18px;
-  line-height: 16px;
-}
-
-.tiempo {
-  font-size: 18px;
-  margin: auto;
-  margin-bottom: 6px;
-  margin-top: 12px;
-  text-align: center;
-}
-
-.equipo {
-  cursor: pointer;
-  display: block;
-}
-
-.equipo img {
-  margin: auto;
+ons-list.bg-trans {
+  background-color: transparent;
 }
 </style>

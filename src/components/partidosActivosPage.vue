@@ -87,10 +87,6 @@ export default {
   padding: 0 0 0 6px;
 }
 
-.card {
-  padding: 10px;
-}
-
 ons-list.bg-trans {
   background-color: transparent;
 }
