@@ -99,4 +99,8 @@ export default {
 ons-list {
   background-color: transparent;
 }
+
+.card {
+  padding: 10px;
+}
 </style>

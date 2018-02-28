@@ -1,29 +1,29 @@
 <template>
   <v-ons-list-item ripple modifier="longdivider" @click="goToPartidoPage()">
     <template v-if="jugando">
-      <div class="left equipo" @click="goToEquipoPage(equipoA)">
-        <img class="list-item__thumbnail" :src="equipoA.escudoURL">
-        <p>{{equipoA.nombre}}</p>
+      <div class="left equipo" @click="goToEquipoPage(partido.equipoA)">
+        <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL">
+        <p class="center">{{partido.equipoA.nombre}}</p>
       </div>
       <div class="center">
         <div class="item-center">
           <p class="marcador">
             {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
           </p>
-          <p class="tiempo">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
+          <p class="tiempo">{{partido.estado}}</p>
         </div>
       </div>
-      <div class="right equipo" @click="goToEquipoPage(equipoB)">
-        <img class="list-item__thumbnail" :src="equipoB.escudoURL">
-        <p>{{equipoB.nombre}}</p>
+      <div class="right equipo" @click="goToEquipoPage(partido.equipoB)">
+        <img class="list-item__thumbnail" :src="partido.equipoB.escudoURL">
+        <p class="center">{{partido.equipoB.nombre}}</p>
       </div>
     </template>
     <template v-else>
-      <div class="left">{{equipoA.nombre}}</div>
+      <div class="left">{{partido.equipoA.nombre}}</div>
       <div class="center">
-        <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}} <span>hs</span></p>
+        <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
       </div>
-      <div class="right">{{equipoB.nombre}}</div>
+      <div class="right">{{partido.equipoB.nombre}}</div>
     </template>
   </v-ons-list-item>
 </template>
@@ -32,37 +32,23 @@
 export default {
   name: 'ItemPartido',
   props: {
-    // Predeterminado false, cambia la forma en que se muestra la informacion.
-    jugando: {
-      type: Boolean,
-      default: false
+    partido: {
+      type: Object,
+      required: true
     },
     // Tiempo de juego
     tiempo: {
       type: String,
       default: '00:00'
-    },
-    partido: {
-      required: true
-    },
-    // Datos de los equipos, nombre, goles
-    equipoA: {
-      required: true,
-      // Podemos usarlo para verificcar los datos minimos.
-      /* validator: function (value) {
-        return typeof value !== 'undefined';
-      } */
-    },
-    equipoB: {
-      required: true,
-      // Podemos usarlo para verificcar los datos minimos.
-      /* validator: function (value) {
-        return typeof value !== 'undefined';
-      } */
     }
   },
   data() {
     return {};
+  },
+  computed: {
+    jugando() {
+      return new Date() < new Date(this.partido.fechaInicio);
+    }
   },
   methods: {
     goToEquipoPage(equipo) {
@@ -70,7 +56,7 @@ export default {
     },
     goToPartidoPage() {
       // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
-      this.$router.push({ name: 'partido', params: { partidoId: '5a94435b5e1871775d68a0bf' } });
+      this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
     }
   }
 };
@@ -88,8 +74,9 @@ export default {
 }
 
 .marcador {
-  font-size: 26px;
-  line-height: 28px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
   margin: auto;
   text-align: center;
 }
@@ -114,5 +101,26 @@ export default {
 
 .equipo img {
   margin: auto;
+}
+
+p.center {
+  margin-bottom: 6px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.list-item--longdivider__center {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.list-item--longdivider__right {
+  padding-left: 6px;
+  padding-right: 0px;
+}
+
+.list-item--material__left {
+  min-height: 48px;
+  padding-right: 6px;
 }
 </style>
