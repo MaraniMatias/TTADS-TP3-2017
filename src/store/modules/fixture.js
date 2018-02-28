@@ -6,37 +6,35 @@ import Config from '../../config';
 const BaseURL = Config.baseURL;
 
 const state = {
-  listEventos: [],
+  listActivos: [],
+  listPacidos: [],
   loading: false,
-  page: 0,
-  partido: {},
+  tab: 'activos',
+  page: 0
 };
 
 const getters = {
   isLoading: state => state.loading,
-  listEventos: state => state.listEventos,
-  page: state => state.page,
-  partido: state => state.partido,
+  listActivos: state => state.listActivos,
+  listPacidos: state => state.listPacidos,
+  tab: state => state.tab,
+  page: state => state.page
 };
 
 const mutations = {
-  set_list(state, list = [], page = 0) {
+  set_list(state, listOld = 'listActivos', listNew = [], page = 0) {
     const estado = state;
-    estado.listEventos = list;
+    estado[listOld] = listNew;
     estado.page = page;
   },
-  add_list(state, list = []) {
+  add_list(state, listOld = 'listActivos', listNew = []) {
     const estado = state;
-    estado.listEventos = estado.listEventos.concat(list);
+    estado[listOld] = estado.listOld.concat(listNew);
     estado.page += 1;
   },
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
-  },
-  set_partido(state, partido) {
-    const estado = state;
-    estado.partido = partido;
   }
 };
 
@@ -45,30 +43,11 @@ const actions = {
     commit('clean_list');
   },
   //  Cargar partido
-  loadPartido({ commit }, { partidoId }) {
+  loadListPartidosActivos({ commit }, { page = 0 }) {
+    console.log('-> ', page);
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/partidos/${partidoId}`)
-      .then((resp) => {
-        // console.log(resp);
-        const message = _.get(resp, 'data.message', '') || '';
-        const partido = _.get(resp, 'data.data', []) || [];
-        if (message === 'Success') {
-          commit('set_partido', partido);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        commit('loading', false);
-      });
-  },
-  // query, String que reprecenta apellido o nombre
-  loadItemList({ commit }, { partidoId, page }) {
-    commit('loading', true);
-    return axios
-      .get(`${BaseURL}/eventos-por-partido/${partidoId}`, {
+      .get(`${BaseURL}/fixture-activos`, {
         params: {
           skip: page * 10
         }
@@ -79,9 +58,36 @@ const actions = {
         const list = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', list, page);
+            commit('set_list', 'listActivos', list);
           } else {
-            commit('add_list', list);
+            commit('add_list', 'listActivos', list);
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
+  loadListPartidosPasados({ commit }, { page = 0 }) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/fixture-pasados`, {
+        params: {
+          skip: page * 10
+        }
+      })
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const list = _.get(resp, 'data.data', []) || [];
+        if (message === 'Success') {
+          if (page === 0) {
+            commit('set_list', 'listPacidos', list);
+          } else {
+            commit('add_list', 'listPacidos', list);
           }
         }
       })

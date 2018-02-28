@@ -9,6 +9,10 @@
     <div class="center">
       Detalles del partido
     </div>
+    <div class="right">
+      <!-- Cuando activa la campana, enviar al backend para que registre en socket y con cordova o ons enviar notificaiones cuando ocurra un evento, tambien podemos buscar la manera de dejar un servicio para que muestre notificaiones cuando la app esta cerrada -->
+      <v-ons-icon icon="ion-ios-bell-outline, material:md-menu"></v-ons-icon>
+    </div>
   </v-ons-toolbar>
 
   <v-ons-pull-hook :action="onAction" :fixed-content="md" :height="md ? 84 : 64" :on-pull="md && onPull || null" @changestate="state = $event.state">
@@ -53,7 +57,7 @@
 
   <v-ons-list-title>Notifications</v-ons-list-title>
   <v-ons-list modifier="inset">
-    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha)">
+    <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha +'Detalles: ' + item.descripcion)">
       <div class="center">{{item.evento.nombre}}</div>
     </v-ons-list-item>
   </v-ons-list>
