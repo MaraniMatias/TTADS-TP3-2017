@@ -25,6 +25,7 @@
         </v-ons-col>
       </v-ons-row>
     </v-ons-list-item>
+
   </v-ons-list>
 
 </v-ons-page>
@@ -70,12 +71,12 @@ export default {
         });
     },
     onAction(done) {
-      // setTimeout(() => {
-      this.loadPartidos({ page: 0 })
-        .finally(() => {
-          done();
-        });
-      // }, 1500);
+      setTimeout(() => {
+        this.loadPartidos()
+          .finally(() => {
+            done();
+          });
+      }, 1000);
     },
   },
   mounted() {

@@ -106,12 +106,12 @@ export default {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
     },
     onAction(done) {
-      // setTimeout(() => {
-      this.loadPartido({ partidoId: this.partidoId })
-        .finally(() => {
-          done();
-        });
-      // }, 1500);
+      setTimeout(() => {
+        this.loadPartido({ partidoId: this.partidoId })
+          .finally(() => {
+            done();
+          });
+      }, 1000);
     },
   },
   mounted() {

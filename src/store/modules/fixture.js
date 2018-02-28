@@ -7,7 +7,7 @@ const BaseURL = Config.baseURL;
 
 const state = {
   listActivos: [],
-  listPacidos: [],
+  listPasados: [],
   loading: false,
   tab: 'activos',
   page: 0
@@ -16,20 +16,20 @@ const state = {
 const getters = {
   isLoading: state => state.loading,
   listActivos: state => state.listActivos,
-  listPacidos: state => state.listPacidos,
+  listPasados: state => state.listPasados,
   tab: state => state.tab,
   page: state => state.page
 };
 
 const mutations = {
-  set_list(state, listOld = 'listActivos', listNew = [], page = 0) {
+  set_list(state, { setList, list, page }) {
     const estado = state;
-    estado[listOld] = listNew;
+    estado[setList] = list;
     estado.page = page;
   },
-  add_list(state, listOld = 'listActivos', listNew = []) {
+  add_list(state, { setList, list }) {
     const estado = state;
-    estado[listOld] = estado.listOld.concat(listNew);
+    estado[setList] = estado[setList].concat(list);
     estado.page += 1;
   },
   loading(state, loading) {
@@ -43,7 +43,7 @@ const actions = {
     commit('clean_list');
   },
   //  Cargar partido
-  loadListPartidosActivos({ commit }, { page = 0 }) {
+  loadListPartidosActivos({ commit }, { page } = { page: 0 }) {
     commit('loading', true);
     return axios
       .get(`${BaseURL}/fixture-activos`, {
@@ -55,11 +55,12 @@ const actions = {
         // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
         const list = _.get(resp, 'data.data', []) || [];
+        const setList = 'listActivos';
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', 'listActivos', list);
+            commit('set_list', { setList, list, page });
           } else {
-            commit('add_list', 'listActivos', list);
+            commit('add_list', { setList, list });
           }
         }
       })
@@ -70,7 +71,7 @@ const actions = {
         commit('loading', false);
       });
   },
-  loadListPartidosPasados({ commit }, { page = 0 }) {
+  loadListPartidosPasados({ commit }, { page } = { page: 0 }) {
     commit('loading', true);
     return axios
       .get(`${BaseURL}/fixture-pasados`, {
@@ -82,11 +83,12 @@ const actions = {
         // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
         const list = _.get(resp, 'data.data', []) || [];
+        const setList = 'listPasados';
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', 'listPacidos', list);
+            commit('set_list', { setList, list, page });
           } else {
-            commit('add_list', 'listPacidos', list);
+            commit('add_list', { setList, list });
           }
         }
       })
