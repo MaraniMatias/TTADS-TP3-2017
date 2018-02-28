@@ -17,7 +17,7 @@
 import ItemPartido from "./itemPartido";
 
 export default {
-  name: 'PaginaPartidosPasados',
+  name: 'TabPartidosPasados',
   components: {
     ItemPartido
   },

@@ -44,7 +44,6 @@ const actions = {
   },
   //  Cargar partido
   loadListPartidosActivos({ commit }, { page = 0 }) {
-    console.log('-> ', page);
     commit('loading', true);
     return axios
       .get(`${BaseURL}/fixture-activos`, {
