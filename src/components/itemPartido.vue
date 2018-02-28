@@ -19,11 +19,16 @@
       </div>
     </template>
     <template v-else>
-      <div class="left">{{partido.equipoA.nombre}}</div>
+      <div class="left">
+        <p class="center no-jugando">{{partido.equipoA.nombre}}</p>
+      </div>
       <div class="center">
         <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
+        <p class="estado">{{partido.estado}}</p>
       </div>
-      <div class="right">{{partido.equipoB.nombre}}</div>
+      <div class="right">
+        <p class="center no-jugando">{{partido.equipoB.nombre}}</p>
+      </div>
     </template>
   </v-ons-list-item>
 </template>
@@ -47,7 +52,7 @@ export default {
   },
   computed: {
     jugando() {
-      return new Date() < new Date(this.partido.fechaInicio);
+      return new Date() > new Date(this.partido.fechaInicio);
     }
   },
   methods: {
@@ -74,11 +79,18 @@ export default {
 }
 
 .marcador {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
-  line-height: 24px;
+  line-height: 28px;
   margin: auto;
+  margin-top: 12px;
   text-align: center;
+}
+
+.marcador.no-jugando {
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 20px;
 }
 
 .marcador span {
@@ -109,6 +121,18 @@ p.center {
   text-align: center;
 }
 
+p.no-jugando {
+  margin-top: 6px;
+}
+
+p.estado {
+  font-size: 18px;
+  line-height: 16px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  text-align: center;
+}
+
 .list-item--longdivider__center {
   padding-left: 0px;
   padding-right: 0px;
@@ -116,7 +140,7 @@ p.center {
 
 .list-item--longdivider__right {
   padding-left: 6px;
-  padding-right: 0px;
+  padding-right: 6px;
 }
 
 .list-item--material__left {

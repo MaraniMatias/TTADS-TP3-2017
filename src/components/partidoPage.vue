@@ -2,16 +2,14 @@
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
-        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
-      </v-ons-toolbar-button>
+     <v-ons-back-button @click="$router.back()"></v-ons-back-button>
     </div>
     <div class="center">
       Detalles del partido
     </div>
     <div class="right">
       <!-- Cuando activa la campana, enviar al backend para que registre en socket y con cordova o ons enviar notificaiones cuando ocurra un evento, tambien podemos buscar la manera de dejar un servicio para que muestre notificaiones cuando la app esta cerrada -->
-      <v-ons-icon icon="ion-ios-bell-outline, material:md-menu"></v-ons-icon>
+      <v-ons-toolbar-button icon="ion-ios-bell-outline"></v-ons-toolbar-button>
     </div>
   </v-ons-toolbar>
 

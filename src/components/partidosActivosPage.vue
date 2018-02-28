@@ -1,6 +1,6 @@
 <template>
 <v-ons-page :infinite-scroll="loadMore">
-  <v-ons-list>
+  <v-ons-list class="bg-trans">
     <pull-hook :on-action="onAction"></pull-hook>
 
     <div style="text-align: center; margin: 40px; color: #666" v-if="isLoading">
@@ -9,22 +9,13 @@
       </p>
     </div>
 
-    <v-ons-list-item v-show="!isLoading">
-      <v-ons-row>
-        <v-ons-col>
-
-          <v-ons-card>
-            <div class="title">Hoy</div>
-            <div class="content">
-              <v-ons-list>
-                <item-partido v-for="item in list" :key="item._id" :partido="item"></item-partido>
-              </v-ons-list>
-            </div>
-          </v-ons-card>
-
-        </v-ons-col>
-      </v-ons-row>
-    </v-ons-list-item>
+    <v-ons-list-title>List Title</v-ons-list-title>
+    <template v-show="!isLoading">
+      <v-ons-list modifier="inset">
+        <v-ons-list-header>Torneo name</v-ons-list-header>
+        <item-partido v-for="item in list" :key="item._id" :partido="item"></item-partido>
+      </v-ons-list>
+    </template>
 
   </v-ons-list>
 
@@ -96,11 +87,11 @@ export default {
   padding: 0 0 0 6px;
 }
 
-ons-list {
-  background-color: transparent;
-}
-
 .card {
   padding: 10px;
+}
+
+ons-list.bg-trans {
+  background-color: transparent;
 }
 </style>
