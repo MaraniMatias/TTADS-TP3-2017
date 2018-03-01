@@ -2,7 +2,7 @@
 <v-ons-page>
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-back-button @click="goToBack()" ripple></v-ons-back-button>
+      <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
     </div>
     <div class="center">Perfil del jugador</div>
   </v-ons-toolbar>

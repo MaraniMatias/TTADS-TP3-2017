@@ -66,10 +66,12 @@ export default {
     }
   },
   mounted() {
+    /*
     this.$nextTick(function () {
       console.log(this.partido.equipoA);
       console.log(this.partido.equipoB);
     });
+    */
   }
 };
 </script>
