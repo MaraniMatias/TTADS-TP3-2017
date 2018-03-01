@@ -1,5 +1,5 @@
 <template>
-  <v-ons-list-item ripple modifier="longdivider" @click="goToPartidoPage()">
+  <v-ons-list-item :ripple="!noClick" modifier="longdivider" @click="goToPartidoPage()">
     <template v-if="jugando">
       <div class="left equipo" @click="goToEquipoPage(partido.equipoA)">
         <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL">
@@ -37,6 +37,10 @@
 export default {
   name: 'ItemPartido',
   props: {
+    noClick: {
+      type: Boolean,
+      default: false
+    },
     partido: {
       type: Object,
       required: true
@@ -55,8 +59,10 @@ export default {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
     },
     goToPartidoPage() {
-      // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
-      this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
+      if (!this.disabled) {
+        // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
+        this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
+      }
     }
   },
   mounted() {

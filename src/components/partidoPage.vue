@@ -23,7 +23,7 @@
     <v-ons-card>
       <div class="content">
         <v-ons-list>
-          <item-partido :partido="partido"></item-partido>
+          <item-partido :partido="partido" no-click></item-partido>
         </v-ons-list>
       </div>
     </v-ons-card>
