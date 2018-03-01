@@ -17,18 +17,26 @@
     </p>
   </div>
 
-  <v-ons-list class="bg-trans">
+  <v-ons-list class="bg-trans" v-show="!isLoading">
     <pull-hook :on-action="onAction"></pull-hook>
-    <v-ons-list v-show="!isLoading">
-      <item-partido :partido="partido"></item-partido>
-    </v-ons-list>
+
+    <v-ons-card>
+      <div class="content">
+        <v-ons-list>
+          <item-partido :partido="partido"></item-partido>
+        </v-ons-list>
+      </div>
+    </v-ons-card>
 
     <v-ons-list-title>Notifications</v-ons-list-title>
     <v-ons-list modifier="inset">
-      <v-ons-list-item modifier="longdivider" tappable :key="index" v-for="(item, index) in listEventos" @click="$ons.notification.alert(item.fecha +'Detalles: ' + item.descripcion)">
+      <v-ons-list-item modifier="longdivider" tappable :key="index"
+        v-for="(item, index) in listEventos"
+        @click="$ons.notification.alert(item.fecha +'Detalles: ' + item.descripcion)">
         <div class="center">{{item.evento.nombre}}</div>
       </v-ons-list-item>
     </v-ons-list>
+
   </v-ons-list>
 
 </v-ons-page>
@@ -111,5 +119,9 @@ export default {
 <style scoped>
 ons-list.bg-trans {
   background-color: transparent;
+}
+
+.list-item--material {
+  padding: 0 0 0 6px;
 }
 </style>

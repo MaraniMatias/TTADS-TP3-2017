@@ -40,11 +40,6 @@ export default {
     partido: {
       type: Object,
       required: true
-    },
-    // Tiempo de juego
-    tiempo: {
-      type: String,
-      default: '00:00'
     }
   },
   data() {
@@ -63,12 +58,19 @@ export default {
       // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
       this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
     }
+  },
+  mounted() {
+    this.$nextTick(function () {
+      console.log(this.partido.equipoA);
+      console.log(this.partido.equipoB);
+    });
   }
 };
 </script>
 
 <style scoped>
-.center {
+.center,
+.center p {
   align-items: center;
   margin: auto;
 }

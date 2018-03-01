@@ -1,6 +1,7 @@
 <template>
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-list class="bg-trans">
+
     <pull-hook :on-action="onAction"></pull-hook>
 
     <div style="text-align: center; margin: 40px; color: #666" v-if="isLoading">
@@ -18,7 +19,6 @@
     </template>
 
   </v-ons-list>
-
 </v-ons-page>
 </template>
 
