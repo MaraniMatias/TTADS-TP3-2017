@@ -27,10 +27,11 @@
     </v-ons-list>
 
     <p class="center">
-      <v-ons-button @click="buscar()">Buscar</v-ons-button>
+      <v-ons-button class="red" @click="cleanFilter()" v-show="filterTorneos.length > 0">Limpiar</v-ons-button>
+      <v-ons-button @click="updateFilter()">Buscar</v-ons-button>
     </p>
     <p class="center">
-      <v-ons-button @click="cancelar()" modifier="outline" class="outline">Cancelar</v-ons-button>
+      <v-ons-button @click="cancel()" modifier="outline" class="outline">Cancelar</v-ons-button>
     </p>
   </v-ons-modal>
 
@@ -87,7 +88,14 @@ export default {
       'loadTorneos',
       'upDateFilter'
     ]),
-    buscar() {
+    cleanFilter() {
+      const self = this;
+      this.upDateFilter({ list: [] })
+        .then(() => {
+          self.filterTorneos = [];
+        });
+    },
+    updateFilter() {
       this.actionSheetVisible = false;
       const self = this;
       this.upDateFilter({ list: this.filterTorneos })
@@ -95,7 +103,7 @@ export default {
           self.loadPartidos({ page: 0, filter: this.filterTorneos });
         });
     },
-    cancelar() {
+    cancel() {
       this.filterTorneos = this.filter;
       this.actionSheetVisible = false;
     }
@@ -115,5 +123,9 @@ export default {
 
 .outline {
   color: #fff;
+}
+
+.red {
+  background-color: red;
 }
 </style>
