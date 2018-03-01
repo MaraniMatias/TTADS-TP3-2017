@@ -8,11 +8,29 @@
     </div>
     <div class="center">Fixture</div>
     <div class="right">
-      <v-ons-toolbar-button @click="actionSheetVisible = true" icon="ion-funnel, material:ion-android-funnel"></v-ons-toolbar-button>
+      <v-ons-toolbar-button slot="right" id="info-button" @click="menuVisible = true">
+        <v-ons-icon v-if="md" icon="md-more-vert"></v-ons-icon>
+        <span v-else>More</span>
+      </v-ons-toolbar-button>
     </div>
   </v-ons-toolbar>
 
   <v-ons-tabbar swipeable tappable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
+
+  <v-ons-popover cancelable direction="down" cover-target target="#info-button" :visible.sync="menuVisible">
+    <v-ons-list>
+      <v-ons-list-item tappable @click="menuVisible = false; actionSheetVisible = true" :modifier="md ? 'nodivider' : 'longdivider'">
+        <div class="center">Filtrar Torneos</div>
+      </v-ons-list-item>
+      <v-ons-list-item tappable @click="menuVisible = false" :modifier="md ? 'nodivider' : 'longdivider'">
+        <div class="center">Iniciar Cecion</div>
+      </v-ons-list-item>
+    </v-ons-list>
+  </v-ons-popover>
+
+  <v-ons-fab v-if="md" position="bottom right" @click="actionSheetVisible = true">
+    <v-ons-icon icon="ion-funnel"></v-ons-icon>
+  </v-ons-fab>
 
   <v-ons-modal :visible="actionSheetVisible">
     <v-ons-list modifier="inset">
@@ -52,6 +70,7 @@ export default {
     return {
       filterTorneos: [],
       actionSheetVisible: false,
+      menuVisible: false,
 
       activeIndex: 0,
       tabs: [
