@@ -35,7 +35,6 @@ const mutations = {
 const actions = {
   upDateFilter({ commit }, { list }) {
     commit('set_filter', { list });
-    return actions.loadTorneos();
   },
   cleanList({ commit }) {
     commit('clean_list');

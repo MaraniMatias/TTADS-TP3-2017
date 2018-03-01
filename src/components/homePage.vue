@@ -38,12 +38,11 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 import partidosActivosTab from './partidosActivosPage';
 import partidosPasadosTab from './partidosPasadosPage';
 
-const { mapGetters, mapActions } = createNamespacedHelpers('torneo');
 
 export default {
   name: 'HomeFixture',
@@ -69,22 +68,32 @@ export default {
     };
   },
   computed: {
-    ...mapGetters([
-      'list',
+    ...mapGetters('torneo', [
+      'list'
+    ]),
+    ...mapGetters('fixture', [
       'isLoading'
     ]),
-    ...mapGetters({
-      filter: 'filterTorneos'
+    ...mapGetters('torneo', {
+      filter: 'filterTorneos',
+      torneosLoadins: 'isLoading'
     })
   },
   methods: {
-    ...mapActions([
+    ...mapActions('fixture', {
+      loadPartidos: 'loadListPartidosActivos'
+    }),
+    ...mapActions('torneo', [
       'loadTorneos',
       'upDateFilter'
     ]),
     buscar() {
       this.actionSheetVisible = false;
-      this.upDateFilter({ list: this.filterTorneos });
+      const self = this;
+      this.upDateFilter({ list: this.filterTorneos })
+        .then(() => {
+          self.loadPartidos({ page: 0, filter: this.filterTorneos });
+        });
     },
     cancelar() {
       this.filterTorneos = this.filter;

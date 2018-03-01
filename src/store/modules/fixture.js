@@ -43,12 +43,13 @@ const actions = {
     commit('clean_list');
   },
   //  Cargar partido
-  loadListPartidosActivos({ commit }, { page } = { page: 0 }) {
+  loadListPartidosActivos({ commit }, { page = 0, filter = [] }) {
     commit('loading', true);
     return axios
       .get(`${BaseURL}/fixture-activos`, {
         params: {
-          skip: page * 10
+          skip: page * 10,
+          torneos: filter || []
         }
       })
       .then((resp) => {

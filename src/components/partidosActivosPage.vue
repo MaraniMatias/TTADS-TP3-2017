@@ -23,12 +23,10 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 import ItemPartido from "./itemPartido";
 import PullHook from "./pull-hook";
-
-const { mapGetters, mapActions } = createNamespacedHelpers('fixture');
 
 export default {
   name: 'TabPartidosActivos',
@@ -40,30 +38,34 @@ export default {
     return {};
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('torneo', [
+      'filterTorneos'
+    ]),
+    ...mapGetters('fixture', [
       'isLoading',
       'page',
       'tab'
     ]),
-    ...mapGetters({
+    ...mapGetters('fixture', {
       list: 'listActivos'
     })
   },
   methods: {
-    ...mapActions({
+    ...mapActions('fixture', {
       loadPartidos: 'loadListPartidosActivos',
       cleanList: 'cleanList'
     }),
     loadMore(done) {
+      // La pagina 0 es la primera en obtenerse, en caso de no actualizace fuerzo a la sigiente.
       const page = this.page === 0 ? 1 : this.page;
-      this.loadPartidos({ page })
+      this.loadPartidos({ page, filter: this.filterTorneos })
         .finally(() => {
           done();
         });
     },
     onAction(done) {
       setTimeout(() => {
-        this.loadPartidos()
+        this.loadPartidos({ page: 0, filter: this.filterTorneos })
           .finally(() => {
             done();
           });
