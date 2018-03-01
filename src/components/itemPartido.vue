@@ -59,7 +59,7 @@ export default {
       this.$router.push({ name: 'equipo', params: { id: equipo.id } });
     },
     goToPartidoPage() {
-      if (!this.disabled) {
+      if (!this.noClick) {
         // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
         this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
       }
