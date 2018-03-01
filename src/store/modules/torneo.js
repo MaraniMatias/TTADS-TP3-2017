@@ -7,15 +7,21 @@ const BaseURL = Config.baseURL;
 
 const state = {
   listTorneos: [],
+  filterTorneos: [],
   loading: false,
 };
 
 const getters = {
+  filterTorneos: state => state.filterTorneos,
   isLoading: state => state.loading,
   list: state => state.listTorneos,
 };
 
 const mutations = {
+  set_filter(state, { list } = { list: [] }) {
+    const estado = state;
+    estado.filterTorneos = list;
+  },
   set_list(state, { list } = { list: [] }) {
     const estado = state;
     estado.listTorneos = list;
@@ -27,6 +33,10 @@ const mutations = {
 };
 
 const actions = {
+  upDateFilter({ commit }, { list }) {
+    commit('set_filter', { list });
+    return actions.loadTorneos();
+  },
   cleanList({ commit }) {
     commit('clean_list');
   },

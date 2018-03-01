@@ -14,23 +14,25 @@
 
   <v-ons-tabbar swipeable tappable position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
 
-  <v-ons-action-sheet :visible.sync="actionSheetVisible" cancelable title="Elegir Torneos">
-    <v-ons-action-sheet-button v-for="(item, $index) in list" :key="$index" ripple>
-      <v-ons-list-item tappable>
+  <v-ons-modal :visible="actionSheetVisible">
+    <v-ons-list modifier="inset">
+      <v-ons-list-header>Torneos a listar</v-ons-list-header>
+
+      <v-ons-list-item tappable v-for="(item, $index) in list" :key="$index">
         <label class="left">
-          <v-ons-checkbox :input-id="'checkbox-' + $index" :value="item._id"
-            v-model="filterTorneos">
-          </v-ons-checkbox>
+          <v-ons-checkbox :input-id="'checkbox-' + $index" :value="item._id" v-model="filterTorneos"></v-ons-checkbox>
         </label>
-        <label class="center" :for="'checkbox-' + $index">
-          {{item.nombre}}
-        </label>
+        <label class="center" :for="'checkbox-' + $index">{{item.nombre}}</label>
       </v-ons-list-item>
-    </v-ons-action-sheet-button>
-    <v-ons-action-sheet-button style="padding: 0px 12px;">
-      <v-ons-button @click="actionSheetVisible = true" modifier="large">Buscar</v-ons-button>
-    </v-ons-action-sheet-button>
-  </v-ons-action-sheet>
+    </v-ons-list>
+
+    <p class="center">
+      <v-ons-button @click="buscar()">Buscar</v-ons-button>
+    </p>
+    <p class="center">
+      <v-ons-button @click="cancelar()" modifier="outline" class="outline">Cancelar</v-ons-button>
+    </p>
+  </v-ons-modal>
 
 </v-ons-page>
 </template>
@@ -50,6 +52,7 @@ export default {
     return {
       filterTorneos: [],
       actionSheetVisible: false,
+
       activeIndex: 0,
       tabs: [
         {
@@ -70,11 +73,23 @@ export default {
       'list',
       'isLoading'
     ]),
+    ...mapGetters({
+      filter: 'filterTorneos'
+    })
   },
   methods: {
     ...mapActions([
-      'loadTorneos'
+      'loadTorneos',
+      'upDateFilter'
     ]),
+    buscar() {
+      this.actionSheetVisible = false;
+      this.upDateFilter({ list: this.filterTorneos });
+    },
+    cancelar() {
+      this.filterTorneos = this.filter;
+      this.actionSheetVisible = false;
+    }
   },
   mounted() {
     this.$nextTick(function () {
@@ -87,5 +102,9 @@ export default {
 <style scoped>
 .text-center {
   text-align: "center";
+}
+
+.outline {
+  color: #fff;
 }
 </style>
