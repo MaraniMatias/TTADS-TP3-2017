@@ -28,7 +28,7 @@
     </v-ons-list>
   </v-ons-popover>
 
-  <v-ons-fab v-if="md" position="bottom right" @click="actionSheetVisible = true">
+  <v-ons-fab v-if="md && list.length" position="bottom right" @click="actionSheetVisible = true">
     <v-ons-icon icon="ion-funnel"></v-ons-icon>
   </v-ons-fab>
 
