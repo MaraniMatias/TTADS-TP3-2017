@@ -10,8 +10,8 @@
       </p>
     </div>
 
+    <template v-show="!isLoading && list.length > 0">
     <v-ons-list-title>List Title</v-ons-list-title>
-    <template v-show="!isLoading">
       <v-ons-list modifier="inset">
         <v-ons-list-header>Torneo name</v-ons-list-header>
         <item-partido v-for="item in list" :key="item._id" :partido="item"></item-partido>

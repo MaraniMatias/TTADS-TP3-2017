@@ -5,6 +5,29 @@ import Config from '../../config';
 
 const BaseURL = Config.baseURL;
 
+function orderTorneos(list) {
+  const listKey = {};
+
+  list.forEach((elem) => {
+    const dateTime = new Date(elem.fechaInicio);
+    // Obtener la fecha segun el timezone y crear una key
+    const date = `${dateTime.getDate()}-${dateTime.getMonth()}-${dateTime.getFullYear()}`;
+
+    if (Object.prototype.hasOwnProperty.call(listKey, date)) {
+      listKey[date].push(elem);
+    } else {
+      listKey[date] = [elem];
+    }
+  });
+
+  Object.keys(listKey).forEach((key) => {
+    const orderByFecha = _.orderBy(listKey[key], 'fechaInicio');
+    listKey[key] = orderByFecha;
+  });
+
+  return listKey;
+}
+
 const state = {
   listActivos: [],
   listPasados: [],
@@ -59,9 +82,9 @@ const actions = {
         const setList = 'listActivos';
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', { setList, list, page });
+            commit('set_list', { setList, list: orderTorneos(list), page });
           } else {
-            commit('add_list', { setList, list });
+            commit('add_list', { setList, list: orderTorneos(list) });
           }
         }
       })
