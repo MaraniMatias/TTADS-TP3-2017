@@ -10,7 +10,7 @@
   </v-ons-toolbar>
 
   <p class="center search" v-show="list.length == 0">
-    <v-ons-search-input class="center" placeholder="Search something" v-model="query" @keyup.enter="getList()">
+    <v-ons-search-input class="center" placeholder="Search" v-model="query" @keyup.enter="getList()">
     </v-ons-search-input>
   </p>
 
@@ -22,7 +22,7 @@
     </div>
   </v-ons-list>
 
-  <v-ons-fab position="bottom right" :visible="list.length > 0" @click="clean()">
+  <v-ons-fab position="bottom right" :visible="list.length > 0" v-show="list.length > 0" @click="clean()">
     <v-ons-icon icon="search"></v-ons-icon>
   </v-ons-fab>
 
