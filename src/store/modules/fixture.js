@@ -11,7 +11,7 @@ function orderTorneos(list) {
   list.forEach((elem) => {
     const dateTime = new Date(elem.fechaInicio);
     // Obtener la fecha segun el timezone y crear una key
-    const date = `${dateTime.getDate()}-${dateTime.getMonth()}-${dateTime.getFullYear()}`;
+    const date = `${dateTime.getFullYear()}-${dateTime.getMonth()}-${dateTime.getDate()}`;
 
     if (Object.prototype.hasOwnProperty.call(listKey, date)) {
       listKey[date].push(elem);

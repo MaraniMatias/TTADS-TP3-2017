@@ -11,11 +11,12 @@
     </div>
 
     <template v-show="!isLoading && list.length > 0">
-    <v-ons-list-title>List Title</v-ons-list-title>
+      <template v-for="(item, $key) in list">
+      <v-ons-list-title>Fecha {{ new Date($key) | morph-date('DD-MM-YYYY') }}</v-ons-list-title>
       <v-ons-list modifier="inset">
-        <v-ons-list-header>Torneo name</v-ons-list-header>
-        <item-partido v-for="item in list" :key="item._id" :partido="item"></item-partido>
+        <item-partido v-for="(partido, index) in list[$key]" :key="index" :partido="partido"></item-partido>
       </v-ons-list>
+      </template>
     </template>
 
   </v-ons-list>
