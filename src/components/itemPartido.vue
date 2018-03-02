@@ -19,14 +19,14 @@
       </div>
     </template>
     <template v-else>
-      <div class="left">
+      <div class="left" @click="goToEquipoPage(partido.equipoB)">
         <p class="center no-jugando">{{partido.equipoA.nombre}}</p>
       </div>
       <div class="center">
         <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
         <p class="estado">{{partido.estado}}</p>
       </div>
-      <div class="right">
+      <div class="right" @click="goToEquipoPage(partido.equipoB)">
         <p class="center no-jugando">{{partido.equipoB.nombre}}</p>
       </div>
     </template>
@@ -66,12 +66,10 @@ export default {
     }
   },
   mounted() {
-    /*
     this.$nextTick(function () {
       console.log(this.partido.equipoA);
       console.log(this.partido.equipoB);
     });
-    */
   }
 };
 </script>

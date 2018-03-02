@@ -31,12 +31,12 @@ export default {
         {
           label: 'Equipos',
           link: 'equiposPage',
-          icon: 'fa-twitter',
+          icon: 'ion-person-stalker',
         },
         {
           label: 'Jugadores',
           link: 'jugadoresPage',
-          icon: 'fa-twitter',
+          icon: 'ion-person',
         }
       ],
     };
