@@ -29,19 +29,21 @@ function orderTorneos(list) {
 }
 
 const state = {
+  fixturePorEquipo: [],
   listActivos: [],
   listPasados: [],
   loading: false,
+  page: 0,
   tab: 'activos',
-  page: 0
 };
 
 const getters = {
+  fixturePorEquipo: state => state.fixturePorEquipo,
   isLoading: state => state.loading,
   listActivos: state => state.listActivos,
   listPasados: state => state.listPasados,
+  page: state => state.page,
   tab: state => state.tab,
-  page: state => state.page
 };
 
 const mutations = {
@@ -58,6 +60,10 @@ const mutations = {
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
+  },
+  set_fixture_por_equipo(state, { list }) {
+    const estado = state;
+    estado.fixturePorEquipo = list;
   }
 };
 
@@ -114,6 +120,25 @@ const actions = {
           } else {
             commit('add_list', { setList, list });
           }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
+  loadFixturePorEquipo({ commit }, { equipoId }) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/torneos-por-equipo/${equipoId}`)
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const list = _.get(resp, 'data.data', []) || [];
+        if (message === 'Success') {
+          commit('set_fixture_por_equipo', { list });
         }
       })
       .catch((error) => {

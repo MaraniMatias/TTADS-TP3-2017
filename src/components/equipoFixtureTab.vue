@@ -18,14 +18,14 @@
 
   <v-ons-list modifier="inset">
     <v-ons-list-title>Torneo</v-ons-list-title>
-    <v-ons-list-item modifier="longdivider">Partido</v-ons-list-item>
+    <v-ons-list-item modifier="longdivider" v-for="(partido, index) in fixture">{{partido}}</v-ons-list-item>
   </v-ons-list>
 
 </v-ons-page>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'EquipoFixtureTab',
@@ -40,11 +40,23 @@ export default {
     ...mapGetters('equipo', [
       'equipo',
       'isLoading'
+    ]),
+    ...mapGetters('fixture', {
+      fixture: 'fixturePorEquipo',
+      isLoadingFixture: 'isLoading'
+    })
+  },
+  methods: {
+    ...mapActions('fixture', [
+      'loadFixturePorEquipo'
     ])
   },
-  methods: {},
   updated() {},
-  mounted() {}
+  mounted() {
+    this.$nextTick(function () {
+      this.loadFixturePorEquipo({ equipoId: this.equipoId });
+    });
+  }
 };
 </script>
 
@@ -95,6 +107,7 @@ img.shield {
 }
 
 div.shield {
+  margin: auto;
 }
 
 .header {
