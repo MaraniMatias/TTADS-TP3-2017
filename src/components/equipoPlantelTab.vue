@@ -9,11 +9,11 @@
 
   <v-ons-list modifier="inset" v-show="!isLoading">
     <v-ons-list-title>Jugadores</v-ons-list-title>
-    <v-ons-list-item modifier="longdivider" v-for="(jugador, index) in equipo.jugadores" :key="index">{{jugador.nombre}}</v-ons-list-item>
+    <item-jugador :jugador="jugador" v-for="(jugador, index) in equipo.jugadores" :key="index"></item-jugador>
   </v-ons-list>
   <v-ons-list modifier="inset" v-show="!isLoading">
     <v-ons-list-title>Cuerpo Tecnico</v-ons-list-title>
-    <v-ons-list-item modifier="longdivider" v-for="(tecnico, index) in equipo.cuerpoTecnico" :key="index">{{tecnico.nombre}}</v-ons-list-item>
+    <v-ons-list-item modifier="longdivider" v-for="(tecnico, index) in equipo.cuerpoTecnico" :key="index">{{tecnico.apellido + ' ' + tecnico.nombre}}</v-ons-list-item>
   </v-ons-list>
 
 </v-ons-page>
@@ -22,12 +22,16 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import ItemJugador from './itemJugador';
+
 export default {
   name: 'EquipoPlantelTab',
   props: {
     equipoId: [String]
   },
-  components: {},
+  components: {
+    ItemJugador
+  },
   data() {
     return {};
   },
