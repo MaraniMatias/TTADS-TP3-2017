@@ -10,13 +10,11 @@
       </p>
     </div>
 
-    <template v-show="!isLoading && list.length > 0">
-      <template v-for="(item, $key) in list">
+    <template v-for="(item, $key) in list" v-if="!isLoading">
       <v-ons-list-title>Fecha {{ new Date($key) | morph-date('DD-MM-YYYY') }}</v-ons-list-title>
       <v-ons-list modifier="inset">
         <item-partido v-for="(partido, index) in list[$key]" :key="index" :partido="partido"></item-partido>
       </v-ons-list>
-      </template>
     </template>
 
   </v-ons-list>
