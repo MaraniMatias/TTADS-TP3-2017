@@ -9,7 +9,7 @@
     </div>
   </v-ons-toolbar>
 
-  <v-ons-tabbar swipeable ripple position="auto" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
+  <v-ons-tabbar swipeable ripple position="top" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
 
 </v-ons-page>
 </template>

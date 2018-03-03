@@ -28,6 +28,26 @@ function orderTorneos(list) {
   return listKey;
 }
 
+function groupByTorneo(list) {
+  const fixtureByTorneo = {};
+
+  list.forEach((elem) => {
+    const key = elem.torneo._id;
+    const torneo = {
+      _id: key,
+      nombre: elem.torneo.nombre,
+      partidos: [elem]
+    };
+    if (Object.prototype.hasOwnProperty.call(fixtureByTorneo, key)) {
+      fixtureByTorneo[key].partidos.push(elem);
+    } else {
+      fixtureByTorneo[key] = torneo;
+    }
+  });
+
+  return fixtureByTorneo;
+}
+
 const state = {
   fixturePorEquipo: [],
   listActivos: [],
@@ -138,7 +158,8 @@ const actions = {
         const message = _.get(resp, 'data.message', '') || '';
         const list = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
-          commit('set_fixture_por_equipo', { list });
+          const fixture = groupByTorneo(list);
+          commit('set_fixture_por_equipo', { list: fixture });
         }
       })
       .catch((error) => {
