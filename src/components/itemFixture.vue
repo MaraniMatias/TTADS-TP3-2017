@@ -1,14 +1,16 @@
 <template>
 <v-ons-list-item modifier="longdivider" ripple @click="goToPartidoPage()">
   <div class="left">
-    <img :src="partido.equipoA.escudoURL" />
+    <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL" />
   </div>
   <div class="center">
-    <p class="marcador">{{partido.marcador.golesEquipoA + ' vs ' + partido.marcador.golesEquipoB}}</p>
-    <p class="estado">{{partido.categoria}}</p>
+    <span class="list-item__title">
+      {{partido.marcador.golesEquipoA + ' - ' + partido.marcador.golesEquipoB}}
+    </span>
+    <span class="list-item__subtitle">{{partido.categoria}}</span>
   </div>
   <div class="right">
-    <img :src="partido.equipoB.escudoURL" />
+    <img class="list-item__thumbnail" :src="partido.equipoB.escudoURL" />
   </div>
 </v-ons-list-item>
 </template>
@@ -38,22 +40,13 @@ export default {
 </script>
 
 <style scoped>
-img {
-  height: 56px;
-  width: 56px;
-}
-
 .center {
-  display: block;
+  margin: auto;
   align-items: center;
   text-align: center;
 }
 
-.center p {
-  margin-top: 6px;
-  margin-bottom: 0px;
-}
-
+/*
 .list-item--material__center {
   padding-bottom: 5px;
   padding-left: 0px;
@@ -78,4 +71,5 @@ img {
 .list-item--material {
   padding-left: 0px;
 }
+*/
 </style>

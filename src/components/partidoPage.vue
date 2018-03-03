@@ -124,4 +124,7 @@ ons-list.bg-trans {
 .list-item--material {
   padding: 0 0 0 6px;
 }
+ons-card {
+  padding: 6px;
+}
 </style>

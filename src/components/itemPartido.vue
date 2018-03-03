@@ -89,9 +89,9 @@ export default {
 }
 
 .marcador {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
-  line-height: 28px;
+  line-height: 26px;
   margin: auto;
   margin-top: 12px;
   text-align: center;
@@ -143,12 +143,12 @@ p.estado {
   text-align: center;
 }
 
-.list-item--longdivider__center {
+.list-item-longdivider__center {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-.list-item--longdivider__right {
+.list-item--material__right {
   padding-left: 6px;
   padding-right: 6px;
 }
