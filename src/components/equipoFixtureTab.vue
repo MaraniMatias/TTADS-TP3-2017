@@ -16,11 +16,9 @@
     </div>
   </div>
 
-  <v-ons-list modifier="inset">
-    <!--construir bien la lista -->
-    <v-ons-list-title>Torneo</v-ons-list-title>
-    <!-- Crear un componente par mostrar mejor detallado -->
-    <v-ons-list-item modifier="longdivider" v-for="(partido, index) in fixture">{{partido}}</v-ons-list-item>
+  <v-ons-list modifier="inset" v-for="(torneo, key) in fixture">
+    <v-ons-list-title>{{torneo.nombre}}</v-ons-list-title>
+    <item-fixture v-for="(partido, index) in torneo.partidos" :partido="partido" :key="index"></item-fixture>
   </v-ons-list>
 
 </v-ons-page>
@@ -28,13 +26,16 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import ItemFixture from './itemFixture';
 
 export default {
   name: 'EquipoFixtureTab',
   props: {
     equipoId: [String]
   },
-  components: {},
+  components: {
+    ItemFixture
+  },
   data() {
     return {};
   },
