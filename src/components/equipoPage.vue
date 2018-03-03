@@ -4,76 +4,76 @@
     <div class="left">
       <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
     </div>
-    <div class="center">{{equipo.nombre}}</div>
+    <div class="center">{{equipo.nombre || 'Cargando equipo...'}}</div>
     <div class="right">
-      <img :src="equipo.escudoURL" class="shield" />
     </div>
   </v-ons-toolbar>
 
-  <v-ons-tabbar swipeable ripple position="auto" :tabs="tabs" :visible="true" :index.sync="activeIndex">
-  </v-ons-tabbar>
+  <v-ons-tabbar swipeable ripple position="auto" :tabs="tabs" :visible="true" :index.sync="activeIndex"></v-ons-tabbar>
 
 </v-ons-page>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 import PlantelTab from './equipoPlantelTab';
 import FixtureTab from './equipoFixtureTab';
 
 export default {
   name: 'EquipoPage',
+  props: {
+    id: {
+      required: true
+    }
+  },
   components: {},
   data() {
     return {
-      equipo: {
-        nombre: 'Detalles del equipo detalles del equipo',
-        escudoURL: 'http://www.clker.com/cliparts/d/G/Y/W/1/o/escudo-medieval-azul.svg.med.png',
-      },
-
-
       activeIndex: 0,
       tabs: [
         {
           // Lista de jugador y cuerpo tecnico
           label: 'Plantel',
           page: PlantelTab,
-          /*
           props: {
-            myProp: 'This is a page prop!'
+            equipoId: this.id
           },
-          */
           key: "plantelTab"
         },
         {
           // Lsita Partidos Torneos
           label: 'Fixture',
           page: FixtureTab,
+          props: {
+            equipoId: this.id
+          },
           key: "fixtureTab"
         },
       ]
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters('equipo', [
+      'equipo',
+      'isLoading'
+    ])
+  },
   methods: {
-    goToEquipoPage(equipo) {
-      this.$router.push({ name: 'equipo', params: { id: equipo.id } });
-    }
+    ...mapActions('equipo', [
+      'getEquipoByID'
+    ])
   },
   updated() {},
-  mounted() {}
+  mounted() {
+    this.$nextTick(function () {
+      this.getEquipoByID(this.id);
+    });
+  }
 };
 </script>
 
 <style scoped>
-.shield {
-  /* height: inherit; */
-  height: auto;
-  min-width: 36px;
-  max-height: 46px;
-  padding-top: 8px;
-  width: 36px;
-}
-
 .right {
   text-align: center;
 }

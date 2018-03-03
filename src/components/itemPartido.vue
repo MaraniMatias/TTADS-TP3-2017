@@ -56,7 +56,9 @@ export default {
   },
   methods: {
     goToEquipoPage(equipo) {
-      this.$router.push({ name: 'equipo', params: { id: equipo.id } });
+      if (this.noClick) {
+        this.$router.push({ name: 'equipo', params: { id: equipo._id } });
+      }
     },
     goToPartidoPage() {
       if (!this.noClick) {

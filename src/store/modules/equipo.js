@@ -6,12 +6,14 @@ import Config from '../../config';
 const BaseURL = Config.baseURL;
 
 const state = {
-  loading: false,
+  equipo: {},
   list: [],
-  page: 0
+  loading: false,
+  page: 0,
 };
 
 const getters = {
+  equipo: state => state.equipo,
   list: state => state.list,
   isLoading: state => state.loading,
   page: state => state.page
@@ -36,7 +38,11 @@ const mutations = {
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
-  }
+  },
+  set_equipo(state, equipo) {
+    const estado = state;
+    estado.equipo = equipo;
+  },
 };
 
 const actions = {
@@ -72,6 +78,24 @@ const actions = {
         commit('loading', false);
       });
   },
+  getEquipoByID({ commit }, id) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/equipos/${id}`)
+      .then((resp) => {
+        const message = _.get(resp, 'data.message', '') || '';
+        const equipo = _.get(resp, 'data.data', {}) || {};
+        if (message === 'Success') {
+          commit('set_equipo', equipo);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  }
 };
 
 export default {
