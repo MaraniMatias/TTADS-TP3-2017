@@ -136,10 +136,6 @@ export default {
 </script>
 
 <style scoped>
-.text-center {
-  text-align: "center";
-}
-
 .outline {
   color: #fff;
 }
