@@ -22,21 +22,18 @@
       <v-ons-list-item tappable @click="menuVisible = false; actionSheetVisible = true" :modifier="md ? 'nodivider' : 'longdivider'">
         <div class="center">Filtrar Torneos</div>
       </v-ons-list-item>
-      <v-ons-list-item tappable @click="menuVisible = false" :modifier="md ? 'nodivider' : 'longdivider'">
-        <div class="center">Iniciar Cecion</div>
-      </v-ons-list-item>
     </v-ons-list>
   </v-ons-popover>
 
-  <v-ons-fab v-if="md && list.length" position="bottom right" @click="actionSheetVisible = true">
-    <v-ons-icon icon="ion-funnel"></v-ons-icon>
+  <v-ons-fab v-if="md && listTorneos.length > 0" position="bottom right" @click="actionSheetVisible = true">
+    <i class="zmdi zmdi-filter-list"></i>
   </v-ons-fab>
 
   <v-ons-modal :visible="actionSheetVisible">
     <v-ons-list modifier="inset">
       <v-ons-list-header>Torneos a listar</v-ons-list-header>
 
-      <v-ons-list-item tappable v-for="(item, $index) in list" :key="$index">
+      <v-ons-list-item tappable v-for="(item, $index) in listTorneos" :key="$index">
         <label class="left">
           <v-ons-checkbox :input-id="'checkbox-' + $index" :value="item._id" v-model="filterTorneos"></v-ons-checkbox>
         </label>
@@ -89,7 +86,7 @@ export default {
   },
   computed: {
     ...mapGetters('torneo', [
-      'list'
+      'listTorneos'
     ]),
     ...mapGetters('fixture', [
       'isLoading'

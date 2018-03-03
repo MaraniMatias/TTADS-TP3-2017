@@ -23,7 +23,7 @@
   </v-ons-list>
 
   <v-ons-fab position="bottom right" :visible="list.length > 0" v-show="list.length > 0" @click="clean()">
-    <v-ons-icon icon="search"></v-ons-icon>
+    <i class="zmdi zmdi-search"></i>
   </v-ons-fab>
 
 </v-ons-page>

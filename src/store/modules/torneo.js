@@ -14,7 +14,7 @@ const state = {
 const getters = {
   filterTorneos: state => state.filterTorneos,
   isLoading: state => state.loading,
-  list: state => state.listTorneos,
+  listTorneos: state => state.listTorneos,
 };
 
 const mutations = {

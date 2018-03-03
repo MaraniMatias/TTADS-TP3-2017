@@ -136,9 +136,9 @@ const actions = {
         const setList = 'listPasados';
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', { setList, list, page });
+            commit('set_list', { setList, list: orderTorneos(list), page });
           } else {
-            commit('add_list', { setList, list });
+            commit('add_list', { setList, list: orderTorneos(list) });
           }
         }
       })

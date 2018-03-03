@@ -37,6 +37,11 @@ export default {
           label: 'Jugadores',
           link: 'jugadoresPage',
           icon: 'ion-person',
+        },
+        {
+          label: 'Iniciar Sesión',
+          link: 'login',
+          icon: 'user-circle',
         }
       ],
     };
