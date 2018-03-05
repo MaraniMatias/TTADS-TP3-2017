@@ -17,7 +17,7 @@
         <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Usuario" v-model="username">
+          <v-ons-input float placeholder="Usuario" v-model="username" type="text">
           </v-ons-input>
         </label>
     </v-ons-list-item>
@@ -26,12 +26,15 @@
         <i class="zmdi zmdi-key"></i>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Contraseña" v-model="password">
+          <v-ons-input float placeholder="Contraseña" v-model="password" type="password">
           </v-ons-input>
         </label>
     </v-ons-list-item>
     <v-ons-list-item>
-      <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px">Iniciar Sesion</v-ons-button>
+      <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px" :disabled="disabledBtn" @click="startLogIn()">
+        <span v-if="!isLoading">Iniciar Sesion</span>
+        <v-ons-icon icon="ion-load-c" spin size="26px" v-else></v-ons-icon>
+      </v-ons-button>
     </v-ons-list-item>
   </v-ons-list>
 
@@ -58,23 +61,35 @@ export default {
     ...mapGetters([
       'user',
       'isLoading',
-      'login'
-    ])
+      'isLogin'
+    ]),
+    disabledBtn() {
+      return this.isLoading || this.username === '' || this.password === '';
+    }
   },
   methods: {
     ...mapActions([
+      'logOut',
+      'logIn',
+      'getUserInfo'
     ]),
+    startLogIn() {
+      this.logIn({
+        username: this.username,
+        password: this.password
+      }).then(() => {
+        $ons.notification.toast('Sesión iniciada con exito');
+      });
+    }
   },
-  mounted() {}
+  mounted() {
+    this.getUserInfo();
+  }
 };
 </script>
 
 <style scoped>
-.outline {
-  color: #fff;
-}
-
-.red {
-  background-color: red;
+ons-list {
+  padding-top: 16px;
 }
 </style>

@@ -21,6 +21,7 @@ import Equipo from './components/equipoPage';
 import EquiposPage from './components/equiposPage';
 import Jugador from './components/perfilJugadorPage';
 import JugadoresPage from './components/jugadoresPage';
+import LoginPage from './components/loginPage';
 
 Vue.config.productionTip = true;
 
@@ -33,6 +34,7 @@ const routes = [
   { path: '/home', component: Home, name: 'home' },
   { path: '/equipos', component: EquiposPage, name: 'equiposPage' },
   { path: '/jugadores', component: JugadoresPage, name: 'jugadoresPage' },
+  { path: '/login', component: LoginPage, name: 'loginPage' },
   // Usan parametros id para pedir la entidad
   {
     path: '/equipo/:id',

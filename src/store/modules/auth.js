@@ -4,12 +4,6 @@ import _ from 'lodash';
 import Config from '../../config';
 
 const BaseURL = `${Config.baseURL}/auth`;
-/*
-const api = axios.create({
-  baseURL: Config.baseURL,
-  headers: { Authorization: 'Bearer' }
-});
-*/
 
 const state = {
   loading: false,
@@ -18,62 +12,41 @@ const state = {
 };
 
 const getters = {
-  equipo: state => state.equipo,
-  list: state => state.list,
-  isLoading: state => state.loading,
-  page: state => state.page
+  user: state => state.user,
+  isLogin: state => typeof state.user.username !== 'undefined' && state.user.username,
+  isLoading: state => state.loading
 };
 
 const mutations = {
-  clean_list(state) {
+  clean_user(state) {
     const estado = state;
-    estado.list = [];
-    estado.page = 0;
+    estado.user = {};
+    estado.token = "";
   },
-  set_list(state, { list, page } = { list: [], page: 0 }) {
+  set_user(state, { user, token }) {
     const estado = state;
-    estado.list = list;
-    estado.page = page;
-  },
-  add_list(state, { list } = { list: [] }) {
-    const estado = state;
-    estado.list = estado.list.concat(list);
-    estado.page += 1;
+    estado.user = user;
+    estado.token = token;
   },
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
   },
-  set_equipo(state, equipo) {
-    const estado = state;
-    estado.equipo = equipo;
-  },
 };
 
 const actions = {
-  cleanList({ commit }) {
-    commit('clean_list');
-  },
-  // query, String que reprecenta apellido o nombre
-  loadItemList({ commit }, { query, page }) {
+  logOut({ commit }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/equipos`, {
-        params: {
-          nombre: query,
-          skip: page * 10
+      .get(`${BaseURL}/logout`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`
         }
       })
       .then((resp) => {
-        // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
-        const jugadores = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
-          if (page === 0) {
-            commit('set_list', { list: jugadores, page });
-          } else {
-            commit('add_list', { list: jugadores });
-          }
+          commit('clean_user');
         }
       })
       .catch((error) => {
@@ -83,15 +56,21 @@ const actions = {
         commit('loading', false);
       });
   },
-  getEquipoByID({ commit }, id) {
+  logIn({ commit }, { username, password }) {
     commit('loading', true);
+    console.log(username, password);
     return axios
-      .get(`${BaseURL}/equipos/${id}`)
+      .post(`${BaseURL}/login`, {
+        username,
+        password
+      })
       .then((resp) => {
+        console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
-        const equipo = _.get(resp, 'data.data', {}) || {};
+        const user = _.get(resp, 'data.data.user', {}) || {};
+        const token = _.get(resp, 'data.data.token', '') || '';
         if (message === 'Success') {
-          commit('set_equipo', equipo);
+          commit('set_user', { user, token });
         }
       })
       .catch((error) => {
@@ -100,7 +79,25 @@ const actions = {
       .finally(() => {
         commit('loading', false);
       });
-  }
+  },
+  getUserInfo({ commit, state }) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/me`, {
+        headers: {
+          Authorization: `Bearer ${state.token}`
+        }
+      })
+      .then((resp) => {
+        _.get(resp, 'data.data', null);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
 };
 
 export default {

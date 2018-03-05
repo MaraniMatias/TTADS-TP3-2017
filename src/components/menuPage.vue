@@ -45,7 +45,7 @@ export default {
         },
         {
           label: 'Iniciar Sesión',
-          link: 'login',
+          link: 'loginPage',
           icon: 'user-circle',
         }
       ],

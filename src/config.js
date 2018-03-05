@@ -6,6 +6,5 @@ if (window.cordova) {
 }
 
 export default {
-  productionTip: true,
   baseURL
 };
