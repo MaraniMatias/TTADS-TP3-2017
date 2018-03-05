@@ -16,7 +16,8 @@ module.exports = {
     'html'
   ],
   globals: {
-    StatusBar: true
+    StatusBar: true,
+    $ons: true
   },
   // check if imports actually resolve
   'settings': {
