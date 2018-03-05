@@ -13,11 +13,16 @@
       </div>
       <div class="center">{{ item.label }}</div>
     </v-ons-list-item>
+    <v-ons-list-header @click="$ons.notification.alert(serverStatus.server, { title: 'Server en uso' })">{{ serverStatus.version }}</v-ons-list-header>
   </v-ons-list>
 </v-ons-page>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('splitter');
+
 export default {
   name: 'menu',
   data() {
@@ -46,12 +51,23 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters([
+      'serverStatus'
+    ]),
+  },
   methods: {
+    ...mapActions([
+      'getServerStatus'
+    ]),
     goTo(name) {
       this.$router.push({ name });
       // window.open(url, '_blank');
       this.$store.commit('splitter/toggle', false);
     },
+  },
+  mounted() {
+    this.getServerStatus();
   },
 };
 </script>

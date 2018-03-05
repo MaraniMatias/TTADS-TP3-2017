@@ -3,7 +3,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import Config from '../../config';
 
-const BaseURL = Config.baseURL;
+const BaseURL = `${Config.baseURL}/api`;
 
 const state = {
   loading: false,

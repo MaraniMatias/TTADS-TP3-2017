@@ -3,85 +3,76 @@ import axios from 'axios';
 import _ from 'lodash';
 import Config from '../../config';
 
-const BaseURL = `${Config.baseURL}/api`;
+const BaseURL = `${Config.baseURL}/auth`;
+/*
+const api = axios.create({
+  baseURL: Config.baseURL,
+  headers: { Authorization: 'Bearer' }
+});
+*/
 
 const state = {
-  listEventos: [],
   loading: false,
-  page: 0,
-  partido: {},
+  user: {},
+  token: ''
 };
 
 const getters = {
+  equipo: state => state.equipo,
+  list: state => state.list,
   isLoading: state => state.loading,
-  listEventos: state => state.listEventos,
-  page: state => state.page,
-  partido: state => state.partido,
+  page: state => state.page
 };
 
 const mutations = {
+  clean_list(state) {
+    const estado = state;
+    estado.list = [];
+    estado.page = 0;
+  },
   set_list(state, { list, page } = { list: [], page: 0 }) {
     const estado = state;
-    estado.listEventos = list;
+    estado.list = list;
     estado.page = page;
   },
   add_list(state, { list } = { list: [] }) {
     const estado = state;
-    estado.listEventos = estado.listEventos.concat(list);
+    estado.list = estado.list.concat(list);
     estado.page += 1;
   },
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
   },
-  set_partido(state, partido) {
+  set_equipo(state, equipo) {
     const estado = state;
-    estado.partido = partido;
-  }
+    estado.equipo = equipo;
+  },
 };
 
 const actions = {
   cleanList({ commit }) {
     commit('clean_list');
   },
-  //  Cargar partido
-  loadPartido({ commit }, { partidoId }) {
-    commit('loading', true);
-    return axios
-      .get(`${BaseURL}/partidos/${partidoId}`)
-      .then((resp) => {
-        // console.log(resp);
-        const message = _.get(resp, 'data.message', '') || '';
-        const partido = _.get(resp, 'data.data', []) || [];
-        if (message === 'Success') {
-          commit('set_partido', partido);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        commit('loading', false);
-      });
-  },
   // query, String que reprecenta apellido o nombre
-  loadItemList({ commit }, { partidoId, page }) {
+  loadItemList({ commit }, { query, page }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/eventos-por-partido/${partidoId}`, {
+      .get(`${BaseURL}/equipos`, {
         params: {
+          nombre: query,
           skip: page * 10
         }
       })
       .then((resp) => {
         // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
-        const list = _.get(resp, 'data.data', []) || [];
+        const jugadores = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
           if (page === 0) {
-            commit('set_list', { list, page });
+            commit('set_list', { list: jugadores, page });
           } else {
-            commit('add_list', { list });
+            commit('add_list', { list: jugadores });
           }
         }
       })
@@ -92,6 +83,24 @@ const actions = {
         commit('loading', false);
       });
   },
+  getEquipoByID({ commit }, id) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/equipos/${id}`)
+      .then((resp) => {
+        const message = _.get(resp, 'data.message', '') || '';
+        const equipo = _.get(resp, 'data.data', {}) || {};
+        if (message === 'Success') {
+          commit('set_equipo', equipo);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  }
 };
 
 export default {
