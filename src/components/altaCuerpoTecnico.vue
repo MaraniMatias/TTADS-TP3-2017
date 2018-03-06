@@ -4,7 +4,7 @@
     <div class="left">
       <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
     </div>
-    <div class="center">Alta de Jugador</div>
+    <div class="center">Alta de Cuerpo Tecnico</div>
   </v-ons-toolbar>
 
   <v-ons-list>
@@ -22,28 +22,14 @@
         </v-ons-input>
       </label>
     </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
+      <label class="center">
+        <v-ons-input float maxlength="60" required type="text"
+          placeholder="Cargo" v-model="entidad.cargo">
+        </v-ons-input>
+      </label>
+    </v-ons-list-item>
 
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
-          placeholder="Peso" v-model="entidad.peso">
-        </v-ons-input>
-      </label>
-    </v-ons-list-item>
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
-          placeholder="Altura" v-model="entidad.altura">
-        </v-ons-input>
-      </label>
-    </v-ons-list-item>
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
-          placeholder="Edad" v-model="entidad.edad">
-        </v-ons-input>
-      </label>
-    </v-ons-list-item>
     <v-ons-list-item>
       <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px" :disabled="disabledBtn" @click="submit()">
         <span v-if="!isLoading">Guardar</span>
@@ -57,16 +43,14 @@
 
 <script>
 export default {
-  name: 'altaJugador',
+  name: 'altaCuerpoTecnico',
   components: {},
   data() {
     return {
       entidad: {
         nombre: '',
         apellido: '',
-        peso: 63,
-        altura: 160,
-        edad: 27,
+        cargo: ''
       },
     };
   },
@@ -87,5 +71,4 @@ ons-list {
 ons-input {
   width: 100%;
 }
-
 </style>
