@@ -22,8 +22,8 @@
       <v-ons-list-item tappable @click="menuVisible = false; actionSheetVisible = true" :modifier="md ? 'nodivider' : 'longdivider'">
         <div class="center">Filtrar Torneos</div>
       </v-ons-list-item>
-      <v-ons-list-item tappable :modifier="md ? 'nodivider' : 'longdivider'">
-        <div class="center">Iniciar Sesión</div>
+      <v-ons-list-item tappable :modifier="md ? 'nodivider' : 'longdivider'" @click="$router.push({ name: 'loginPage'})">
+        <div class="center">Sesión</div>
       </v-ons-list-item>
     </v-ons-list>
   </v-ons-popover>
