@@ -17,7 +17,7 @@
         <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Usuario" v-model="username" type="text">
+          <v-ons-input float placeholder="Usuario" v-model="username" type="text" required>
           </v-ons-input>
         </label>
     </v-ons-list-item>
@@ -26,7 +26,7 @@
         <i class="zmdi zmdi-key"></i>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Contraseña" v-model="password" type="password">
+          <v-ons-input float placeholder="Contraseña" v-model="password" type="password" minlength='6' requirerede>
           </v-ons-input>
         </label>
     </v-ons-list-item>

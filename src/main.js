@@ -23,6 +23,14 @@ import Jugador from './components/perfilJugadorPage';
 import JugadoresPage from './components/jugadoresPage';
 import LoginPage from './components/loginPage';
 
+// Admin page
+// import EdicionPartido from './components/edicionPartido';
+import AltaTipoEvento from './components/altaTipoEvento';
+import AltaJugador from './components/altaJugador';
+import AltaCuerpoTecnico from './components/altaCuerpoTecnico';
+// import AltaPartido from './components/altaPartido';
+// import AltaEquipo from './components/altaEquipo';
+
 Vue.config.productionTip = true;
 
 Vue.use(VueRouter);
@@ -54,6 +62,22 @@ const routes = [
     name: 'partido',
     props: true
   },
+  // Admin
+  {
+    path: '/altaJugador',
+    component: AltaJugador,
+    name: 'altaJugador'
+  },
+  {
+    path: '/altaJugador',
+    component: AltaCuerpoTecnico,
+    name: 'altaCuerpoTecnico'
+  },
+  {
+    path: '/altaTipoEvento',
+    component: AltaTipoEvento,
+    name: 'altaTipoEvento'
+  }
 ];
 
 const router = new VueRouter({

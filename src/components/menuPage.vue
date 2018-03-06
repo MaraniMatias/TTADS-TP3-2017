@@ -30,8 +30,11 @@ export default {
   data() {
     return {
       itemsAdmin: [{
-        label: 'Alta de equipo',
-        link: 'altaEquipo',
+        label: 'Partido Jugando',
+        link: 'edicionPartido',
+      }, {
+        label: 'Alta tipo de evento',
+        link: 'altaTipoEvento',
       }, {
         label: 'Alta de Jugador',
         link: 'altaJugador',
@@ -42,8 +45,8 @@ export default {
         label: 'Alta Partido',
         link: 'altaPartido',
       }, {
-        label: 'Partido Jugando',
-        link: 'edicionPartido',
+        label: 'Alta de equipo',
+        link: 'altaEquipo',
       }],
       essentialLinks: [{
         label: 'Fixture',
