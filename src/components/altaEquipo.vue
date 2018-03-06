@@ -2,7 +2,9 @@
 <v-ons-page>
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
+      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
+        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+      </v-ons-toolbar-button>
     </div>
     <div class="center">Alta de Equipo</div>
   </v-ons-toolbar>
@@ -23,6 +25,14 @@
       </label>
     </v-ons-list-item>
 
+    <v-ons-list-header>Agregar</v-ons-list-header>
+    <v-ons-list-item>
+      <div class="center" style="padding-right: 10px;">
+        <v-ons-button class="btn" @click="$router.push({ name: 'altaEquipoJugadores' })">Jugadores</v-ons-button>
+        <v-ons-button class="btn" @click="$router.push({ name: 'altaEquipoCurpoTecnico' })">Cuerpo Tecnico</v-ons-button>
+      </div>
+    </v-ons-list-item>
+
     <v-ons-list-item>
       <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px" :disabled="disabledBtn" @click="submit()">
         <span v-if="!isLoading">Guardar</span>
@@ -30,6 +40,7 @@
       </v-ons-button>
     </v-ons-list-item>
   </v-ons-list>
+
 
 </v-ons-page>
 </template>
@@ -67,4 +78,8 @@ ons-input {
   width: 100%;
 }
 
+.btn {
+  margin: auto;
+  background-color: lightslategrey;
+}
 </style>

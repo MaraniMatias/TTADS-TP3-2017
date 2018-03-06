@@ -30,6 +30,8 @@ import AltaJugador from './components/altaJugador';
 import AltaCuerpoTecnico from './components/altaCuerpoTecnico';
 // import AltaPartido from './components/altaPartido';
 import AltaEquipo from './components/altaEquipo';
+import AltaEquipoJugadores from './components/altaEquipoJugadores';
+import AltaEquipoCurpoTecnico from './components/AltaEquipoCurpoTecnico';
 
 Vue.config.productionTip = true;
 
@@ -82,11 +84,21 @@ const routes = [
     path: '/altaEquipo',
     component: AltaEquipo,
     name: 'altaEquipo'
+  },
+  {
+    path: '/altaEquipoJugadores',
+    component: AltaEquipoJugadores,
+    name: 'altaEquipoJugadores'
+  },
+  {
+    path: '/altaEquipoCurpoTecnico',
+    component: AltaEquipoCurpoTecnico,
+    name: 'altaEquipoCurpoTecnico'
   }
 ];
 
 const router = new VueRouter({
-  // mode: 'history', //navega sin recargar pag y sin #, requiere config. el backend
+  mode: 'history', // navega sin recargar pag y sin #, requiere config. el backend
   linkActiveClass: 'active',
   routes,
 });

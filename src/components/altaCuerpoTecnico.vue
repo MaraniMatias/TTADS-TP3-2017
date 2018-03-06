@@ -2,7 +2,9 @@
 <v-ons-page>
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-toolbar-button @click="$router.back()" icon="ion-ios-arrow-back, material:ion-android-arrow-back"></v-ons-toolbar-button>
+      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
+        <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+      </v-ons-toolbar-button>
     </div>
     <div class="center">Alta de Cuerpo Tecnico</div>
   </v-ons-toolbar>

@@ -35,6 +35,7 @@
         <span v-if="!isLoading">Iniciar Sesion</span>
         <v-ons-icon icon="ion-load-c" spin size="26px" v-else></v-ons-icon>
       </v-ons-button>
+      <!--<button class="button">Button</button>-->
     </v-ons-list-item>
   </v-ons-list>
 
