@@ -11,13 +11,6 @@
 
   <v-ons-list>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center" for="input-nombre">
-        <v-ons-input float maxlength="60" required type="text"
-          placeholder="Nombre" v-model="entidad.nombre" input-id="input-nombre">
-        </v-ons-input>
-      </label>
-    </v-ons-list-item>
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-fecha-inicio">
         <v-ons-input float required type="datetime-local" input-id="input-fecha-nicio"
           placeholder="Fecha de Inicio" v-model="entidad.fechaInicio">
@@ -45,13 +38,30 @@
         </v-ons-input>
       </label>
     </v-ons-list-item>
-
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-estado">
         <v-ons-select style="width: 100%" v-model="entidad.estado" select-id="input-estado">
           <option v-for="item in items" :value="item" :key="item">{{ item }}</option>
         </v-ons-select>
       </label>
+    </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable>
+      <div class="left">
+        <v-ons-icon icon="plus-circle" class="list-item__icon" style="margin: auto;"></v-ons-icon>
+      </div>
+      <div class="center">{{entidad.equipoA.nombre || 'Agregar Equipo'}}</div>
+    </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable>
+      <div class="left">
+        <v-ons-icon icon="plus-circle" class="list-item__icon" style="margin: auto;"></v-ons-icon>
+      </div>
+      <div class="center">{{entidad.equipoB.nombre || 'Agregar Equipo'}}</div>
+    </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable>
+      <div class="left">
+        <v-ons-icon icon="ion-trophy" class="list-item__icon" style="margin: auto;"></v-ons-icon>
+      </div>
+      <div class="center">{{entidad.torneo.nombre || 'Agregar Torneo'}}</div>
     </v-ons-list-item>
 
     <v-ons-list-item>
@@ -61,7 +71,6 @@
       </v-ons-button>
     </v-ons-list-item>
   </v-ons-list>
-
 
 </v-ons-page>
 </template>
@@ -74,7 +83,6 @@ export default {
     return {
       items: ['Programado', 'En curso', 'Entretiempo', 'Terminado', 'Iniciado'],
       entidad: {
-        nombre: '',
         torneo: '',
         equipoA: '',
         equipoB: '',
