@@ -19,6 +19,18 @@ const BaseURL = Config.baseURL;
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    token: 'No Token'
+  },
+  getters: {
+    token: state => state.token,
+  },
+  mutations: {
+    set_token(state, { token }) {
+      const estado = state;
+      estado.token = token;
+    },
+  },
   modules: {
     splitter: {
       namespaced: true,

@@ -8,7 +8,7 @@ const BaseURL = `${Config.baseURL}/auth`;
 const state = {
   loading: false,
   user: {},
-  token: ''
+  // token: ''
 };
 
 const getters = {
@@ -21,7 +21,7 @@ const mutations = {
   clean_user(state) {
     const estado = state;
     estado.user = {};
-    estado.token = "";
+    estado.token = "No token";
   },
   set_user(state, { user, token }) {
     const estado = state;
@@ -70,6 +70,7 @@ const actions = {
         const token = _.get(resp, 'data.data.token', '') || '';
         if (message === 'Success') {
           commit('set_user', { user, token });
+          commit('set_token', { token }, { root: true });
         }
       })
       .catch((error) => {
