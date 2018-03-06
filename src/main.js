@@ -29,7 +29,7 @@ import AltaTipoEvento from './components/altaTipoEvento';
 import AltaJugador from './components/altaJugador';
 import AltaCuerpoTecnico from './components/altaCuerpoTecnico';
 // import AltaPartido from './components/altaPartido';
-// import AltaEquipo from './components/altaEquipo';
+import AltaEquipo from './components/altaEquipo';
 
 Vue.config.productionTip = true;
 
@@ -77,6 +77,11 @@ const routes = [
     path: '/altaTipoEvento',
     component: AltaTipoEvento,
     name: 'altaTipoEvento'
+  },
+  {
+    path: '/altaEquipo',
+    component: AltaEquipo,
+    name: 'altaEquipo'
   }
 ];
 
