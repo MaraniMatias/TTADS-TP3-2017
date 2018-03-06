@@ -6,7 +6,7 @@
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
-    <div class="center">Alta de Tipo de Evento</div>
+    <div class="center">Alta de Torneo</div>
   </v-ons-toolbar>
 
   <v-ons-list>
@@ -14,6 +14,20 @@
       <label class="center">
         <v-ons-input float maxlength="60" required type="text"
           placeholder="Nombre" v-model="entidad.nombre">
+        </v-ons-input>
+      </label>
+    </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
+      <label class="center">
+        <v-ons-input float required type="datetime-local"
+          placeholder="Fecha de Inicio" v-model="entidad.fechaInicio">
+        </v-ons-input>
+      </label>
+    </v-ons-list-item>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''">
+      <label class="center">
+        <v-ons-input float required type="datetime-local"
+          placeholder="Fecha de Fin" v-model="entidad.fechaFin">
         </v-ons-input>
       </label>
     </v-ons-list-item>
@@ -26,17 +40,20 @@
     </v-ons-list-item>
   </v-ons-list>
 
+
 </v-ons-page>
 </template>
 
 <script>
 export default {
-  name: 'altaTipoEvento',
+  name: 'altaTorneo',
   components: {},
   data() {
     return {
       entidad: {
         nombre: '',
+        fechaInicio: new Date(),
+        fechaFin: new Date()
       },
     };
   },

@@ -98,4 +98,8 @@ p.search {
   margin-bottom: 10px;
   text-align: center;
 }
+
+label.center {
+  margin-right: 10px;
+}
 </style>

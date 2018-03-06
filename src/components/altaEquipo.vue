@@ -82,4 +82,8 @@ ons-input {
   margin: auto;
   background-color: lightslategrey;
 }
+
+label.center {
+  margin-right: 10px;
+}
 </style>

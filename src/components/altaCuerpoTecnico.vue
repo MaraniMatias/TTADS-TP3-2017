@@ -73,4 +73,8 @@ ons-list {
 ons-input {
   width: 100%;
 }
+
+label.center {
+  margin-right: 10px;
+}
 </style>

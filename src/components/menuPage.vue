@@ -47,6 +47,9 @@ export default {
       }, {
         label: 'Alta de equipo',
         link: 'altaEquipo',
+      }, {
+        label: 'Alta de torneo',
+        link: 'altaTorneo',
       }],
       essentialLinks: [{
         label: 'Fixture',

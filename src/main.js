@@ -28,7 +28,8 @@ import LoginPage from './components/loginPage';
 import AltaTipoEvento from './components/altaTipoEvento';
 import AltaJugador from './components/altaJugador';
 import AltaCuerpoTecnico from './components/altaCuerpoTecnico';
-// import AltaPartido from './components/altaPartido';
+import AltaPartido from './components/altaPartido';
+import AltaTorneo from './components/altaTorneo';
 import AltaEquipo from './components/altaEquipo';
 import AltaEquipoJugadores from './components/altaEquipoJugadores';
 import AltaEquipoCurpoTecnico from './components/AltaEquipoCurpoTecnico';
@@ -79,6 +80,16 @@ const routes = [
     path: '/altaTipoEvento',
     component: AltaTipoEvento,
     name: 'altaTipoEvento'
+  },
+  {
+    path: '/altaPartido',
+    component: AltaPartido,
+    name: 'altaPartido'
+  },
+  {
+    path: '/altaTorneo',
+    component: AltaTorneo,
+    name: 'altaTorneo'
   },
   {
     path: '/altaEquipo',
