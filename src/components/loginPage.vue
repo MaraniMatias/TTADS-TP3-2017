@@ -6,7 +6,7 @@
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
       </v-ons-toolbar-button>
     </div>
-    <div class="center">Iniciar Sesión</div>
+    <div class="center">Sesión</div>
     <div class="right">
     </div>
   </v-ons-toolbar>
