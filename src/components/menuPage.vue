@@ -13,51 +13,67 @@
       </div>
       <div class="center">{{ item.label }}</div>
     </v-ons-list-item>
+    <v-ons-list-header v-show="isLogin">Menú Administrativo</v-ons-list-header>
+    <v-ons-list-item ripple modifier="chevron" v-for="item in itemsAdmin" @click="goTo(item.link)" :key="item.link" v-show="isLogin">
+      <div class="center">{{ item.label }}</div>
+    </v-ons-list-item>
     <v-ons-list-header @click="$ons.notification.alert(serverStatus.server, { title: 'Server en uso' })">{{ serverStatus.version }}</v-ons-list-header>
   </v-ons-list>
 </v-ons-page>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex';
-
-const { mapGetters, mapActions } = createNamespacedHelpers('splitter');
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'menu',
   data() {
     return {
-      essentialLinks: [
-        {
-          label: 'Fixture',
-          link: 'home',
-          icon: 'fa-book',
-        },
-        {
-          label: 'Equipos',
-          link: 'equiposPage',
-          icon: 'ion-person-stalker',
-        },
-        {
-          label: 'Jugadores',
-          link: 'jugadoresPage',
-          icon: 'ion-person',
-        },
-        {
-          label: 'Sesión',
-          link: 'loginPage',
-          icon: 'user-circle',
-        }
-      ],
+      itemsAdmin: [{
+        label: 'Alta de equipo',
+        link: 'altaEquipo',
+      }, {
+        label: 'Alta de Jugador',
+        link: 'altaJugador',
+      }, {
+        label: 'Alta de cuerpo tecnico',
+        link: 'altaCuerpoTecnico',
+      }, {
+        label: 'Alta Partido',
+        link: 'altaPartido',
+      }, {
+        label: 'Partido Jugando',
+        link: 'edicionPartido',
+      }],
+      essentialLinks: [{
+        label: 'Fixture',
+        link: 'home',
+        icon: 'fa-book',
+      }, {
+        label: 'Equipos',
+        link: 'equiposPage',
+        icon: 'ion-person-stalker',
+      }, {
+        label: 'Jugadores',
+        link: 'jugadoresPage',
+        icon: 'ion-person',
+      }, {
+        label: 'Sesión',
+        link: 'loginPage',
+        icon: 'user-circle',
+      }],
     };
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('splitter', [
       'serverStatus'
+    ]),
+    ...mapGetters('auth', [
+      'isLogin'
     ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('splitter', [
       'getServerStatus'
     ]),
     goTo(name) {
