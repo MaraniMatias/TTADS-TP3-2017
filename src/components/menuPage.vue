@@ -3,9 +3,9 @@
   <v-ons-toolbar modifier="transparent">
     <h1 class="center">Handball</h1>
   </v-ons-toolbar>
-  <div class="header">
+  <!--<div class="header">
     <img src="../assets/logo.png">
-  </div>
+  </div>-->
   <v-ons-list>
     <v-ons-list-item ripple modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
       <div class="left">
