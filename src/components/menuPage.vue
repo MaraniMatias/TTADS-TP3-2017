@@ -3,9 +3,9 @@
   <v-ons-toolbar modifier="transparent">
     <h1 class="center">Handball</h1>
   </v-ons-toolbar>
-  <!--<div class="header">
+  <div class="header">
     <img src="../assets/logo.png">
-  </div>-->
+  </div>
   <v-ons-list>
     <v-ons-list-item ripple modifier="chevron" v-for="item in essentialLinks" @click="goTo(item.link)" :key="item.link">
       <div class="left">
@@ -33,22 +33,22 @@ export default {
         label: 'Partido Jugando',
         link: 'edicionPartido',
       }, {
-        label: 'Alta tipo de evento',
+        label: 'Alta Tipo de Evento',
         link: 'altaTipoEvento',
       }, {
         label: 'Alta de Jugador',
         link: 'altaJugador',
       }, {
-        label: 'Alta de cuerpo tecnico',
+        label: 'Alta de Cuerpo Tecnico',
         link: 'altaCuerpoTecnico',
       }, {
         label: 'Alta Partido',
         link: 'altaPartido',
       }, {
-        label: 'Alta de equipo',
+        label: 'Alta de Equipo',
         link: 'altaEquipo',
       }, {
-        label: 'Alta de torneo',
+        label: 'Alta de Torneo',
         link: 'altaTorneo',
       }],
       essentialLinks: [{

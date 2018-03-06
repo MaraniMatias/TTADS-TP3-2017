@@ -24,7 +24,7 @@ import JugadoresPage from './components/jugadoresPage';
 import LoginPage from './components/loginPage';
 
 // Admin page
-// import EdicionPartido from './components/edicionPartido';
+import EdicionPartido from './components/editarPartido';
 import AltaTipoEvento from './components/altaTipoEvento';
 import AltaJugador from './components/altaJugador';
 import AltaCuerpoTecnico from './components/altaCuerpoTecnico';
@@ -105,6 +105,11 @@ const routes = [
     path: '/altaEquipoCurpoTecnico',
     component: AltaEquipoCurpoTecnico,
     name: 'altaEquipoCurpoTecnico'
+  },
+  {
+    path: '/edicionPartido',
+    component: EdicionPartido,
+    name: 'edicionPartido'
   }
 ];
 

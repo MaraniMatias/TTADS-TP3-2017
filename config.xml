@@ -2,10 +2,10 @@
 <widget id="ttads.tp3.handball" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Handball</name>
     <description>
-    Trabajo practico final, armado con vue y cordova.
+    Trabajo practico final, Usando vue y cordova.
   </description>
     <author email="maranimatias@gmail.com" href="https://github.com/MaraniMatias/TTADS-TP3-2017">
-    Trabajo practico final, armado con vue y cordova.
+    Trabajo practico final, Usando con vue y cordova.
   </author>
     <content src="index.html" />
     <access origin="*" />
