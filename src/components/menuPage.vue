@@ -44,7 +44,7 @@ export default {
           icon: 'ion-person',
         },
         {
-          label: 'Iniciar Sesión',
+          label: 'Sesión',
           link: 'loginPage',
           icon: 'user-circle',
         }

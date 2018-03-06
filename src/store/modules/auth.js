@@ -13,7 +13,7 @@ const state = {
 
 const getters = {
   user: state => state.user,
-  isLogin: state => typeof state.user.username !== 'undefined' && state.user.username,
+  isLogin: state => !!_.get(state, 'user.username', false),
   isLoading: state => state.loading
 };
 
@@ -58,14 +58,13 @@ const actions = {
   },
   logIn({ commit }, { username, password }) {
     commit('loading', true);
-    console.log(username, password);
     return axios
       .post(`${BaseURL}/login`, {
-        username,
+        username: username.toLowerCase(),
         password
       })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
         const user = _.get(resp, 'data.data.user', {}) || {};
         const token = _.get(resp, 'data.data.token', '') || '';

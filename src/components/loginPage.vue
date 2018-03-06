@@ -11,7 +11,7 @@
     </div>
   </v-ons-toolbar>
 
-  <v-ons-list>
+  <v-ons-list v-show="!isLogin">
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <div class="left">
         <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
@@ -38,7 +38,21 @@
     </v-ons-list-item>
   </v-ons-list>
 
-  <pre>{{ user }}</pre>
+  <v-ons-list-title v-show="isLogin">Perfil del usuario</v-ons-list-title>
+  <v-ons-list modifier="inset" v-show="isLogin">
+    <item-jugador-profile header="Nombre" :item="user" item-key="nombre"></item-jugador-profile>
+    <item-jugador-profile header="Apellido" :item="user" item-key="apellido"></item-jugador-profile>
+    <item-jugador-profile header="Nombre de usuario" :item="user" item-key="username"></item-jugador-profile>
+    <item-jugador-profile header="Rol" :item="user" item-key="role"></item-jugador-profile>
+  </v-ons-list>
+  <v-ons-list class="bg-trans" v-show="isLogin">
+    <v-ons-list-item>
+      <v-ons-button modifier="large" style="margin: 0px 6px 0px 0px" :disabled="!isLogin" @click="startLogOut()" class="red">
+        <span v-if="!isLoading">Cerrar Sesion</span>
+        <v-ons-icon icon="ion-load-c" spin size="26px" v-else></v-ons-icon>
+      </v-ons-button>
+    </v-ons-list-item>
+  </v-ons-list>
 
 </v-ons-page>
 </template>
@@ -46,11 +60,15 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
+import ItemJugadorProfile from './itemJugadorProfile';
+
 const { mapGetters, mapActions } = createNamespacedHelpers('auth');
 
 export default {
   name: 'LoginPage',
-  components: {},
+  components: {
+    ItemJugadorProfile
+  },
   data() {
     return {
       username: '',
@@ -77,9 +95,21 @@ export default {
       this.logIn({
         username: this.username,
         password: this.password
-      }).then(() => {
-        $ons.notification.toast('Sesión iniciada con exito');
+      }).finally(() => {
+        this.$ons.notification.toast('Sesión iniciada con exito', {
+          timeout: 1000
+        });
       });
+    },
+    startLogOut() {
+      this.logOut()
+        .finally(() => {
+          this.username = '';
+          this.password = '';
+          this.$ons.notification.toast('Sesión cerrada con exito', {
+            timeout: 1000
+          });
+        });
     }
   },
   mounted() {
@@ -91,5 +121,13 @@ export default {
 <style scoped>
 ons-list {
   padding-top: 16px;
+}
+
+ons-list.bg-trans {
+  background-color: transparent;
+}
+
+.red {
+  background-color: red;
 }
 </style>
