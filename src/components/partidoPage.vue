@@ -62,10 +62,7 @@ export default {
     }
   },
   data() {
-    return {
-      tiempo: '00:00',
-      estado: 'estado',
-    };
+    return {};
   },
   computed: {
     ...mapGetters([

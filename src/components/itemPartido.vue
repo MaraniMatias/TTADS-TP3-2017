@@ -67,7 +67,7 @@ export default {
     goToPartidoPage() {
       if (!this.noClick) {
         if (this.editar) {
-          this.$router.push({ name: 'edicionPartido', params: { partidoId: this.partido.id } });
+          this.$router.push({ name: 'edicionPartido', params: { partidoId: this.partido._id } });
         } else {
           this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
         }

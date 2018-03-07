@@ -21,14 +21,20 @@ const state = {
     },
   },
   loading: false,
+  tipoEventos: []
 };
 
 const getters = {
   partido: state => state.partido,
   isLoading: state => state.loading,
+  tipoEventos: state => state.tipoEventos,
 };
 
 const mutations = {
+  set_tipo_eventos(state, tipoEventos) {
+    const estado = state;
+    estado.tipoEventos = tipoEventos;
+  },
   set_partido(state, partido) {
     const estado = state;
     estado.partido = partido;
@@ -80,6 +86,25 @@ const actions = {
         const partido = _.get(resp, 'data.data', []) || [];
         if (message === 'Success') {
           commit('set_partido', partido);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
+  loadTipoEvento({ commit }) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/tipos-evento`)
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const list = _.get(resp, 'data.data', []) || [];
+        if (message === 'Success') {
+          commit('set_tipo_eventos', list);
         }
       })
       .catch((error) => {
