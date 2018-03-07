@@ -37,6 +37,10 @@
 export default {
   name: 'ItemPartido',
   props: {
+    editar: {
+      type: Boolean,
+      default: false
+    },
     noClick: {
       type: Boolean,
       default: false
@@ -62,8 +66,11 @@ export default {
     },
     goToPartidoPage() {
       if (!this.noClick) {
-        // this.$router.push({ name: 'partido', params: { partidoId: this.partido.id } });
-        this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
+        if (this.editar) {
+          this.$router.push({ name: 'edicionPartido', params: { partidoId: this.partido.id } });
+        } else {
+          this.$router.push({ name: 'partido', params: { partidoId: this.partido._id } });
+        }
       }
     }
   },

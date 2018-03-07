@@ -15,7 +15,8 @@
   </p>
 
   <v-ons-list>
-    <item-partido v-for="(partido, index) in listPartido" :key="index" :partido="partido"></item-partido>
+    <item-partido v-for="(partido, index) in listPartido" editar
+      :key="index" :partido="partido"></item-partido>
     <div class="after-list" v-show="isLoading">
       <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
       <v-ons-progress-circular indeterminate></v-ons-progress-circular>

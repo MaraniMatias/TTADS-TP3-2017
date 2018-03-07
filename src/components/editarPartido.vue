@@ -15,19 +15,39 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('altaPartido');
+
 export default {
   name: 'editarPartido',
+  props: {
+    partidoId: {
+      type: String,
+      required: true
+    }
+  },
   components: {},
   data() {
-    return {
-    };
+    return {};
+  },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+      'partido'
+    ]),
   },
   methods: {
+    ...mapActions([
+      'loadPartido'
+    ]),
     submit() {
       console.log(":D");
     }
   },
-  mounted() {}
+  mounted() {
+    this.loadPartido({ partidoId: this.partidoId });
+  }
 };
 </script>
 

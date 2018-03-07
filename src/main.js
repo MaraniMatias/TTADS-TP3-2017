@@ -133,9 +133,10 @@ const routes = [
     name: 'altaEquipoCurpoTecnico'
   },
   {
-    path: '/edicionPartido',
+    path: '/edicionPartido/:partidoId',
     component: EdicionPartido,
-    name: 'edicionPartido'
+    name: 'edicionPartido',
+    props: true
   }
 ];
 

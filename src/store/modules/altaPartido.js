@@ -15,6 +15,10 @@ const state = {
     categoria: '',
     arbitos: '',
     fechaInicio: new Date(),
+    marcador: {
+      golesEquipoA: 0,
+      golesEquipoB: 0,
+    },
   },
   loading: false,
 };
@@ -25,6 +29,10 @@ const getters = {
 };
 
 const mutations = {
+  set_partido(state, partido) {
+    const estado = state;
+    estado.partido = partido;
+  },
   set_equipo(state, { set, equipo, cb }) {
     const { partido } = state;
     if (
@@ -56,6 +64,26 @@ const actions = {
         const message = _.get(resp, 'data.message', '') || '';
         const object = _.get(resp, 'data.data', {}) || {};
         return message !== 'Success' ? object : {};
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
+  //  Cargar partido
+  loadPartido({ commit }, { partidoId }) {
+    commit('loading', true);
+    return axios
+      .get(`${BaseURL}/partidos/${partidoId}`)
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const partido = _.get(resp, 'data.data', []) || [];
+        if (message === 'Success') {
+          commit('set_partido', partido);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
       })
       .finally(() => {
         commit('loading', false);
