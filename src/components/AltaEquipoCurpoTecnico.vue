@@ -38,7 +38,7 @@
     <v-ons-speed-dial-item @click="cleanAll()" style="background-color: red; color: white;">
       <i class="zmdi zmdi-delete"></i>
     </v-ons-speed-dial-item>
-    <v-ons-speed-dial-item @click="$router.push({ name: 'altaEquipo' })" style="background-color: green; color: white;">
+    <v-ons-speed-dial-item @click="goToAltaEquipo()" style="background-color: green; color: white;">
       <i class="zmdi zmdi-check-all"></i>
     </v-ons-speed-dial-item>
   </v-ons-speed-dial>
@@ -60,7 +60,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('jugador', [
+    ...mapGetters('cuerpoTecnico', [
       'isLoading',
       'list',
       'page'
@@ -82,6 +82,10 @@ export default {
     cleanAll() {
       this.clean();
       this.equipo.cuerpoTecnico = [];
+    },
+    goToAltaEquipo() {
+      this.clean();
+      this.$router.push({ name: 'altaEquipo' });
     },
     getList() {
       if (this.query) {

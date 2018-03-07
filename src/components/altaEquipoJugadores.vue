@@ -38,7 +38,7 @@
     <v-ons-speed-dial-item @click="cleanAll()" style="background-color: red; color: white;">
       <i class="zmdi zmdi-delete"></i>
     </v-ons-speed-dial-item>
-    <v-ons-speed-dial-item @click="$router.push({ name: 'altaEquipo' })" style="background-color: green; color: white;">
+    <v-ons-speed-dial-item @click="goToAltaEquipo()" style="background-color: green; color: white;">
       <i class="zmdi zmdi-check-all"></i>
     </v-ons-speed-dial-item>
   </v-ons-speed-dial>
@@ -87,6 +87,10 @@ export default {
       if (this.query) {
         this.loadItemList({ query: this.query, page: 0 });
       }
+    },
+    goToAltaEquipo() {
+      this.clean();
+      this.$router.push({ name: 'altaEquipo' });
     },
     loadMore(done) {
       const page = this.page === 0 ? 1 : this.page;
