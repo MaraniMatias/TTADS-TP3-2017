@@ -11,15 +11,15 @@
 
   <v-ons-list>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float maxlength="60" required type="text"
+      <label class="center" for="input-nombre">
+        <v-ons-input float maxlength="60" required type="string" input-id="input-nombre"
           placeholder="Nombre" v-model="entidad.nombre">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float required type="text"
+      <label class="center" for="input-escudo">
+        <v-ons-input float required type="string" input-id="input-escudo"
           placeholder="URL del escudo" v-model="entidad.escudoURL">
         </v-ons-input>
       </label>
@@ -41,11 +41,14 @@
     </v-ons-list-item>
   </v-ons-list>
 
-
 </v-ons-page>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('equipo');
+
 export default {
   name: 'altaEquipo',
   components: {},
@@ -53,16 +56,38 @@ export default {
     return {
       entidad: {
         nombre: '',
-        apellido: '',
-        peso: 63,
-        altura: 160,
-        edad: 27,
+        escudoURL: '',
+        jugadores: [],
+        cuerpoTecnico: []
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
+    disabledBtn() {
+      return !this.entidad.nombre ||
+        !this.entidad.jugadores.length ||
+        !this.entidad.cuerpoTecnico.length;
+    },
+  },
   methods: {
+    ...mapActions({
+      post: 'postEquipo',
+    }),
     submit() {
-      console.log(":D");
+      this.post(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
   mounted() {}
