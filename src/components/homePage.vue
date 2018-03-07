@@ -62,7 +62,6 @@ import { mapGetters, mapActions } from 'vuex';
 import partidosActivosTab from './partidosActivosPage';
 import partidosPasadosTab from './partidosPasadosPage';
 
-
 export default {
   name: 'HomeFixture',
   components: {},
