@@ -12,21 +12,21 @@
   <v-ons-list>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center">
-        <v-ons-input float maxlength="60" required type="text"
+        <v-ons-input float maxlength="60" required type="String"
           placeholder="Nombre" v-model="entidad.nombre">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float required type="datetime-local"
+      <label class="center" for="input-fecha-inicio">
+        <v-ons-input float required type="Date" input-id="input-fecha-inicio"
           placeholder="Fecha de Inicio" v-model="entidad.fechaInicio">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float required type="datetime-local"
+      <label class="center" for="input-fecha-fin">
+        <v-ons-input float required type="Date" input-id="input-fecha-fin"
           placeholder="Fecha de Fin" v-model="entidad.fechaFin">
         </v-ons-input>
       </label>
@@ -45,6 +45,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('torneo');
+
 export default {
   name: 'altaTorneo',
   components: {},
@@ -57,9 +61,30 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
+    disabledBtn() {
+      return !this.entidad.nombre || !this.entidad.fechaInicio || !this.entidad.fechaFin;
+    },
+  },
   methods: {
+    ...mapActions([
+      'postTorneos',
+    ]),
     submit() {
-      console.log(":D");
+      this.postTorneos(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
   mounted() {}
