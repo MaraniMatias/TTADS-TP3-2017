@@ -11,37 +11,37 @@
 
   <v-ons-list>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float maxlength="60" required type="text"
+      <label class="center" for="input-nombre">
+        <v-ons-input float maxlength="60" required type="string" input-id="input-nombre"
           placeholder="Nombre" v-model="entidad.nombre">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float maxlength="60" required type="text"
+      <label class="center" for="input-apellido">
+        <v-ons-input float maxlength="60" required type="string" input-id="input-apellido"
           placeholder="Apellido" v-model="entidad.apellido">
         </v-ons-input>
       </label>
     </v-ons-list-item>
 
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
+      <label class="center" for="input-peso">
+        <v-ons-input float type="number" input-id="input-peso"
           placeholder="Peso" v-model="entidad.peso">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
+      <label class="center" for="input-altura">
+        <v-ons-input float type="number" input-id="input-altura"
           placeholder="Altura" v-model="entidad.altura">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float type="numeric"
+      <label class="center" for="input-edad">
+        <v-ons-input float type="number" input-id="input-edad"
           placeholder="Edad" v-model="entidad.edad">
         </v-ons-input>
       </label>
@@ -58,6 +58,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
+
 export default {
   name: 'altaJugador',
   components: {},
@@ -72,9 +76,30 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
+    disabledBtn() {
+      return !this.entidad.nombre || !this.entidad.apellido;
+    },
+  },
   methods: {
+    ...mapActions({
+      post: 'postJugador',
+    }),
     submit() {
-      console.log(":D");
+      this.post(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
   mounted() {}

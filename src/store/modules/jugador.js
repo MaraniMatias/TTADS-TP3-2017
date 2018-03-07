@@ -93,7 +93,7 @@ const actions = {
   postJugador({ commit, rootState }, entidad) {
     commit('loading', true);
     return axios
-      .post(`${BaseURL}/jugadores`, { jugadores: entidad }, {
+      .post(`${BaseURL}/jugadores`, { jugador: entidad }, {
         headers: { Authorization: `Bearer ${rootState.token}` }
       })
       .then((resp) => {
