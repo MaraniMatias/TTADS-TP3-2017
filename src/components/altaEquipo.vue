@@ -47,25 +47,21 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapGetters, mapActions } = createNamespacedHelpers('equipo');
+const { mapGetters, mapActions, mapMutations } = createNamespacedHelpers('altaEquipo');
 
 export default {
   name: 'altaEquipo',
   components: {},
   data() {
-    return {
-      entidad: {
-        nombre: '',
-        escudoURL: '',
-        jugadores: [],
-        cuerpoTecnico: []
-      },
-    };
+    return {};
   },
   computed: {
     ...mapGetters([
       'isLoading',
     ]),
+    ...mapGetters({
+      entidad: 'equipo'
+    }),
     disabledBtn() {
       return !this.entidad.nombre ||
         !this.entidad.jugadores.length ||
@@ -73,6 +69,11 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      setJugadores: 'set_jugadores',
+      setCuerpoTecnico: 'set_cuerpo_tecnico',
+      setEquipo: 'set_equipo'
+    }),
     ...mapActions({
       post: 'postEquipo',
     }),

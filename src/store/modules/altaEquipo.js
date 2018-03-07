@@ -6,114 +6,42 @@ import Config from '../../config';
 const BaseURL = `${Config.baseURL}/api`;
 
 const state = {
-  equipo: {},
-  list: [],
+  equipo: {
+    nombre: '',
+    escudoURL: '',
+    cuerpoTecnico: [],
+    jugadores: []
+  },
   loading: false,
-  page: 0,
 };
 
 const getters = {
   equipo: state => state.equipo,
-  list: state => state.list,
   isLoading: state => state.loading,
-  page: state => state.page
 };
 
 const mutations = {
-  clean_list(state) {
+  set_jugadores(state, jugadores) {
     const estado = state;
-    estado.list = [];
-    estado.page = 0;
+    estado.equipo.jugadores = jugadores;
   },
-  set_list(state, { list, page } = { list: [], page: 0 }) {
+  set_cuerpo_tecnico(state, cuerpoTecnico) {
     const estado = state;
-    estado.list = list;
-    estado.page = page;
+    estado.equipo.cuerpoTecnico = cuerpoTecnico;
   },
-  add_list(state, { list } = { list: [] }) {
+  set_equipo(state, { nombre, escudoURL }) {
     const estado = state;
-    estado.list = estado.list.concat(list);
-    estado.page += 1;
+    estado.equipo.nombre = nombre;
+    estado.equipo.escudoURL = escudoURL;
   },
   loading(state, loading) {
     const estado = state;
     estado.loading = !!loading;
   },
-  set_equipo(state, equipo) {
-    const estado = state;
-    estado.equipo = equipo;
-  },
 };
 
 const actions = {
-  cleanList({ commit }) {
-    commit('clean_list');
-  },
-  // query, String que reprecenta apellido o nombre
-  loadItemList({ commit }, { query, page }) {
-    commit('loading', true);
-    return axios
-      .get(`${BaseURL}/equipos`, {
-        params: {
-          nombre: query,
-          skip: page * 10
-        }
-      })
-      .then((resp) => {
-        // console.log(resp);
-        const message = _.get(resp, 'data.message', '') || '';
-        const jugadores = _.get(resp, 'data.data', []) || [];
-        if (message === 'Success') {
-          if (page === 0) {
-            commit('set_list', { list: jugadores, page });
-          } else {
-            commit('add_list', { list: jugadores });
-          }
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        commit('loading', false);
-      });
-  },
-  getEquipoByID({ commit }, id) {
-    commit('loading', true);
-    return axios
-      .get(`${BaseURL}/equipos/${id}`)
-      .then((resp) => {
-        const message = _.get(resp, 'data.message', '') || '';
-        const equipo = _.get(resp, 'data.data', {}) || {};
-        if (message === 'Success') {
-          commit('set_equipo', equipo);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => {
-        commit('loading', false);
-      });
-  },
-
   // Admin
-  postTipoEvento({ commit, rootState }, entidad) {
-    commit('loading', true);
-    return axios
-      .post(`${BaseURL}/tipos-evento`, { tipoEvento: entidad }, {
-        headers: { Authorization: `Bearer ${rootState.token}` }
-      })
-      .then((resp) => {
-        // console.log(resp);
-        const message = _.get(resp, 'data.message', '') || '';
-        const object = _.get(resp, 'data.data', {}) || {};
-        return message !== 'Success' ? object : {};
-      })
-      .finally(() => {
-        commit('loading', false);
-      });
-  },
   postEquipo({ commit, rootState }, entidad) {
     commit('loading', true);
     return axios
