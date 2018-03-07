@@ -3,7 +3,7 @@
     <template v-if="jugando">
       <div class="left equipo" @click="goToEquipoPage(partido.equipoA)">
         <img class="list-item__thumbnail" :src="partido.equipoA.escudoURL">
-        <p class="center">{{partido.equipoA.nombre}}</p>
+        <p class="center-text">{{partido.equipoA.nombre}}</p>
       </div>
       <div class="center">
         <div class="item-center">
@@ -15,19 +15,19 @@
       </div>
       <div class="right equipo" @click="goToEquipoPage(partido.equipoB)">
         <img class="list-item__thumbnail" :src="partido.equipoB.escudoURL">
-        <p class="center">{{partido.equipoB.nombre}}</p>
+        <p class="center-text">{{partido.equipoB.nombre}}</p>
       </div>
     </template>
     <template v-else>
       <div class="left" @click="goToEquipoPage(partido.equipoB)">
-        <p class="center no-jugando">{{partido.equipoA.nombre}}</p>
+        <p class="center-text no-jugando">{{partido.equipoA.nombre}}</p>
       </div>
       <div class="center">
         <p class="marcador">{{partido.fechaInicio | morph-date('hh:mm')}}</p>
         <p class="estado">{{partido.estado}}</p>
       </div>
       <div class="right" @click="goToEquipoPage(partido.equipoB)">
-        <p class="center no-jugando">{{partido.equipoB.nombre}}</p>
+        <p class="center-text no-jugando">{{partido.equipoB.nombre}}</p>
       </div>
     </template>
   </v-ons-list-item>
@@ -134,7 +134,7 @@ export default {
   margin: auto;
 }
 
-p.center {
+p.center-text {
   margin-bottom: 6px;
   margin-top: 12px;
   text-align: center;
