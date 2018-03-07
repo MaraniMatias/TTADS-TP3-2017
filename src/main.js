@@ -17,6 +17,7 @@ import App from './App';
 
 import Home from './components/homePage';
 import Partido from './components/partidoPage';
+import PartidosPage from './components/partidosPage';
 import Equipo from './components/equipoPage';
 import EquiposPage from './components/equiposPage';
 import Jugador from './components/perfilJugadorPage';
@@ -54,6 +55,11 @@ const routes = [
     path: '/jugadores',
     component: JugadoresPage,
     name: 'jugadoresPage'
+  },
+  {
+    path: '/partidosPage',
+    component: PartidosPage,
+    name: 'partidosPage'
   },
   {
     path: '/login',

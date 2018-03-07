@@ -30,8 +30,8 @@ export default {
   data() {
     return {
       itemsAdmin: [{
-        label: 'Partido Jugando',
-        link: 'edicionPartido',
+        label: 'Editar Partido',
+        link: 'partidosPage',
       }, {
         label: 'Alta Tipo de Evento',
         link: 'altaTipoEvento',
