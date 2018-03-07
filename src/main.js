@@ -41,11 +41,31 @@ Vue.use(VueOnsen);
 Vue.use(Morphling);
 
 const routes = [
-  { path: '*', redirect: '/home' },
-  { path: '/home', component: Home, name: 'home' },
-  { path: '/equipos', component: EquiposPage, name: 'equiposPage' },
-  { path: '/jugadores', component: JugadoresPage, name: 'jugadoresPage' },
-  { path: '/login', component: LoginPage, name: 'loginPage' },
+  {
+    path: '*',
+    redirect: '/home'
+  },
+  {
+    path: '/home',
+    component: Home,
+    name: 'home'
+  },
+  {
+    path: '/jugadores',
+    component: JugadoresPage,
+    name: 'jugadoresPage'
+  },
+  {
+    path: '/login',
+    component: LoginPage,
+    name: 'loginPage'
+  },
+  {
+    path: '/equipos/:setEquipo',
+    component: EquiposPage,
+    name: 'equiposPage',
+    props: true
+  },
   // Usan parametros id para pedir la entidad
   {
     path: '/equipo/:id',

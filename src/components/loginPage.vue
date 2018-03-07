@@ -17,18 +17,20 @@
         <v-ons-icon icon="md-face" class="list-item__icon"></v-ons-icon>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Usuario" v-model="username" type="string" required>
-          </v-ons-input>
-        </label>
+        <v-ons-input float placeholder="Usuario" @keyup.enter="startLogIn()"
+          v-model="username" type="string" required>
+        </v-ons-input>
+      </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <div class="left">
         <i class="zmdi zmdi-key"></i>
       </div>
       <label class="center">
-          <v-ons-input float placeholder="Contraseña" v-model="password" type="password" required>
-          </v-ons-input>
-        </label>
+        <v-ons-input float placeholder="Contraseña" @keyup.enter="startLogIn()"
+          v-model="password" type="password" required>
+        </v-ons-input>
+      </label>
     </v-ons-list-item>
     <v-ons-list-item>
       <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px" :disabled="disabledBtn" @click="startLogIn()">
@@ -93,14 +95,16 @@ export default {
       'getUserInfo'
     ]),
     startLogIn() {
-      this.logIn({
-        username: this.username,
-        password: this.password
-      }).then(() => {
-        this.$ons.notification.toast('Sesión iniciada con exito', {
-          timeout: 1000
+      if (!this.disabledBtn) {
+        this.logIn({
+          username: this.username,
+          password: this.password
+        }).then(() => {
+          this.$ons.notification.toast('Sesión iniciada con exito', {
+            timeout: 1000
+          });
         });
-      });
+      }
     },
     startLogOut() {
       this.logOut()

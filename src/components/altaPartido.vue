@@ -12,28 +12,28 @@
   <v-ons-list>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-fecha-inicio">
-        <v-ons-input float required type="datetime-local" input-id="input-fecha-nicio"
+        <v-ons-input float required type="date" input-id="input-fecha-nicio"
           placeholder="Fecha de Inicio" v-model="entidad.fechaInicio">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
-      <label class="center">
-        <v-ons-input float maxlength="60" required type="text"
+      <label class="center" for="input-estadio">
+        <v-ons-input float maxlength="60" required type="string" input-id="input-estadio"
           placeholder="Estadio" v-model="entidad.estadio">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-categoria">
-        <v-ons-input float maxlength="60" required type="text" input-id="input-categoria"
+        <v-ons-input float maxlength="60" required type="string" input-id="input-categoria"
           placeholder="Categoria" v-model="entidad.categoria">
         </v-ons-input>
       </label>
     </v-ons-list-item>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-abritos">
-        <v-ons-input float maxlength="60" type="text" input-id="input-abritos"
+        <v-ons-input float maxlength="60" type="string" input-id="input-abritos"
           placeholder="Abritos" v-model="entidad.abritos">
         </v-ons-input>
       </label>
@@ -45,13 +45,13 @@
         </v-ons-select>
       </label>
     </v-ons-list-item>
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable @click="addEquipo('equipoA')">
       <div class="left">
         <v-ons-icon icon="plus-circle" class="list-item__icon" style="margin: auto;"></v-ons-icon>
       </div>
       <div class="center">{{entidad.equipoA.nombre || 'Agregar Equipo'}}</div>
     </v-ons-list-item>
-    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable>
+    <v-ons-list-item :modifier="md ? 'nodivider' : ''" tappable @click="addEquipo('equipoB')">
       <div class="left">
         <v-ons-icon icon="plus-circle" class="list-item__icon" style="margin: auto;"></v-ons-icon>
       </div>
@@ -97,6 +97,9 @@ export default {
   methods: {
     submit() {
       console.log(":D");
+    },
+    addEquipo(setEquipo) {
+      this.$router.push({ name: 'equiposPage', params: { setEquipo } });
     }
   },
   mounted() {}

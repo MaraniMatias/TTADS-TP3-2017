@@ -2,8 +2,11 @@
 <v-ons-page :infinite-scroll="loadMore">
   <v-ons-toolbar>
     <div class="left">
-      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')">
+      <v-ons-toolbar-button @click="$store.commit('splitter/toggle')" v-if="!setEquipo">
         <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+      </v-ons-toolbar-button>
+      <v-ons-toolbar-button @click="$router.push({ name: 'altaPartido' })" v-else
+        icon="ion-ios-arrow-back, material:ion-android-arrow-back">
       </v-ons-toolbar-button>
     </div>
     <div class="center">Listado de Equipos</div>
@@ -15,7 +18,7 @@
   </p>
 
   <v-ons-list>
-    <item v-for="(item, index) in list" :equipo="item" :key="index"></item>
+    <item v-for="(item, index) in list" :equipo="item" :key="index" :set-equipo="setEquipo"></item>
     <div class="after-list" v-show="isLoading">
       <!--<v-ons-icon icon="spinner" size="26px" spin></v-ons-icon>-->
       <v-ons-progress-circular indeterminate></v-ons-progress-circular>
@@ -37,7 +40,12 @@ const { mapGetters, mapActions } = createNamespacedHelpers('equipo');
 
 export default {
   name: 'EquiposPage',
-  props: {},
+  props: {
+    setEquipo: {
+      type: [String, Boolean],
+      default: false
+    }
+  },
   components: {
     Item
   },
