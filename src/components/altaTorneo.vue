@@ -70,11 +70,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions([
-      'postTorneos',
-    ]),
+    ...mapActions({
+      post: 'postTorneos',
+    }),
     submit() {
-      this.postTorneos(this.entidad)
+      this.post(this.entidad)
         .then(() => {
           this.$ons.notification.toast('Guardado con exito.', {
             timeout: 1000

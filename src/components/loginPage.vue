@@ -96,7 +96,7 @@ export default {
       this.logIn({
         username: this.username,
         password: this.password
-      }).finally(() => {
+      }).then(() => {
         this.$ons.notification.toast('Sesión iniciada con exito', {
           timeout: 1000
         });

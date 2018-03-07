@@ -30,6 +30,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('equipo');
+
 export default {
   name: 'altaTipoEvento',
   components: {},
@@ -40,9 +44,30 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
+    disabledBtn() {
+      return !this.entidad.nombre;
+    },
+  },
   methods: {
+    ...mapActions({
+      post: 'postTipoEvento',
+    }),
     submit() {
-      console.log(":D");
+      this.post(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
   mounted() {}

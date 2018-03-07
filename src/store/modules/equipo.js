@@ -95,7 +95,25 @@ const actions = {
       .finally(() => {
         commit('loading', false);
       });
-  }
+  },
+
+  // Admin
+  postTipoEvento({ commit, rootState }, entidad) {
+    commit('loading', true);
+    return axios
+      .post(`${BaseURL}/tipos-evento`, { tipoEvento: entidad }, {
+        headers: { Authorization: `Bearer ${rootState.token}` }
+      })
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const object = _.get(resp, 'data.data', {}) || {};
+        return message !== 'Success' ? object : {};
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
 };
 
 export default {

@@ -68,7 +68,7 @@ const actions = {
         headers: { Authorization: `Bearer ${rootState.token}` }
       })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         const message = _.get(resp, 'data.message', '') || '';
         const object = _.get(resp, 'data.data', {}) || {};
         return message !== 'Success' ? object : {};
