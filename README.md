@@ -19,7 +19,7 @@ console.log(tp.integrantes);
 
 Este proyecto consiste en una aplicación móvil que muestra informacion de partidos de distintos torneos de
 handball, así también como de los partidos, equipos, jugadores y cuerpo técnico. Esta información será consumida
-de un servidor online a partir de un backend desarrollado con MongoDB el cual puede ser encontrado en la siguiente
+de un servidor online a partir de un backend desarrollado con NodeJS el cual puede ser encontrado en la siguiente
 dirección https://github.com/andres1790/TTADS-TP2-2017.
 
 ## Funcionalidad
@@ -59,7 +59,6 @@ dirección https://github.com/andres1790/TTADS-TP2-2017.
 - [cordova-plugin-headercolor](https://github.com/tomloprod/cordova-plugin-headercolor): HeaderColor is a cordova plugin to change color of header in multitask view. Android devices
 - [cordova-plugin-splashscreen](https://github.com/apache/cordova-plugin-splashscreen): This plugin displays and hides a splash screen during application launch
 [cordova-plugin-statusbar](https://github.com/apache/cordova-plugin-statusbar): Control the device status bar
-- [cordova-plugin-whitelist](https://github.com/apache/cordova-plugin-whitelist): This plugin implements a whitelist policy for navigating the application webview on Cordova 4.0
 - [lodash](https://github.com/lodash/lodash): Lodash makes JavaScript easier by taking the hassle out of working with arrays, numbers, objects, strings, etc.
 - [morphling](https://github.com/jofftiquez/vue-morphling): A collection of standard and custom VueJs filters and directives.
 - [onsenui](https://github.com/OnsenUI/OnsenUI): Onsen UI is a library of UI components to help you create beautiful hybrid and mobile web apps for both Android and iOS using Javascript.
