@@ -47,7 +47,7 @@ const actions = {
   loadItemList({ commit }, { query, page }) {
     commit('loading', true);
     return axios
-      .get(`${BaseURL}/jugadores`, {
+      .get(`${BaseURL}/miembros-cuerpo-tecnico`, {
         params: {
           jugador: query,
           skip: page * 10
@@ -74,10 +74,10 @@ const actions = {
   },
 
   // Admin
-  postJugador({ commit, rootState }, entidad) {
+  postCuerpoTecnico({ commit, rootState }, entidad) {
     commit('loading', true);
     return axios
-      .post(`${BaseURL}/jugadores`, { jugador: entidad }, {
+      .post(`${BaseURL}/miembros-cuerpo-tecnico`, { cuerpoTecnico: entidad }, {
         headers: { Authorization: `Bearer ${rootState.token}` }
       })
       .then((resp) => {

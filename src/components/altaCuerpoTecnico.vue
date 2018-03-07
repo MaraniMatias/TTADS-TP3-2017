@@ -46,7 +46,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
+const { mapGetters, mapActions } = createNamespacedHelpers('cuerpoTecnico');
 
 export default {
   name: 'altaCuerpoTecnico',

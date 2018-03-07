@@ -12,6 +12,7 @@ import fixture from './modules/fixture';
 import jugador from './modules/jugador';
 import partido from './modules/partido';
 import torneo from './modules/torneo';
+import cuerpoTecnico from './modules/cuerpoTecnico';
 
 import Config from '../config';
 
@@ -79,6 +80,7 @@ export default new Vuex.Store({
     },
     altaEquipo,
     auth,
+    cuerpoTecnico,
     equipo,
     fixture,
     jugador,

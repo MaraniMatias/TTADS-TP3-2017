@@ -16,7 +16,7 @@
   <v-ons-list>
     <v-ons-list-item v-for="(item, $index) in list" :key="item._id" tappable>
       <label class="left">
-        <v-ons-checkbox :input-id="'checkbox-' + $index" :value="item._id" v-model="checkedList">
+        <v-ons-checkbox :input-id="'checkbox-' + $index" :value="item._id" v-model="equipo.cuerpoTecnico">
         </v-ons-checkbox>
       </label>
       <label class="center" :for="'checkbox-' + $index">
@@ -30,17 +30,24 @@
     </div>
   </v-ons-list>
 
-  <v-ons-fab position="bottom right" :visible="list.length > 0" v-show="list.length > 0" @click="clean()">
-    <i class="zmdi zmdi-search"></i>
-  </v-ons-fab>
+  <v-ons-speed-dial position="bottom right" direction="up" :visible="list.length > 0 || equipo.cuerpoTecnico.length > 0" v-show="list.length > 0 || equipo.cuerpoTecnico.length > 0" :open.sync="spdOpen">
+    <v-ons-fab>{{equipo.cuerpoTecnico.length}}</v-ons-fab>
+    <v-ons-speed-dial-item @click="clean()">
+      <i class="zmdi zmdi-search"></i>
+    </v-ons-speed-dial-item>
+    <v-ons-speed-dial-item @click="cleanAll()" style="background-color: red; color: white;">
+      <i class="zmdi zmdi-delete"></i>
+    </v-ons-speed-dial-item>
+    <v-ons-speed-dial-item @click="$router.push({ name: 'altaEquipo' })" style="background-color: green; color: white;">
+      <i class="zmdi zmdi-check-all"></i>
+    </v-ons-speed-dial-item>
+  </v-ons-speed-dial>
 
 </v-ons-page>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex';
-
-const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'AltaEquipoCurpoTecnico',
@@ -49,24 +56,32 @@ export default {
   data() {
     return {
       query: "",
-      checkedList: []
+      spdOpen: false
     };
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters('jugador', [
       'isLoading',
       'list',
       'page'
-    ])
+    ]),
+    ...mapGetters('altaEquipo', [
+      'equipo'
+    ]),
   },
   methods: {
-    ...mapActions([
+    ...mapActions('cuerpoTecnico', [
       'loadItemList',
       'cleanList'
     ]),
     clean() {
       this.cleanList();
       this.query = "";
+      this.spdOpen = false;
+    },
+    cleanAll() {
+      this.clean();
+      this.equipo.cuerpoTecnico = [];
     },
     getList() {
       if (this.query) {

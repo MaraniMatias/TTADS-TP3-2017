@@ -68,9 +68,6 @@ export default {
     ...mapGetters('altaEquipo', [
       'equipo'
     ]),
-    disabledBtn() {
-      return true;
-    },
   },
   methods: {
     ...mapActions('jugador', [
