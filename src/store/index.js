@@ -6,10 +6,11 @@ import _ from 'lodash';
 
 import auth from './modules/auth';
 
-import jugador from './modules/jugador';
+import altaEquipo from './modules/altaEquipo';
 import equipo from './modules/equipo';
-import partido from './modules/partido';
 import fixture from './modules/fixture';
+import jugador from './modules/jugador';
+import partido from './modules/partido';
 import torneo from './modules/torneo';
 
 import Config from '../config';
@@ -76,11 +77,12 @@ export default new Vuex.Store({
         },
       }
     },
-    jugador,
+    altaEquipo,
+    auth,
     equipo,
-    partido,
     fixture,
+    jugador,
+    partido,
     torneo,
-    auth
   }
 });
