@@ -1,11 +1,11 @@
 <template>
 <v-ons-page>
-  <div class="header">
 
+  <v-ons-list>
+  <div class="header">
     <div class="shield">
       <img :src="equipo.escudoURL" class="shield">
     </div>
-
     <div class="statistic">
       <div class="value">
         {{equipo.goles}}
@@ -15,10 +15,13 @@
       </div>
     </div>
   </div>
+  </v-ons-list>
 
-  <v-ons-list modifier="inset" v-for="(torneo, key) in fixture">
-    <v-ons-list-title>{{torneo.nombre}}</v-ons-list-title>
-    <item-fixture v-for="(partido, index) in torneo.partidos" :partido="partido" :key="index"></item-fixture>
+  <v-ons-list>
+    <template v-for="(torneo, key) in fixture">
+      <v-ons-list-title>{{torneo.nombre}}</v-ons-list-title>
+      <item-fixture v-for="(partido, index) in torneo.partidos" :partido="partido" :key="index"></item-fixture>
+    </template>
   </v-ons-list>
 
 </v-ons-page>
@@ -64,10 +67,6 @@ export default {
 </script>
 
 <style scoped>
-ons-list {
-  margin-top: 12px;
-}
-
 .statistic {
   display: block;
   flex-direction: column;

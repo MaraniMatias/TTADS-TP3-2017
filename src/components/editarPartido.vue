@@ -40,7 +40,7 @@
     <v-ons-list-title>Eventos</v-ons-list-title>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-tiempo-eventos">
-        <v-ons-select style="width: 100%" v-model="selectTipoEventos" select-id="input-tiempo-eventos">
+        <v-ons-select style="width: 100%" v-model="partido.selectTipoEventos" select-id="input-tiempo-eventos">
           <option v-for="item in tipoEventos" :value="item._id" :key="item._id">{{ item.nombre }}</option>
         </v-ons-select>
       </label>
@@ -85,10 +85,21 @@ export default {
   methods: {
     ...mapActions('altaPartido', [
       'loadPartido',
-      'loadTipoEvento'
+      'loadTipoEvento',
+      'actualizarPartido'
     ]),
     submit() {
-      console.log(":D");
+      this.actualizarPartido(this.partido)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
   mounted() {
