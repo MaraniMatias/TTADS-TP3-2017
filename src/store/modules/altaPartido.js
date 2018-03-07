@@ -78,7 +78,7 @@ const actions = {
   actualizarPartido({ commit, rootState }, entidad) {
     commit('loading', true);
     return axios
-      .put(`${BaseURL}/partido-aztualizar/${entidad._id}`, { partido: entidad }, {
+      .put(`${BaseURL}/partido-actualizar/${entidad._id}`, { partido: entidad }, {
         headers: { Authorization: `Bearer ${rootState.token}` }
       })
       .then((resp) => {
