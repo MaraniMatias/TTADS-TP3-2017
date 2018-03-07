@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'ItemEquipo',
   props: {
@@ -32,9 +34,25 @@ export default {
     return {};
   },
   methods: {
+    ...mapMutations('altaPartido', {
+      setPartido: 'set_equipo'
+    }),
     itemAction() {
+      const self = this;
       if (this.setEquipo) {
-        console.log('Set equipo', this.setEquipo, this.equipo);
+        this.setPartido({
+          set: this.setEquipo,
+          equipo: this.equipo,
+          cb(err) {
+            if (err) {
+              self.$ons.notification.toast('Este equipo ya fue agregado', {
+                timeout: 1000
+              });
+            } else {
+              self.$router.push({ name: 'altaPartido' });
+            }
+          }
+        });
       } else {
         // goToProfile
         this.$router.push({ name: 'equipo', params: { id: this.equipo._id } });

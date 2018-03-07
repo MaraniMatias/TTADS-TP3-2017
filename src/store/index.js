@@ -7,6 +7,7 @@ import _ from 'lodash';
 import auth from './modules/auth';
 
 import altaEquipo from './modules/altaEquipo';
+import altaPartido from './modules/altaPartido';
 import equipo from './modules/equipo';
 import fixture from './modules/fixture';
 import jugador from './modules/jugador';
@@ -79,6 +80,7 @@ export default new Vuex.Store({
       }
     },
     altaEquipo,
+    altaPartido,
     auth,
     cuerpoTecnico,
     equipo,

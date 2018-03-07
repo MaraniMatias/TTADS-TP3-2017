@@ -82,7 +82,7 @@
     </v-ons-list>
 
     <p class="center">
-      <v-ons-button @click="cancel()" modifier="outline" class="outline">Cancelar</v-ons-button>
+      <v-ons-button @click="actionSheetVisible = false" class="outline">Cancelar</v-ons-button>
     </p>
   </v-ons-modal>
 </v-ons-page>
@@ -98,37 +98,45 @@ export default {
     return {
       actionSheetVisible: false,
       items: ['Programado', 'En curso', 'Entretiempo', 'Terminado', 'Iniciado'],
-
-      isLoading: false,
-      entidad: {
-        torneo: '',
-        equipoA: '',
-        equipoB: '',
-        estado: 'Programado',
-        estadio: '',
-        categoria: '',
-        arbitos: '',
-        fechaInicio: new Date(),
-      },
     };
   },
   computed: {
+    ...mapGetters('altaPartido', {
+      entidad: 'partido'
+    }),
     ...mapGetters('torneo', [
-      'listTorneos'
+      'listTorneos',
+      'isLoading'
     ]),
     disabledBtn() {
+      return !this.entidad.torneo ||
+        !this.entidad.equipoA ||
+        !this.entidad.equipoB;
     },
   },
   methods: {
     ...mapActions('torneo', [
       'loadTorneos',
     ]),
+    ...mapActions('altaPartido', [
+      'postPartido',
+    ]),
     itemAction(torneo) {
       this.entidad.torneo = torneo;
       this.actionSheetVisible = false;
     },
     submit() {
-      console.log(":D");
+      this.postPartido(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     },
     addEquipo(setEquipo) {
       this.$router.push({ name: 'equiposPage', params: { setEquipo } });
