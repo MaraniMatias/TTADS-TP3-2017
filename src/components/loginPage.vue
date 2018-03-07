@@ -100,11 +100,11 @@ export default {
           username: this.username,
           password: this.password
         }).then(() => {
-          if(this.isLogin){
+          if (this.isLogin) {
             this.$ons.notification.toast('Sesión iniciada con exito', {
               timeout: 1000
             });
-          }else{
+          } else {
             this.$ons.notification.toast('Credenciales incorrectas', {
               timeout: 1000
             });
