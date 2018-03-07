@@ -34,7 +34,7 @@ import config from '../config';
 
 import ItemJugadorProfile from './itemJugadorProfile';
 
-const BaseURL = config.baseURL + '/api';
+const BaseURL = `${config.baseURL}/api`;
 
 export default {
   name: 'JugadorPerfil',
