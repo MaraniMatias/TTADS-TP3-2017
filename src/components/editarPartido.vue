@@ -40,14 +40,15 @@
     <v-ons-list-title>Eventos</v-ons-list-title>
     <v-ons-list-item :modifier="md ? 'nodivider' : ''">
       <label class="center" for="input-tiempo-eventos">
-        <v-ons-select style="width: 100%" v-model="partido.selectTipoEventos" select-id="input-tiempo-eventos">
+        <v-ons-select style="width: 100%" v-model="selectTipoEventos" select-id="input-tiempo-eventos">
           <option v-for="item in tipoEventos" :value="item._id" :key="item._id">{{ item.nombre }}</option>
         </v-ons-select>
       </label>
     </v-ons-list-item>
 
     <v-ons-list-item>
-      <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px" :disabled="isLoading" @click="submit()">
+      <v-ons-button modifier="large" style="margin: 0px 6px 10px 0px"
+        :disabled="isLoading || selectTipoEventos == ''" @click="submit()">
         <span v-if="!isLoading">Actualizar</span>
         <v-ons-icon icon="ion-load-c" spin size="26px" v-else></v-ons-icon>
       </v-ons-button>
@@ -89,6 +90,8 @@ export default {
       'actualizarPartido'
     ]),
     submit() {
+      this.partido.selectTipoEventos = this.selectTipoEventos;
+
       this.actualizarPartido(this.partido)
         .then(() => {
           this.$ons.notification.toast('Guardado con exito.', {
