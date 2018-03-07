@@ -72,6 +72,40 @@ const actions = {
         commit('loading', false);
       });
   },
+
+  // Admin
+  postCuerpoTecnico({ commit, rootState }, entidad) {
+    commit('loading', true);
+    return axios
+      .post(`${BaseURL}/miembros-cuerpo-tecnico`, { cuerpoTecnico: entidad }, {
+        headers: { Authorization: `Bearer ${rootState.token}` }
+      })
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const object = _.get(resp, 'data.data', {}) || {};
+        return message !== 'Success' ? object : {};
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
+  postJugador({ commit, rootState }, entidad) {
+    commit('loading', true);
+    return axios
+      .post(`${BaseURL}/jugadores`, { jugadores: entidad }, {
+        headers: { Authorization: `Bearer ${rootState.token}` }
+      })
+      .then((resp) => {
+        // console.log(resp);
+        const message = _.get(resp, 'data.message', '') || '';
+        const object = _.get(resp, 'data.data', {}) || {};
+        return message !== 'Success' ? object : {};
+      })
+      .finally(() => {
+        commit('loading', false);
+      });
+  },
 };
 
 export default {

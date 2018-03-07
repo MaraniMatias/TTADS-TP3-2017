@@ -44,6 +44,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters, mapActions } = createNamespacedHelpers('jugador');
+
 export default {
   name: 'altaCuerpoTecnico',
   components: {},
@@ -56,12 +60,32 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters([
+      'isLoading',
+    ]),
+    disabledBtn() {
+      return !this.entidad.nombre || !this.entidad.apellido || !this.entidad.cargo;
+    },
+  },
   methods: {
+    ...mapActions({
+      post: 'postCuerpoTecnico',
+    }),
     submit() {
-      console.log(":D");
+      this.post(this.entidad)
+        .then(() => {
+          this.$ons.notification.toast('Guardado con exito.', {
+            timeout: 1000
+          });
+        })
+        .catch(() => {
+          this.$ons.notification.toast('Ha ocurrido un error.', {
+            timeout: 2000
+          });
+        });
     }
   },
-  mounted() {}
 };
 </script>
 
